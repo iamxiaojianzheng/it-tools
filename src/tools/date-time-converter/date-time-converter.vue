@@ -31,65 +31,67 @@ import { useValidation } from '@/composable/validation';
 
 const inputDate = ref('');
 
+const { t } = useI18n();
+
 const toDate: ToDateMapper = date => new Date(date);
 
 const formats: DateFormat[] = [
   {
-    name: 'JS locale date string',
+    name: t('tools.date-time-converter.formats.js'),
     fromDate: date => date.toString(),
     toDate,
     formatMatcher: () => false,
   },
   {
-    name: 'ISO 8601',
+    name: t('tools.date-time-converter.formats.iso8601'),
     fromDate: formatISO,
     toDate: parseISO,
     formatMatcher: date => isISO8601DateTimeString(date),
   },
   {
-    name: 'ISO 9075',
+    name: t('tools.date-time-converter.formats.iso9075'),
     fromDate: formatISO9075,
     toDate: parseISO,
     formatMatcher: date => isISO9075DateString(date),
   },
   {
-    name: 'RFC 3339',
+    name: t('tools.date-time-converter.formats.rfc3339'),
     fromDate: formatRFC3339,
     toDate,
     formatMatcher: date => isRFC3339DateString(date),
   },
   {
-    name: 'RFC 7231',
+    name: t('tools.date-time-converter.formats.rfc7231'),
     fromDate: formatRFC7231,
     toDate,
     formatMatcher: date => isRFC7231DateString(date),
   },
   {
-    name: 'Unix timestamp',
+    name: t('tools.date-time-converter.formats.unix'),
     fromDate: date => String(getUnixTime(date)),
     toDate: sec => fromUnixTime(+sec),
     formatMatcher: date => isUnixTimestamp(date),
   },
   {
-    name: 'Timestamp',
+    name: t('tools.date-time-converter.formats.timestamp'),
     fromDate: date => String(getTime(date)),
     toDate: ms => parseJSON(+ms),
     formatMatcher: date => isTimestamp(date),
   },
   {
-    name: 'UTC format',
+    name: t('tools.date-time-converter.formats.utc'),
     fromDate: date => date.toUTCString(),
     toDate,
     formatMatcher: date => isUTCDateString(date),
   },
   {
-    name: 'Mongo ObjectID',
+    name: t('tools.date-time-converter.formats.mongo'),
     fromDate: date => `${Math.floor(date.getTime() / 1000).toString(16)}0000000000000000`,
     toDate: objectId => new Date(Number.parseInt(objectId.substring(0, 8), 16) * 1000),
     formatMatcher: date => isMongoObjectId(date),
   },
   {
-    name: 'Excel date/time',
+    name: t('tools.date-time-converter.formats.excel'),
     fromDate: date => dateToExcelFormat(date),
     toDate: excelFormatToDate,
     formatMatcher: isExcelFormat,
@@ -126,7 +128,7 @@ const validation = useValidation({
   watch: [formatIndex],
   rules: [
     {
-      message: 'This date is invalid for this format',
+      message: t('tools.date-time-converter.invalidDate'),
       validator: value =>
         withDefaultOnError(() => {
           if (value === '') {
@@ -152,38 +154,25 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 <template>
   <div>
     <div flex gap-2>
-      <c-input-text
-        v-model:value="inputDate"
-        autofocus
-        placeholder="Put your date string here..."
-        clearable
-        test-id="date-time-converter-input"
-        :validation="validation"
-        @update:value="onDateInputChanged"
-      />
+      <c-input-text v-model:value="inputDate" autofocus :label="t('tools.date-time-converter.inputLabel')"
+        :placeholder="t('tools.date-time-converter.inputPlaceholder')" clearable test-id="date-time-converter-input"
+        :validation="validation" @update:value="onDateInputChanged" />
 
-      <c-select
-        v-model:value="formatIndex"
-        style="flex: 0 0 170px"
+      <c-select v-model:value="formatIndex" :label="t('tools.date-time-converter.formatLabel')" style="flex: 0 0 170px"
         :options="formats.map(({ name }, i) => ({ label: name, value: i }))"
-        data-test-id="date-time-converter-format-select"
-      />
+        data-test-id="date-time-converter-format-select" />
+    </div>
+
+    <div mt-2 flex justify-center>
+      <c-button @click="inputDate = ''">
+        {{ t('tools.date-time-converter.now') }}
+      </c-button>
     </div>
 
     <n-divider />
 
-    <input-copyable
-      v-for="{ name, fromDate } in formats"
-      :key="name"
-      :label="name"
-      label-width="150px"
-      label-position="left"
-      label-align="right"
-      :value="formatDateUsingFormatter(fromDate, normalizedDate)"
-      placeholder="Invalid date..."
-      :test-id="name"
-      readonly
-      mt-2
-    />
+    <input-copyable v-for="{ name, fromDate } in formats" :key="name" :label="name" label-width="150px"
+      label-position="left" label-align="right" :value="formatDateUsingFormatter(fromDate, normalizedDate)"
+      :placeholder="t('tools.date-time-converter.invalidDatePlaceholder')" :test-id="name" readonly mt-2 />
   </div>
 </template>

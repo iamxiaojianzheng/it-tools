@@ -6,6 +6,8 @@ import {
 } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
+const { t } = useI18n();
+
 const foreground = ref('#000000ff');
 const background = ref('#ffffffff');
 
@@ -39,103 +41,57 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
   <c-card>
     <div grid grid-cols-1 gap-12>
       <div>
-        <c-select
-          v-model:value="encryption"
-          mb-4
-          label="Encryption method"
-          default-value="WPA"
-          label-position="left"
-          label-width="130px"
-          label-align="right"
-          :options="[
+        <c-select v-model:value="encryption" mb-4 :label="t('tools.wifi-qr-code-generator.encryptionMethod')"
+          default-value="WPA" label-position="left" label-width="130px" label-align="right" :options="[
             {
-              label: 'No password',
+              label: t('tools.wifi-qr-code-generator.encryption.noPass'),
               value: 'nopass',
             },
             {
-              label: 'WPA/WPA2',
+              label: t('tools.wifi-qr-code-generator.encryption.wpa'),
               value: 'WPA',
             },
             {
-              label: 'WEP',
+              label: t('tools.wifi-qr-code-generator.encryption.wep'),
               value: 'WEP',
             },
             {
-              label: 'WPA2-EAP',
+              label: t('tools.wifi-qr-code-generator.encryption.wpa2Eap'),
               value: 'WPA2-EAP',
             },
-          ]"
-        />
+          ]" />
         <div class="mb-6 flex flex-row items-center gap-2">
-          <c-input-text
-            v-model:value="ssid"
-            label-position="left"
-            label-width="130px"
-            label-align="right"
-            label="SSID:"
-            rows="1"
-            autosize
-            placeholder="Your WiFi SSID..."
-            mb-6
-          />
+          <c-input-text v-model:value="ssid" label-position="left" label-width="130px" label-align="right"
+            :label="t('tools.wifi-qr-code-generator.ssid')" rows="1" autosize
+            :placeholder="t('tools.wifi-qr-code-generator.ssidPlaceholder')" mb-6 />
           <n-checkbox v-model:checked="isHiddenSSID">
-            Hidden SSID
+            {{ t('tools.wifi-qr-code-generator.hiddenSsid') }}
           </n-checkbox>
         </div>
-        <c-input-text
-          v-if="encryption !== 'nopass'"
-          v-model:value="password"
-          label-position="left"
-          label-width="130px"
-          label-align="right"
-          label="Password:"
-          rows="1"
-          autosize
-          type="password"
-          placeholder="Your WiFi Password..."
-          mb-6
-        />
-        <c-select
-          v-if="encryption === 'WPA2-EAP'"
-          v-model:value="eapMethod"
-          label="EAP method"
-          label-position="left"
-          label-width="130px"
-          label-align="right"
-          :options="EAPMethods.map((method) => ({ label: method, value: method }))"
-          searchable mb-4
-        />
+        <c-input-text v-if="encryption !== 'nopass'" v-model:value="password" label-position="left" label-width="130px"
+          label-align="right" :label="t('tools.wifi-qr-code-generator.password')" rows="1" autosize type="password"
+          :placeholder="t('tools.wifi-qr-code-generator.passwordPlaceholder')" mb-6 />
+        <c-select v-if="encryption === 'WPA2-EAP'" v-model:value="eapMethod"
+          :label="t('tools.wifi-qr-code-generator.eapMethod')" label-position="left" label-width="130px"
+          label-align="right" :options="EAPMethods.map((method) => ({ label: method, value: method }))" searchable
+          mb-4 />
         <div v-if="encryption === 'WPA2-EAP'" class="mb-6 flex flex-row items-center gap-2">
-          <c-input-text
-            v-model:value="eapIdentity"
-            label-position="left"
-            label-width="130px"
-            label-align="right"
-            label="Identity:"
-            rows="1"
-            autosize
-            placeholder="Your EAP Identity..."
-            mb-6
-          />
+          <c-input-text v-model:value="eapIdentity" label-position="left" label-width="130px" label-align="right"
+            :label="t('tools.wifi-qr-code-generator.eapIdentity')" rows="1" autosize
+            :placeholder="t('tools.wifi-qr-code-generator.eapIdentityPlaceholder')" mb-6 />
           <n-checkbox v-model:checked="eapAnonymous">
-            Anonymous?
+            {{ t('tools.wifi-qr-code-generator.anonymous') }}
           </n-checkbox>
         </div>
-        <c-select
-          v-if="encryption === 'WPA2-EAP'"
-          v-model:value="eapPhase2Method"
-          label="EAP Phase 2 method"
-          label-position="left"
-          label-width="130px"
-          label-align="right"
-          :options="EAPPhase2Methods.map((method) => ({ label: method, value: method }))"
-          searchable mb-4
-        />
+        <c-select v-if="encryption === 'WPA2-EAP'" v-model:value="eapPhase2Method"
+          :label="t('tools.wifi-qr-code-generator.eapPhase2Method')" label-position="left" label-width="130px"
+          label-align="right" :options="EAPPhase2Methods.map((method) => ({ label: method, value: method }))" searchable
+          mb-4 />
         <n-form label-width="130" label-placement="left">
-          <n-form-item label="Foreground color:">
+          <n-form-item :label="t('tools.wifi-qr-code-generator.foregroundColor')">
             <n-color-picker v-model:value="foreground" :modes="['hex']" />
           </n-form-item>
-          <n-form-item label="Background color:">
+          <n-form-item :label="t('tools.wifi-qr-code-generator.backgroundColor')">
             <n-color-picker v-model:value="background" :modes="['hex']" />
           </n-form-item>
         </n-form>
@@ -144,7 +100,7 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
         <div flex flex-col items-center gap-3>
           <img alt="wifi-qrcode" :src="qrcode" width="200">
           <c-button @click="download">
-            Download qr-code
+            {{ t('tools.wifi-qr-code-generator.download') }}
           </c-button>
         </div>
       </div>

@@ -1,24 +1,26 @@
 <script setup lang="ts">
 import { getPasswordCrackTimeEstimation } from './password-strength-analyser.service';
 
+const { t } = useI18n();
+
 const password = ref('');
-const crackTimeEstimation = computed(() => getPasswordCrackTimeEstimation({ password: password.value }));
+const crackTimeEstimation = computed(() => getPasswordCrackTimeEstimation({ password: password.value, t }));
 
 const details = computed(() => [
   {
-    label: 'Password length:',
+    label: t('tools.password-strength-analyser.passwordLength'),
     value: crackTimeEstimation.value.passwordLength,
   },
   {
-    label: 'Entropy:',
+    label: t('tools.password-strength-analyser.entropy'),
     value: Math.round(crackTimeEstimation.value.entropy * 100) / 100,
   },
   {
-    label: 'Character set size:',
+    label: t('tools.password-strength-analyser.charsetSize'),
     value: crackTimeEstimation.value.charsetLength,
   },
   {
-    label: 'Score:',
+    label: t('tools.password-strength-analyser.score'),
     value: `${Math.round(crackTimeEstimation.value.score * 100)} / 100`,
   },
 ]);
@@ -26,19 +28,13 @@ const details = computed(() => [
 
 <template>
   <div flex flex-col gap-3>
-    <c-input-text
-      v-model:value="password"
-      type="password"
-      placeholder="Enter a password..."
-      clearable
-      autofocus
-      raw-text
-      test-id="password-input"
-    />
+    <c-input-text v-model:value="password" type="password"
+      :placeholder="t('tools.password-strength-analyser.placeholder')" clearable autofocus raw-text
+      test-id="password-input" />
 
     <c-card text-center>
       <div op-60>
-        Duration to crack this password with brute force
+        {{ t('tools.password-strength-analyser.durationLabel') }}
       </div>
       <div text-2xl data-test-id="crack-duration">
         {{ crackTimeEstimation.crackDurationFormatted }}
@@ -55,8 +51,8 @@ const details = computed(() => [
       </div>
     </c-card>
     <div op-70>
-      <span font-bold>Note: </span>
-      The computed strength is based on the time it would take to crack the password using a brute force approach, it does not take into account the possibility of a dictionary attack.
+      <span font-bold>{{ t('tools.password-strength-analyser.note') }}</span>
+      {{ t('tools.password-strength-analyser.noteContent') }}
     </div>
   </div>
 </template>

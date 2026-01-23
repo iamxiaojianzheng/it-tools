@@ -30,26 +30,31 @@ const typeOptions = [
 ];
 
 export const website: OGSchemaType = {
-  name: 'General information',
+  name: 'tools.meta-tag-generator.generalInformation',
   elements: [
     {
       type: 'select',
-      label: 'Page type',
-      placeholder: 'Select the type of your website...',
+      label: 'tools.meta-tag-generator.pageType',
+      placeholder: 'tools.meta-tag-generator.pageTypePlaceholder',
       key: 'type',
       options: typeOptions,
     },
-    { type: 'input', label: 'Title', placeholder: 'Enter the title of your website...', key: 'title' },
     {
       type: 'input',
-      label: 'Description',
-      placeholder: 'Enter the description of your website...',
+      label: 'tools.meta-tag-generator.websiteTitle',
+      placeholder: 'tools.meta-tag-generator.websiteTitlePlaceholder',
+      key: 'title',
+    },
+    {
+      type: 'input',
+      label: 'tools.meta-tag-generator.websiteDescription',
+      placeholder: 'tools.meta-tag-generator.websiteDescriptionPlaceholder',
       key: 'description',
     },
     {
       type: 'input',
-      label: 'Page URL',
-      placeholder: 'Enter the url of your website...',
+      label: 'tools.meta-tag-generator.pageUrl',
+      placeholder: 'tools.meta-tag-generator.pageUrlPlaceholder',
       key: 'url',
     },
   ],

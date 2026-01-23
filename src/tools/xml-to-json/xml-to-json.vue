@@ -4,6 +4,8 @@ import { isValidXML } from '../xml-formatter/xml-formatter.service';
 import { withDefaultOnError } from '@/utils/defaults';
 import type { UseValidationRule } from '@/composable/validation';
 
+const { t } = useI18n();
+
 const defaultValue = '<a x="1.234" y="It\'s"/>';
 function transformer(value: string) {
   return withDefaultOnError(() => {
@@ -11,22 +13,17 @@ function transformer(value: string) {
   }, '');
 }
 
-const rules: UseValidationRule<string>[] = [
+const rules = computed<UseValidationRule<string>[]>(() => [
   {
     validator: isValidXML,
-    message: 'Provided XML is not valid.',
+    message: t('tools.xml-to-json.invalidXml'),
   },
-];
+]);
 </script>
 
 <template>
-  <format-transformer
-    input-label="Your XML content"
-    :input-default="defaultValue"
-    input-placeholder="Paste your XML content here..."
-    output-label="Converted JSON"
-    output-language="json"
-    :transformer="transformer"
-    :input-validation-rules="rules"
-  />
+  <format-transformer :input-label="t('tools.xml-to-json.xmlInputLabel')" :input-default="defaultValue"
+    :input-placeholder="t('tools.xml-to-json.xmlInputPlaceholder')"
+    :output-label="t('tools.xml-to-json.jsonOutputLabel')" output-language="json" :transformer="transformer"
+    :input-validation-rules="rules" :copy-label="t('tools.xml-to-json.copyJson')" />
 </template>

@@ -33,8 +33,8 @@ import { tool as phoneParserAndFormatter } from './phone-parser-and-formatter';
 import { tool as jsonDiff } from './json-diff';
 import { tool as ipv4RangeExpander } from './ipv4-range-expander';
 import { tool as httpStatusCodes } from './http-status-codes';
-import { tool as yamlToJson } from './yaml-to-json-converter';
-import { tool as jsonToYaml } from './json-to-yaml-converter';
+import { tool as yamlToJsonConverter } from './yaml-to-json-converter';
+import { tool as jsonToYamlConverter } from './json-to-yaml-converter';
 import { tool as ipv6UlaGenerator } from './ipv6-ula-generator';
 import { tool as ipv4AddressConverter } from './ipv4-address-converter';
 import { tool as benchmarkBuilder } from './benchmark-builder';
@@ -63,7 +63,7 @@ import { tool as gitMemo } from './git-memo';
 import { tool as hashText } from './hash-text';
 import { tool as hmacGenerator } from './hmac-generator';
 import { tool as htmlEntities } from './html-entities';
-import { tool as baseConverter } from './integer-base-converter';
+import { tool as integerBaseConverter } from './integer-base-converter';
 import { tool as jsonViewer } from './json-viewer';
 import { tool as jwtParser } from './jwt-parser';
 import { tool as loremIpsumGenerator } from './lorem-ipsum-generator';
@@ -97,7 +97,7 @@ export const toolsByCategory: ToolCategory[] = [
     name: 'Converter',
     components: [
       dateTimeConverter,
-      baseConverter,
+      integerBaseConverter,
       romanNumeralConverter,
       base64StringConverter,
       base64FileConverter,
@@ -106,9 +106,9 @@ export const toolsByCategory: ToolCategory[] = [
       textToNatoAlphabet,
       textToBinary,
       textToUnicode,
-      yamlToJson,
+      yamlToJsonConverter,
       yamlToToml,
-      jsonToYaml,
+      jsonToYamlConverter,
       jsonToToml,
       listConverter,
       tomlToJson,

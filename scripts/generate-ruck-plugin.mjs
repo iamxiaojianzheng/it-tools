@@ -14,7 +14,6 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
-
 // Load resources
 const zhLocales = YAML.parse(fs.readFileSync(path.join(localesDir, 'zh.yml'), 'utf8'));
 const ruckManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -113,9 +112,9 @@ for (const toolDirName of categories) {
     }
 
     const feature = {
-      code: code,
+      code,
       explain: description || name,
-      cmds: validCmds
+      cmds: validCmds,
     };
 
     tools.push(feature);
@@ -124,7 +123,7 @@ for (const toolDirName of categories) {
 
 const pluginJson = {
   ...ruckManifest,
-  features: tools
+  features: tools,
 };
 
 const outputPath = path.join(distDir, 'plugin.json');

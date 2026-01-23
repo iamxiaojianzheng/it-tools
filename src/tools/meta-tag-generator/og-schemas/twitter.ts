@@ -1,7 +1,7 @@
 import type { OGSchemaType } from '../OGSchemaType.type';
 
 export const twitter: OGSchemaType = {
-  name: 'Twitter',
+  name: 'tools.meta-tag-generator.twitterInformation',
   elements: [
     {
       type: 'select',
@@ -11,20 +11,20 @@ export const twitter: OGSchemaType = {
         { label: 'Application', value: 'app' },
         { label: 'Player', value: 'player' },
       ],
-      label: 'Card type',
-      placeholder: 'The Twitter card type...',
+      label: 'tools.meta-tag-generator.cardType',
+      placeholder: 'tools.meta-tag-generator.cardTypePlaceholder',
       key: 'twitter:card',
     },
     {
       type: 'input',
-      label: 'Site account',
-      placeholder: 'The name of the Twitter account of the site (ex: @ittoolsdottech)...',
+      label: 'tools.meta-tag-generator.siteAccount',
+      placeholder: 'tools.meta-tag-generator.siteAccountPlaceholder',
       key: 'twitter:site',
     },
     {
       type: 'input',
-      label: 'Creator acc.',
-      placeholder: 'The name of the Twitter account of the creator (ex: @cthmsst)...',
+      label: 'tools.meta-tag-generator.creatorAccount',
+      placeholder: 'tools.meta-tag-generator.creatorAccountPlaceholder',
       key: 'twitter:creator',
     },
   ],

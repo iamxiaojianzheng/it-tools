@@ -9,17 +9,17 @@ function prettifyExponentialNotation(exponentialNotation: number) {
   return exponent ? `${prettyBase}e${exponent}` : prettyBase;
 }
 
-function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
+function getHumanFriendlyDuration({ seconds, t }: { seconds: number; t: (key: string) => string }) {
   if (seconds <= 0.001) {
-    return 'Instantly';
+    return t('tools.password-strength-analyser.duration.instantly');
   }
 
   if (seconds <= 1) {
-    return 'Less than a second';
+    return t('tools.password-strength-analyser.duration.lessThanSecond');
   }
 
   const timeUnits = [
-    { unit: 'millenium', secondsInUnit: 31536000000, format: prettifyExponentialNotation, plural: 'millennia' },
+    { unit: 'millennium', secondsInUnit: 31536000000, format: prettifyExponentialNotation, plural: 'millennia' },
     { unit: 'century', secondsInUnit: 3153600000, plural: 'centuries' },
     { unit: 'decade', secondsInUnit: 315360000, plural: 'decades' },
     { unit: 'year', secondsInUnit: 31536000, plural: 'years' },
@@ -41,7 +41,8 @@ function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
       }
 
       const formattedQuantity = format(quantity);
-      return `${formattedQuantity} ${quantity > 1 ? plural : unit}`;
+      const unitKey = `tools.password-strength-analyser.duration.${quantity > 1 ? plural : unit}`;
+      return `${formattedQuantity} ${t(unitKey)}`;
     })
     .compact()
     .take(2)
@@ -49,7 +50,7 @@ function getHumanFriendlyDuration({ seconds }: { seconds: number }) {
     .value();
 }
 
-function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9 }: { password: string; guessesPerSecond?: number }) {
+function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9, t }: { password: string; guessesPerSecond?: number; t: (key: string) => string }) {
   const charsetLength = getCharsetLength({ password });
   const passwordLength = password.length;
 
@@ -57,7 +58,7 @@ function getPasswordCrackTimeEstimation({ password, guessesPerSecond = 1e9 }: { 
 
   const secondsToCrack = 2 ** entropy / guessesPerSecond;
 
-  const crackDurationFormatted = getHumanFriendlyDuration({ seconds: secondsToCrack });
+  const crackDurationFormatted = getHumanFriendlyDuration({ seconds: secondsToCrack, t });
 
   const score = Math.min(entropy / 128, 1);
 

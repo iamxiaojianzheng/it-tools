@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { useThemeVars } from 'naive-ui';
-import Memo from './regex-memo.content.md';
+import MemoEn from './regex-memo.content.md';
+import MemoZh from './regex-memo.content.zh.md';
 
+const { locale } = useI18n();
 const themeVars = useThemeVars();
+
+const Memo = computed(() => (locale.value === 'zh' ? MemoZh : MemoEn));
 </script>
 
 <template>
   <div>
-    <Memo />
+    <component :is="Memo" />
   </div>
 </template>
 
@@ -19,13 +23,18 @@ const themeVars = useThemeVars();
   border-radius: 4px;
   overflow: auto;
 }
+
 ::v-deep(table) {
   border-collapse: collapse;
 }
-::v-deep(table), ::v-deep(td), ::v-deep(th) {
+
+::v-deep(table),
+::v-deep(td),
+::v-deep(th) {
   border: 1px solid v-bind('themeVars.textColor1');
   padding: 5px;
 }
+
 ::v-deep(a) {
   color: v-bind('themeVars.textColor1');
 }

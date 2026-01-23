@@ -2,17 +2,17 @@ import { ValidationErrorsIBAN } from 'ibantools';
 
 export { getFriendlyErrors };
 
-const ibanErrorToMessage = {
-  [ValidationErrorsIBAN.NoIBANProvided]: 'No IBAN provided',
-  [ValidationErrorsIBAN.NoIBANCountry]: 'No IBAN country',
-  [ValidationErrorsIBAN.WrongBBANLength]: 'Wrong BBAN length',
-  [ValidationErrorsIBAN.WrongBBANFormat]: 'Wrong BBAN format',
-  [ValidationErrorsIBAN.ChecksumNotNumber]: 'Checksum is not a number',
-  [ValidationErrorsIBAN.WrongIBANChecksum]: 'Wrong IBAN checksum',
-  [ValidationErrorsIBAN.WrongAccountBankBranchChecksum]: 'Wrong account bank branch checksum',
-  [ValidationErrorsIBAN.QRIBANNotAllowed]: 'QR-IBAN not allowed',
+const getIbanErrorToMessageKeys = {
+  [ValidationErrorsIBAN.NoIBANProvided]: 'tools.iban-validator-and-parser.errorNoIban',
+  [ValidationErrorsIBAN.NoIBANCountry]: 'tools.iban-validator-and-parser.errorNoCountry',
+  [ValidationErrorsIBAN.WrongBBANLength]: 'tools.iban-validator-and-parser.errorWrongBbanLength',
+  [ValidationErrorsIBAN.WrongBBANFormat]: 'tools.iban-validator-and-parser.errorWrongBbanFormat',
+  [ValidationErrorsIBAN.ChecksumNotNumber]: 'tools.iban-validator-and-parser.errorChecksumNotNumber',
+  [ValidationErrorsIBAN.WrongIBANChecksum]: 'tools.iban-validator-and-parser.errorWrongChecksum',
+  [ValidationErrorsIBAN.WrongAccountBankBranchChecksum]: 'tools.iban-validator-and-parser.errorWrongBankChecksum',
+  [ValidationErrorsIBAN.QRIBANNotAllowed]: 'tools.iban-validator-and-parser.errorQrNotAllowed',
 };
 
-function getFriendlyErrors(errorCodes: ValidationErrorsIBAN[]) {
-  return errorCodes.map(errorCode => ibanErrorToMessage[errorCode]).filter(Boolean);
+function getFriendlyErrors(errorCodes: ValidationErrorsIBAN[], t: (key: string) => string) {
+  return errorCodes.map(errorCode => t(getIbanErrorToMessageKeys[errorCode])).filter(Boolean);
 }

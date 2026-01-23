@@ -13,12 +13,14 @@ const indentSize = useStorage('json-prettify:indent-size', 3);
 const sortKeys = useStorage('json-prettify:sort-keys', true);
 const cleanJson = computed(() => withDefaultOnError(() => formatJson({ rawJson, indentSize, sortKeys }), ''));
 
+const { t } = useI18n();
+
 const rawJsonValidation = useValidation({
   source: rawJson,
   rules: [
     {
       validator: v => v === '' || JSON5.parse(v),
-      message: 'Provided JSON is not valid.',
+      message: t('tools.json-viewer.invalidJson'),
     },
   ],
 });
@@ -27,34 +29,22 @@ const rawJsonValidation = useValidation({
 <template>
   <div style="flex: 0 0 100%">
     <div style="margin: 0 auto; max-width: 600px" flex justify-center gap-3>
-      <n-form-item label="Sort keys :" label-placement="left" label-width="100">
+      <n-form-item :label="t('tools.json-viewer.sortKeys')" label-placement="left" label-width="100">
         <n-switch v-model:value="sortKeys" />
       </n-form-item>
-      <n-form-item label="Indent size :" label-placement="left" label-width="100" :show-feedback="false">
+      <n-form-item :label="t('tools.json-viewer.indentSize')" label-placement="left" label-width="100"
+        :show-feedback="false">
         <n-input-number v-model:value="indentSize" min="0" max="10" style="width: 100px" />
       </n-form-item>
     </div>
   </div>
 
-  <n-form-item
-    label="Your raw JSON"
-    :feedback="rawJsonValidation.message"
-    :validation-status="rawJsonValidation.status"
-  >
-    <c-input-text
-      ref="inputElement"
-      v-model:value="rawJson"
-      placeholder="Paste your raw JSON here..."
-      rows="20"
-      multiline
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      spellcheck="false"
-      monospace
-    />
+  <n-form-item :label="t('tools.json-viewer.rawJson')" :feedback="rawJsonValidation.message"
+    :validation-status="rawJsonValidation.status">
+    <c-input-text ref="inputElement" v-model:value="rawJson" :placeholder="t('tools.json-viewer.rawJsonPlaceholder')"
+      rows="20" multiline autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" monospace />
   </n-form-item>
-  <n-form-item label="Prettified version of your JSON">
+  <n-form-item :label="t('tools.json-viewer.prettifiedJson')">
     <TextareaCopyable :value="cleanJson" language="json" :follow-height-of="inputElement" />
   </n-form-item>
 </template>
@@ -62,6 +52,7 @@ const rawJsonValidation = useValidation({
 <style lang="less" scoped>
 .result-card {
   position: relative;
+
   .copy-button {
     position: absolute;
     top: 10px;

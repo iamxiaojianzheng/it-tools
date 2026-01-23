@@ -34,10 +34,14 @@ const error = computed(() =>
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="input" label="Input number" placeholder="Put your number here (ex: 42)" label-position="left" label-width="110px" mb-2 label-align="right" />
+      <c-input-text v-model:value="input" :label="$t('tools.base-converter.inputLabel')"
+        :placeholder="$t('tools.base-converter.inputPlaceholder')" label-position="left" label-width="110px" mb-2
+        label-align="right" />
 
-      <n-form-item label="Input base" label-placement="left" label-width="110" :show-feedback="false">
-        <n-input-number v-model:value="inputBase" max="64" min="2" placeholder="Put your input base here (ex: 10)" w-full />
+      <n-form-item :label="$t('tools.base-converter.inputBaseLabel')" label-placement="left" label-width="110"
+        :show-feedback="false">
+        <n-input-number v-model:value="inputBase" max="64" min="2"
+          :placeholder="$t('tools.base-converter.inputBasePlaceholder')" w-full />
       </n-form-item>
 
       <n-alert v-if="error" style="margin-top: 25px" type="error">
@@ -45,53 +49,35 @@ const error = computed(() =>
       </n-alert>
       <n-divider />
 
-      <InputCopyable
-        label="Binary (2)"
-        v-bind="inputProps"
+      <InputCopyable :label="$t('tools.base-converter.binary')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 2 })"
-        placeholder="Binary version will be here..."
-      />
+        :placeholder="$t('tools.base-converter.binaryPlaceholder')" />
 
-      <InputCopyable
-        label="Octal (8)"
-        v-bind="inputProps"
+      <InputCopyable :label="$t('tools.base-converter.octal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 8 })"
-        placeholder="Octal version will be here..."
-      />
+        :placeholder="$t('tools.base-converter.octalPlaceholder')" />
 
-      <InputCopyable
-        label="Decimal (10)"
-        v-bind="inputProps"
+      <InputCopyable :label="$t('tools.base-converter.decimal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 10 })"
-        placeholder="Decimal version will be here..."
-      />
+        :placeholder="$t('tools.base-converter.decimalPlaceholder')" />
 
-      <InputCopyable
-        label="Hexadecimal (16)"
-        v-bind="inputProps"
+      <InputCopyable :label="$t('tools.base-converter.hexadecimal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 16 })"
-        placeholder="Hexadecimal version will be here..."
-      />
+        :placeholder="$t('tools.base-converter.hexadecimalPlaceholder')" />
 
-      <InputCopyable
-        label="Base64 (64)"
-        v-bind="inputProps"
+      <InputCopyable :label="$t('tools.base-converter.base64')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 64 })"
-        placeholder="Base64 version will be here..."
-      />
+        :placeholder="$t('tools.base-converter.base64Placeholder')" />
 
       <div flex items-baseline>
         <n-input-group style="width: 160px; margin-right: 10px">
-          <n-input-group-label> Custom: </n-input-group-label>
+          <n-input-group-label> {{ $t('tools.base-converter.customLabel') }} </n-input-group-label>
           <n-input-number v-model:value="outputBase" max="64" min="2" />
         </n-input-group>
 
-        <InputCopyable
-          flex-1
-          v-bind="inputProps"
+        <InputCopyable flex-1 v-bind="inputProps"
           :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: outputBase })"
-          :placeholder="`Base ${outputBase} will be here...`"
-        />
+          :placeholder="$t('tools.base-converter.customPlaceholder', { base: outputBase })" />
       </div>
     </c-card>
   </div>

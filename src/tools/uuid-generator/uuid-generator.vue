@@ -4,6 +4,8 @@ import { useCopy } from '@/composable/copy';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { withDefaultOnError } from '@/utils/defaults';
 
+const { t } = useI18n();
+
 const versions = ['NIL', 'v1', 'v3', 'v4', 'v5'] as const;
 
 const version = useStorage<typeof versions[number]>('uuid-generator:version', 'v4');
@@ -12,7 +14,7 @@ const v35Args = ref({ namespace: '6ba7b811-9dad-11d1-80b4-00c04fd430c8', name: '
 
 const validUuidRules = [
   {
-    message: 'Invalid UUID',
+    message: t('tools.uuid-generator.invalidUuid'),
     validator: (value: string) => {
       if (value === nilUuid) {
         return true;
@@ -47,7 +49,7 @@ const { copy } = useCopy({ source: uuids, text: t('tools.uuid-generator.copied')
 
 <template>
   <div>
-    <c-buttons-select v-model:value="version" :options="versions" :label="$t('tools.uuid-generator.version')"
+    <c-buttons-select v-model:value="version" :options="versions as any" :label="$t('tools.uuid-generator.version')"
       label-width="100px" mb-2 />
 
     <div mb-2 flex items-center>

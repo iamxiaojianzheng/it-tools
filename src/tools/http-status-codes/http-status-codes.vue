@@ -2,6 +2,7 @@
 import { codesByCategories } from './http-status-codes.constants';
 import { useFuzzySearch } from '@/composable/fuzzySearch';
 
+const { t } = useI18n();
 const search = ref('');
 
 const { searchResult } = useFuzzySearch({
@@ -11,6 +12,23 @@ const { searchResult } = useFuzzySearch({
     keys: [{ name: 'code', weight: 3 }, { name: 'name', weight: 2 }, 'description', 'category'],
   },
 });
+
+const categoryMapping: Record<string, string> = {
+  '1xx informational response': 'informational',
+  '2xx success': 'success',
+  '3xx redirection': 'redirection',
+  '4xx client error': 'clientError',
+  '5xx server error': 'serverError',
+};
+
+const getTranslatedCategory = (category: string) => {
+  if (category === 'Search results') {
+    return t('tools.http-status-codes.searchResults');
+  }
+
+  const key = categoryMapping[category];
+  return key ? t(`tools.http-status-codes.categories.${key}`) : category;
+};
 
 const codesByCategoryFiltered = computed(() => {
   if (!search.value) {
@@ -23,15 +41,12 @@ const codesByCategoryFiltered = computed(() => {
 
 <template>
   <div>
-    <c-input-text
-      v-model:value="search"
-      placeholder="Search http status..."
-      autofocus raw-text mb-10
-    />
+    <c-input-text v-model:value="search" :placeholder="t('tools.http-status-codes.searchPlaceholder')" autofocus
+      raw-text mb-10 />
 
     <div v-for="{ codes, category } of codesByCategoryFiltered" :key="category" mb-8>
       <div mb-2 text-xl>
-        {{ category }}
+        {{ getTranslatedCategory(category) }}
       </div>
 
       <c-card v-for="{ code, description, name, type } of codes" :key="code" mb-2>
@@ -39,7 +54,7 @@ const codesByCategoryFiltered = computed(() => {
           {{ code }} {{ name }}
         </div>
         <div op-70>
-          {{ description }} {{ type !== 'HTTP' ? `For ${type}.` : '' }}
+          {{ description }} {{ type !== 'HTTP' ? t('tools.http-status-codes.forType', { type }) : '' }}
         </div>
       </c-card>
     </div>

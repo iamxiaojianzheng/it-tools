@@ -8,10 +8,12 @@ import type { Group, Scope } from './chmod-calculator.types';
 
 const themeVars = useThemeVars();
 
+const { t } = useI18n();
+
 const scopes: { scope: Scope; title: string }[] = [
-  { scope: 'read', title: 'Read (4)' },
-  { scope: 'write', title: 'Write (2)' },
-  { scope: 'execute', title: 'Execute (1)' },
+  { scope: 'read', title: t('tools.chmod-calculator.read') },
+  { scope: 'write', title: t('tools.chmod-calculator.write') },
+  { scope: 'execute', title: t('tools.chmod-calculator.execute') },
 ];
 const groups: Group[] = ['owner', 'group', 'public'];
 
@@ -32,13 +34,13 @@ const symbolic = computed(() => computeChmodSymbolicRepresentation({ permissions
         <tr>
           <th class="text-center" scope="col" />
           <th class="text-center" scope="col">
-            Owner (u)
+            {{ t('tools.chmod-calculator.owner') }}
           </th>
           <th class="text-center" scope="col">
-            Group (g)
+            {{ t('tools.chmod-calculator.group') }}
           </th>
           <th class="text-center" scope="col">
-            Public (o)
+            {{ t('tools.chmod-calculator.public') }}
           </th>
         </tr>
       </thead>
@@ -74,7 +76,9 @@ const symbolic = computed(() => computeChmodSymbolicRepresentation({ permissions
   color: v-bind('themeVars.primaryColor');
   margin: 20px 0;
 }
+
 .permission-table {
+
   td,
   th {
     padding: 15px;
@@ -84,11 +88,13 @@ const symbolic = computed(() => computeChmodSymbolicRepresentation({ permissions
     }
   }
 }
+
 .line-header {
   font-weight: bold;
   text-align: right;
   max-width: 80px;
 }
+
 .text-center {
   text-align: center;
 }
