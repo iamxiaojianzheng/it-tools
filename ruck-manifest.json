@@ -1,0 +1,240 @@
+{
+  "name": "IT Tools",
+  "description": "Useful tools for developers",
+  "author": "CorentinTh",
+  "features": [
+    {
+      "code": "ascii-text-drawer",
+      "explain": "使用多种字体和样式生成 ASCII 艺术文本。",
+      "cmds": [
+        "ASCII 艺术文本生成器",
+        "ascii",
+        "asciiart"
+      ]
+    },
+    {
+      "code": "base64-file-converter",
+      "explain": "将字符串、文件或图像转换为其 Base64 表示形式。",
+      "cmds": [
+        "Base64 文件转换器",
+        "base64",
+        "converter",
+        {
+          "type": "regex",
+          "label": "Base64 decode/encode with Base64 文件转换器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "base64-string-converter",
+      "explain": "将字符串编码和解码为其 Base64 格式表示形式即可。",
+      "cmds": [
+        "Base64 字符串编码/解码",
+        "base64",
+        "converter",
+        {
+          "type": "regex",
+          "label": "Base64 decode/encode with Base64 字符串编码/解码",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "basic-auth-generator",
+      "explain": "从用户名和密码生成 base64 基本身份验证标头。",
+      "cmds": [
+        "基本身份验证生成器",
+        "basic",
+        "auth",
+        {
+          "type": "regex",
+          "label": "Base64 decode/encode with 基本身份验证生成器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "integer-base-converter",
+      "explain": "在不同的基数（十进制、十六进制、二进制、八进制、base64…）之间转换数字",
+      "cmds": [
+        "整数基转换器",
+        "integer",
+        "number",
+        {
+          "type": "regex",
+          "label": "Base64 decode/encode with 整数基转换器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "json-diff",
+      "explain": "比较两个JSON对象并获得它们之间的差异。",
+      "cmds": [
+        "JSON 差异比较",
+        "json",
+        "diff",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 差异比较",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 差异比较",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-minify",
+      "explain": "通过删除不必要的空白来缩小和压缩JSON。",
+      "cmds": [
+        "JSON 压缩",
+        "json",
+        "minify",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 压缩",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 压缩",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-csv",
+      "explain": "使用自动标头检测将JSON转换为CSV。",
+      "cmds": [
+        "JSON 转 CSV",
+        "json",
+        "to",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 转 CSV",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 转 CSV",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-toml",
+      "explain": "解析JSON并将其转换为TOML。",
+      "cmds": [
+        "JSON 转 TOML",
+        "json",
+        "parse",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 转 TOML",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 转 TOML",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-xml",
+      "explain": "将 JSON 转换为 XML",
+      "cmds": [
+        "JSON 转 XML",
+        "json",
+        "xml",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 转 XML",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 转 XML",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-yaml-converter",
+      "explain": "在线转换将JSON转换为YAML。",
+      "cmds": [
+        "JSON到YAML转换器",
+        "yaml",
+        "to",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON到YAML转换器",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON到YAML转换器",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-viewer",
+      "explain": "将JSON字符串修饰为友好的可读格式。",
+      "cmds": [
+        "JSON美化和格式化",
+        "json",
+        "viewer",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON美化和格式化",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON美化和格式化",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "jwt-parser",
+      "explain": "解析和解码JSON Web Token（jwt）并显示其内容。",
+      "cmds": [
+        "JWT 解析器",
+        "jwt",
+        "parser",
+        {
+          "type": "files",
+          "label": "Open JSON with JWT 解析器",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JWT 解析器",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    }
+  ]
+}

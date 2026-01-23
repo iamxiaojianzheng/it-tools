@@ -37,33 +37,29 @@ const hashText = (algo: AlgoNames, value: string) => formatWithEncoding(algos[al
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="clearText" multiline raw-text placeholder="Your string to hash..." rows="3" autosize autofocus label="Your text to hash:" />
+      <c-input-text v-model:value="clearText" multiline raw-text :placeholder="$t('tools.hash-text.inputPlaceholder')"
+        rows="3" autosize autofocus :label="$t('tools.hash-text.inputLabel')" />
 
       <n-divider />
 
-      <c-select
-        v-model:value="encoding"
-        mb-4
-        label="Digest encoding"
-        :options="[
-          {
-            label: 'Binary (base 2)',
-            value: 'Bin',
-          },
-          {
-            label: 'Hexadecimal (base 16)',
-            value: 'Hex',
-          },
-          {
-            label: 'Base64 (base 64)',
-            value: 'Base64',
-          },
-          {
-            label: 'Base64url (base 64 with url safe chars)',
-            value: 'Base64url',
-          },
-        ]"
-      />
+      <c-select v-model:value="encoding" mb-4 :label="$t('tools.hash-text.encodingLabel')" :options="[
+        {
+          label: $t('tools.hash-text.binary'),
+          value: 'Bin',
+        },
+        {
+          label: $t('tools.hash-text.hexadecimal'),
+          value: 'Hex',
+        },
+        {
+          label: $t('tools.hash-text.base64'),
+          value: 'Base64',
+        },
+        {
+          label: $t('tools.hash-text.base64url'),
+          value: 'Base64url',
+        },
+      ]" />
 
       <div v-for="algo in algoNames" :key="algo" style="margin: 5px 0">
         <n-input-group>

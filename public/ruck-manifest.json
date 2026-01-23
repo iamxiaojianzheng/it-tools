@@ -1,0 +1,984 @@
+{
+  "name": "it-tools-ruck",
+  "version": "1.0.0",
+  "displayName": "IT Tools",
+  "description": "Collection of handy tools for developers",
+  "author": "CorentinTh (adapted for Ruck)",
+  "homepage": "https://it-tools.tech",
+  "logo": "logo.png",
+  "pluginType": "ui",
+  "entry": "index.html",
+  "features": [
+    {
+      "code": "ascii-text-drawer",
+      "explain": "ASCII Art Text Generator",
+      "cmds": [
+        "ASCII Art Text Generator",
+        "ascii",
+        "asciiart"
+      ]
+    },
+    {
+      "code": "base64-file-converter",
+      "explain": "Base64 文件转换器",
+      "cmds": [
+        "Base64 文件转换器",
+        "base64",
+        "converter",
+        {
+          "type": "regex",
+          "label": "Decode Base64 with Base64 文件转换器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "base64-string-converter",
+      "explain": "Base64 字符串编码/解码",
+      "cmds": [
+        "Base64 字符串编码/解码",
+        "base64",
+        "converter",
+        {
+          "type": "regex",
+          "label": "Decode Base64 with Base64 字符串编码/解码",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "basic-auth-generator",
+      "explain": "基本身份验证生成器",
+      "cmds": [
+        "基本身份验证生成器",
+        "basic",
+        "auth",
+        {
+          "type": "regex",
+          "label": "Decode Base64 with 基本身份验证生成器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "bcrypt",
+      "explain": "加密",
+      "cmds": [
+        "加密",
+        "bcrypt",
+        "hash"
+      ]
+    },
+    {
+      "code": "benchmark-builder",
+      "explain": "基准生成器",
+      "cmds": [
+        "基准生成器",
+        "benchmark",
+        "builder"
+      ]
+    },
+    {
+      "code": "bip39-generator",
+      "explain": "BIP39密码生成器",
+      "cmds": [
+        "BIP39密码生成器",
+        "BIP39",
+        "passphrase"
+      ]
+    },
+    {
+      "code": "camera-recorder",
+      "explain": "摄像机记录器",
+      "cmds": [
+        "摄像机记录器",
+        "camera",
+        "recoder"
+      ]
+    },
+    {
+      "code": "case-converter",
+      "explain": "大小写转换",
+      "cmds": [
+        "大小写转换",
+        "case",
+        "converter"
+      ]
+    },
+    {
+      "code": "chmod-calculator",
+      "explain": "Chmod 计算器",
+      "cmds": [
+        "Chmod 计算器",
+        "chmod",
+        "calculator"
+      ]
+    },
+    {
+      "code": "chronometer",
+      "explain": "计时器",
+      "cmds": [
+        "计时器",
+        "chronometer",
+        "time",
+        {
+          "type": "regex",
+          "label": "Convert Timestamp with 计时器",
+          "match": "/^\\d{10,13}$/"
+        }
+      ]
+    },
+    {
+      "code": "color-converter",
+      "explain": "Color 选择器",
+      "cmds": [
+        "Color 选择器",
+        "color",
+        "converter",
+        {
+          "type": "regex",
+          "label": "Convert Color with Color 选择器",
+          "match": "/^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/"
+        }
+      ]
+    },
+    {
+      "code": "crontab-generator",
+      "explain": "Crontab 表达式生成",
+      "cmds": [
+        "Crontab 表达式生成",
+        "crontab",
+        "generator"
+      ]
+    },
+    {
+      "code": "date-time-converter",
+      "explain": "日期时间转换器",
+      "cmds": [
+        "日期时间转换器",
+        "date",
+        "time",
+        {
+          "type": "regex",
+          "label": "Convert Timestamp with 日期时间转换器",
+          "match": "/^\\d{10,13}$/"
+        }
+      ]
+    },
+    {
+      "code": "device-information",
+      "explain": "设备信息",
+      "cmds": [
+        "设备信息",
+        "device",
+        "information"
+      ]
+    },
+    {
+      "code": "docker-run-to-docker-compose-converter",
+      "explain": "Docker Run 到 docker-compose 转换器",
+      "cmds": [
+        "Docker Run 到 docker-compose 转换器",
+        "docker",
+        "run"
+      ]
+    },
+    {
+      "code": "email-normalizer",
+      "explain": "Email normalizer",
+      "cmds": [
+        "Email normalizer",
+        "email",
+        "normalizer"
+      ]
+    },
+    {
+      "code": "emoji-picker",
+      "explain": "Emoji 选择器",
+      "cmds": [
+        "Emoji 选择器",
+        "emoji",
+        "picker"
+      ]
+    },
+    {
+      "code": "encryption",
+      "explain": "加密/解密文本",
+      "cmds": [
+        "加密/解密文本",
+        "cypher",
+        "encipher"
+      ]
+    },
+    {
+      "code": "eta-calculator",
+      "explain": "ETA 计算器",
+      "cmds": [
+        "ETA 计算器",
+        "eta",
+        "calculator",
+        {
+          "type": "regex",
+          "label": "Convert Timestamp with ETA 计算器",
+          "match": "/^\\d{10,13}$/"
+        }
+      ]
+    },
+    {
+      "code": "git-memo",
+      "explain": "Git 备忘录",
+      "cmds": [
+        "Git 备忘录",
+        "git",
+        "push"
+      ]
+    },
+    {
+      "code": "hash-text",
+      "explain": "Hash 文本",
+      "cmds": [
+        "Hash 文本",
+        "hash",
+        "digest"
+      ]
+    },
+    {
+      "code": "hmac-generator",
+      "explain": "Hmac 生成器",
+      "cmds": [
+        "Hmac 生成器",
+        "hmac",
+        "generator"
+      ]
+    },
+    {
+      "code": "html-entities",
+      "explain": "转义html实体",
+      "cmds": [
+        "转义html实体",
+        "html",
+        "entities"
+      ]
+    },
+    {
+      "code": "html-wysiwyg-editor",
+      "explain": "HTML所见即所得编辑器",
+      "cmds": [
+        "HTML所见即所得编辑器",
+        "html",
+        "wysiwyg"
+      ]
+    },
+    {
+      "code": "http-status-codes",
+      "explain": "HTTP 状态码",
+      "cmds": [
+        "HTTP 状态码",
+        "http",
+        "status"
+      ]
+    },
+    {
+      "code": "iban-validator-and-parser",
+      "explain": "IBAN验证器和解析器",
+      "cmds": [
+        "IBAN验证器和解析器",
+        "iban",
+        "validator"
+      ]
+    },
+    {
+      "code": "integer-base-converter",
+      "explain": "整数基转换器",
+      "cmds": [
+        "整数基转换器",
+        "integer",
+        "number",
+        {
+          "type": "regex",
+          "label": "Decode Base64 with 整数基转换器",
+          "match": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+        }
+      ]
+    },
+    {
+      "code": "ipv4-address-converter",
+      "explain": "Ipv4地址转换器",
+      "cmds": [
+        "Ipv4地址转换器",
+        "ipv4",
+        "address"
+      ]
+    },
+    {
+      "code": "ipv4-range-expander",
+      "explain": "IPv4范围扩展器",
+      "cmds": [
+        "IPv4范围扩展器",
+        "ipv4",
+        "range"
+      ]
+    },
+    {
+      "code": "ipv4-subnet-calculator",
+      "explain": "IPv4子网计算器",
+      "cmds": [
+        "IPv4子网计算器",
+        "ipv4",
+        "subnet"
+      ]
+    },
+    {
+      "code": "ipv6-ula-generator",
+      "explain": "IPv6 ULA生成器",
+      "cmds": [
+        "IPv6 ULA生成器",
+        "ipv6",
+        "ula"
+      ]
+    },
+    {
+      "code": "json-diff",
+      "explain": "JSON 差异比较",
+      "cmds": [
+        "JSON 差异比较",
+        "json",
+        "diff",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 差异比较",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 差异比较",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-minify",
+      "explain": "JSON 压缩",
+      "cmds": [
+        "JSON 压缩",
+        "json",
+        "minify",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 压缩",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 压缩",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-csv",
+      "explain": "JSON 转 CSV",
+      "cmds": [
+        "JSON 转 CSV",
+        "json",
+        "to",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 转 CSV",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 转 CSV",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-toml",
+      "explain": "JSON 转 TOML",
+      "cmds": [
+        "JSON 转 TOML",
+        "json",
+        "parse",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON 转 TOML",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON 转 TOML",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-xml",
+      "explain": "JSON to XML",
+      "cmds": [
+        "JSON to XML",
+        "json",
+        "xml",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON to XML",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON to XML",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-to-yaml-converter",
+      "explain": "JSON到YAML转换器",
+      "cmds": [
+        "JSON到YAML转换器",
+        "yaml",
+        "to",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON到YAML转换器",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON到YAML转换器",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "json-viewer",
+      "explain": "JSON美化和格式化",
+      "cmds": [
+        "JSON美化和格式化",
+        "json",
+        "viewer",
+        {
+          "type": "files",
+          "label": "Open JSON with JSON美化和格式化",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JSON美化和格式化",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "jwt-parser",
+      "explain": "JWT 解析器",
+      "cmds": [
+        "JWT 解析器",
+        "jwt",
+        "parser",
+        {
+          "type": "files",
+          "label": "Open JSON with JWT 解析器",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with JWT 解析器",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        },
+        {
+          "type": "regex",
+          "label": "Decode JWT with JWT 解析器",
+          "match": "/^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$/"
+        }
+      ]
+    },
+    {
+      "code": "keycode-info",
+      "explain": "Keycode 信息",
+      "cmds": [
+        "Keycode 信息",
+        "keycode",
+        "info"
+      ]
+    },
+    {
+      "code": "list-converter",
+      "explain": "List 转换器",
+      "cmds": [
+        "List 转换器",
+        "list",
+        "converter"
+      ]
+    },
+    {
+      "code": "lorem-ipsum-generator",
+      "explain": "Lorem ipsum生成器",
+      "cmds": [
+        "Lorem ipsum生成器",
+        "lorem",
+        "ipsum"
+      ]
+    },
+    {
+      "code": "mac-address-generator",
+      "explain": "MAC 地址生成器",
+      "cmds": [
+        "MAC 地址生成器",
+        "mac",
+        "address"
+      ]
+    },
+    {
+      "code": "mac-address-lookup",
+      "explain": "MAC地址查找",
+      "cmds": [
+        "MAC地址查找",
+        "mac",
+        "address"
+      ]
+    },
+    {
+      "code": "markdown-to-html",
+      "explain": "Markdown to HTML",
+      "cmds": [
+        "Markdown to HTML",
+        "markdown",
+        "html"
+      ]
+    },
+    {
+      "code": "math-evaluator",
+      "explain": "数学计算器",
+      "cmds": [
+        "数学计算器",
+        "math",
+        "evaluator"
+      ]
+    },
+    {
+      "code": "meta-tag-generator",
+      "explain": "开放式图形元生成器",
+      "cmds": [
+        "开放式图形元生成器",
+        "meta",
+        "tag"
+      ]
+    },
+    {
+      "code": "mime-types",
+      "explain": "mime类型",
+      "cmds": [
+        "mime类型",
+        "mime",
+        "types"
+      ]
+    },
+    {
+      "code": "numeronym-generator",
+      "explain": "数字名称生成器",
+      "cmds": [
+        "数字名称生成器",
+        "numeronym",
+        "generator"
+      ]
+    },
+    {
+      "code": "otp-code-generator-and-validator",
+      "explain": "OTP代码生成器",
+      "cmds": [
+        "OTP代码生成器",
+        "otp",
+        "code",
+        {
+          "type": "regex",
+          "label": "Convert Timestamp with OTP代码生成器",
+          "match": "/^\\d{10,13}$/"
+        }
+      ]
+    },
+    {
+      "code": "password-strength-analyser",
+      "explain": "密码强度分析仪",
+      "cmds": [
+        "密码强度分析仪",
+        "password",
+        "strength",
+        {
+          "type": "regex",
+          "label": "Convert Timestamp with 密码强度分析仪",
+          "match": "/^\\d{10,13}$/"
+        }
+      ]
+    },
+    {
+      "code": "pdf-signature-checker",
+      "explain": "PDF签名检查器",
+      "cmds": [
+        "PDF签名检查器",
+        "pdf",
+        "signature"
+      ]
+    },
+    {
+      "code": "percentage-calculator",
+      "explain": "百分比计算器",
+      "cmds": [
+        "百分比计算器",
+        "percentage",
+        "calculator"
+      ]
+    },
+    {
+      "code": "phone-parser-and-formatter",
+      "explain": "电话分析器和格式化程序",
+      "cmds": [
+        "电话分析器和格式化程序",
+        "phone",
+        "parser"
+      ]
+    },
+    {
+      "code": "qr-code-generator",
+      "explain": "二维码生成器",
+      "cmds": [
+        "二维码生成器",
+        "qr",
+        "code",
+        {
+          "type": "regex",
+          "label": "Convert Color with 二维码生成器",
+          "match": "/^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/"
+        }
+      ]
+    },
+    {
+      "code": "random-port-generator",
+      "explain": "随机端口生成",
+      "cmds": [
+        "随机端口生成",
+        "system",
+        "port"
+      ]
+    },
+    {
+      "code": "regex-memo",
+      "explain": "Regex cheatsheet",
+      "cmds": [
+        "Regex cheatsheet",
+        "regex",
+        "regular"
+      ]
+    },
+    {
+      "code": "regex-tester",
+      "explain": "Regex Tester",
+      "cmds": [
+        "Regex Tester",
+        "regex",
+        "tester"
+      ]
+    },
+    {
+      "code": "roman-numeral-converter",
+      "explain": "罗马数字转换器",
+      "cmds": [
+        "罗马数字转换器",
+        "roman",
+        "arabic"
+      ]
+    },
+    {
+      "code": "rsa-key-pair-generator",
+      "explain": "RSA密钥对生成器",
+      "cmds": [
+        "RSA密钥对生成器",
+        "rsa",
+        "key"
+      ]
+    },
+    {
+      "code": "safelink-decoder",
+      "explain": "Outlook Safelink decoder",
+      "cmds": [
+        "Outlook Safelink decoder",
+        "outlook",
+        "safelink"
+      ]
+    },
+    {
+      "code": "slugify-string",
+      "explain": "打乱字符串",
+      "cmds": [
+        "打乱字符串",
+        "slugify",
+        "string"
+      ]
+    },
+    {
+      "code": "sql-prettify",
+      "explain": "SQL 美化和格式化",
+      "cmds": [
+        "SQL 美化和格式化",
+        "sql",
+        "prettify"
+      ]
+    },
+    {
+      "code": "string-obfuscator",
+      "explain": "字符串混淆器",
+      "cmds": [
+        "字符串混淆器",
+        "string",
+        "obfuscator"
+      ]
+    },
+    {
+      "code": "svg-placeholder-generator",
+      "explain": "SVG 占位符生成器",
+      "cmds": [
+        "SVG 占位符生成器",
+        "svg",
+        "placeholder"
+      ]
+    },
+    {
+      "code": "temperature-converter",
+      "explain": "温度转换器",
+      "cmds": [
+        "温度转换器",
+        "temperature",
+        "converter"
+      ]
+    },
+    {
+      "code": "text-diff",
+      "explain": "文本比较",
+      "cmds": [
+        "文本比较",
+        "text",
+        "diff"
+      ]
+    },
+    {
+      "code": "text-statistics",
+      "explain": "文本统计",
+      "cmds": [
+        "文本统计",
+        "text",
+        "statistics"
+      ]
+    },
+    {
+      "code": "text-to-binary",
+      "explain": "文本到 ASCII 二进制",
+      "cmds": [
+        "文本到 ASCII 二进制",
+        "text",
+        "to"
+      ]
+    },
+    {
+      "code": "text-to-nato-alphabet",
+      "explain": "文本转北约字母表",
+      "cmds": [
+        "文本转北约字母表",
+        "string",
+        "nato"
+      ]
+    },
+    {
+      "code": "text-to-unicode",
+      "explain": "文本转 Unicode",
+      "cmds": [
+        "文本转 Unicode",
+        "text",
+        "to"
+      ]
+    },
+    {
+      "code": "token-generator",
+      "explain": "Token 生成器",
+      "cmds": [
+        "Token 生成器",
+        "token",
+        "random"
+      ]
+    },
+    {
+      "code": "toml-to-json",
+      "explain": "TOML 到 JSON",
+      "cmds": [
+        "TOML 到 JSON",
+        "toml",
+        "json",
+        {
+          "type": "files",
+          "label": "Open JSON with TOML 到 JSON",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with TOML 到 JSON",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "toml-to-yaml",
+      "explain": "TOML 到 YAML",
+      "cmds": [
+        "TOML 到 YAML",
+        "toml",
+        "yaml"
+      ]
+    },
+    {
+      "code": "ulid-generator",
+      "explain": "ULID 生成器",
+      "cmds": [
+        "ULID 生成器",
+        "ulid",
+        "generator"
+      ]
+    },
+    {
+      "code": "url-encoder",
+      "explain": "编码/解码url格式的字符串",
+      "cmds": [
+        "编码/解码url格式的字符串",
+        "url",
+        "encode"
+      ]
+    },
+    {
+      "code": "url-parser",
+      "explain": "Url分析器",
+      "cmds": [
+        "Url分析器",
+        "url",
+        "parser"
+      ]
+    },
+    {
+      "code": "user-agent-parser",
+      "explain": "用户代理分析器",
+      "cmds": [
+        "用户代理分析器",
+        "user",
+        "agent"
+      ]
+    },
+    {
+      "code": "uuid-generator",
+      "explain": "UUIDs 生成器",
+      "cmds": [
+        "UUIDs 生成器",
+        "uuid",
+        "v4"
+      ]
+    },
+    {
+      "code": "wifi-qr-code-generator",
+      "explain": "WiFi 二维码生成器",
+      "cmds": [
+        "WiFi 二维码生成器",
+        "qr",
+        "code",
+        {
+          "type": "regex",
+          "label": "Convert Color with WiFi 二维码生成器",
+          "match": "/^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/"
+        }
+      ]
+    },
+    {
+      "code": "xml-formatter",
+      "explain": "XML 格式化",
+      "cmds": [
+        "XML 格式化",
+        "xml",
+        "prettify"
+      ]
+    },
+    {
+      "code": "xml-to-json",
+      "explain": "XML to JSON",
+      "cmds": [
+        "XML to JSON",
+        "xml",
+        "json",
+        {
+          "type": "files",
+          "label": "Open JSON with XML to JSON",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with XML to JSON",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "yaml-to-json-converter",
+      "explain": "YAML到JSON转换器",
+      "cmds": [
+        "YAML到JSON转换器",
+        "yaml",
+        "to",
+        {
+          "type": "files",
+          "label": "Open JSON with YAML到JSON转换器",
+          "fileType": "file",
+          "match": "/\\.json$/i",
+          "minLength": 1
+        },
+        {
+          "type": "regex",
+          "label": "Parse JSON text with YAML到JSON转换器",
+          "match": "/^\\s*[\\[\\{][\\s\\S]*[\\]\\}]\\s*$/"
+        }
+      ]
+    },
+    {
+      "code": "yaml-to-toml",
+      "explain": "YAML 到 TOML",
+      "cmds": [
+        "YAML 到 TOML",
+        "yaml",
+        "to"
+      ]
+    },
+    {
+      "code": "yaml-viewer",
+      "explain": "YAML美化和格式化",
+      "cmds": [
+        "YAML美化和格式化",
+        "yaml",
+        "viewer"
+      ]
+    }
+  ]
+}

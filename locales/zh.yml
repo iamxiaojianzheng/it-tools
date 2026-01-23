@@ -285,6 +285,11 @@ tools:
   json-diff:
     title: JSON 差异比较
     description: 比较两个JSON对象并获得它们之间的差异。
+    firstJson: 第一个 JSON
+    firstJsonPlaceholder: 请在此处输入第一个 JSON...
+    secondJson: 待对比的 JSON
+    secondJsonPlaceholder: 请在此处输入要对比的 JSON...
+    invalidJson: JSON 格式无效
   jwt-parser:
     title: JWT 解析器
     description: 解析和解码JSON Web Token（jwt）并显示其内容。
@@ -312,6 +317,13 @@ tools:
   hash-text:
     title: Hash 文本
     description: '使用所需的函数哈希文本字符串：MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3或RIPEMD160'
+    inputLabel: 待哈希的文本：
+    inputPlaceholder: 请输入待哈希的字符串...
+    encodingLabel: 摘要编码
+    binary: 二进制 (base 2)
+    hexadecimal: 十六进制 (base 16)
+    base64: Base64 (base 64)
+    base64url: Base64url (支持 URL 的 Base64)
 
   json-to-toml:
     title: JSON 转 TOML
@@ -348,6 +360,17 @@ tools:
   uuid-generator:
     title: UUIDs 生成器
     description: 通用唯一标识符（UUID）是一个128位数字，用于标识计算机系统中的信息。可能的UUID数量为16^32，即2^128或约3.4x10^38（这是一个很大的数字！）。
+    version: UUID 版本
+    quantity: 数量
+    quantityPlaceholder: UUID 数量
+    namespace: 命名空间
+    namespacePlaceholder: 命名空间
+    name: 名称
+    namePlaceholder: 名称
+    uuidsPlaceholder: 生成的 UUID
+    copied: UUID 已复制到剪贴板
+    copy: 复制
+    refresh: 刷新
 
   ipv4-address-converter:
     title: Ipv4地址转换器
@@ -388,3 +411,94 @@ tools:
   text-to-binary:
     title: 文本到 ASCII 二进制
     description: 将文本转换为其 ASCII 二进制表示形式，反之亦然。
+
+  ascii-text-drawer:
+    title: ASCII 艺术文本生成器
+    description: 使用多种字体和样式生成 ASCII 艺术文字。
+
+  date-time-converter:
+    title: 日期时间转换器
+    description: 将日期和时间转换为各种不同的格式。
+
+  email-normalizer:
+    title: 电子邮件规范化
+    description: 规范化电子邮件地址（例如，删除点或别名）。
+
+  integer-base-converter:
+    title: 整数基转换器
+    description: 在不同的基数（十进制、十六进制、二进制、八进制、base64…）之间转换数字。
+
+  json-to-xml:
+    title: JSON 转 XML
+    description: 将 JSON 转换为 XML。
+
+  json-viewer:
+    title: JSON 美化和格式化
+    description: 将 JSON 字符串修饰为友好的可读格式。
+
+  markdown-to-html:
+    title: Markdown 转 HTML
+    description: 将 Markdown 转换为 HTML。
+
+  meta-tag-generator:
+    title: Meta 标签生成器
+    description: 为您的网站生成 meta 标签（Open Graph, Twitter Cards 等）。
+
+  otp-code-generator-and-validator:
+    title: OTP 代码生成器
+    description: 为多因素身份验证生成和验证基于时间的 OTP（一次性密码）。
+
+  qr-code-generator:
+    title: 二维码生成器
+    description: 生成并下载 URL 或文本的 QR 代码。
+
+  regex-memo:
+    title: 正则表达式备忘录
+    description: 常用正则表达式的快速参考备忘。
+
+  regex-tester:
+    title: 正则表达式测试
+    description: 在线测试和调试正则表达式，支持详细的匹配信息。
+    regex: 正则表达式
+    regexToTest: 待测试的正则表达式：
+    regexPlaceholder: 请输入待测试的正则表达式
+    invalidRegex: "正则表达式无效: {0}"
+    seeCheatsheet: 查看正则表达式备忘录
+    globalSearch: 全局搜索 (g)
+    globalSearchTitle: 全局搜索
+    caseInsensitive: 忽略大小写 (i)
+    caseInsensitiveTitle: 忽略大小写搜索
+    multiline: 多行模式 (m)
+    multilineTitle: 允许 ^ 和 $ 匹配换行符
+    singleline: 单行模式 (s)
+    singlelineTitle: 允许 . 匹配换行符
+    unicode: Unicode 模式 (u)
+    unicodeTitle: 将模式视为 Unicode 序列
+    unicodeSets: Unicode 集合 (v)
+    unicodeSetsTitle: u 模式的升级版，支持更多 Unicode 特性
+    textToMatch: 待匹配的内容：
+    textPlaceholder: 请输入待匹配的内容
+    matches: 匹配结果
+    indexInText: 位置
+    value: 内容
+    captures: 捕获
+    groups: 分组
+    noMatch: 未找到匹配项
+    sampleMatchingText: 匹配示例文本
+    regexDiagram: 正则表达式图解
+
+  safelink-decoder:
+    title: 安全链接解码器
+    description: 解码安全链接（如 Microsoft Safe Links, Outlook 等）。
+
+  wifi-qr-code-generator:
+    title: WiFi 二维码生成器
+    description: 生成用于快速连接 WiFi 网络的二维码。
+
+  xml-to-json:
+    title: XML 转 JSON
+    description: 将 XML 转换为 JSON 格式。
+
+  yaml-viewer:
+    title: YAML 美化和格式化
+    description: 将 YAML 字符串修饰为友好的可读格式。
