@@ -34,14 +34,20 @@ const error = computed(() =>
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="input" :label="$t('tools.base-converter.inputLabel')"
+      <c-input-text
+        v-model:value="input" :label="$t('tools.base-converter.inputLabel')"
         :placeholder="$t('tools.base-converter.inputPlaceholder')" label-position="left" label-width="110px" mb-2
-        label-align="right" />
+        label-align="right"
+      />
 
-      <n-form-item :label="$t('tools.base-converter.inputBaseLabel')" label-placement="left" label-width="110"
-        :show-feedback="false">
-        <n-input-number v-model:value="inputBase" max="64" min="2"
-          :placeholder="$t('tools.base-converter.inputBasePlaceholder')" w-full />
+      <n-form-item
+        :label="$t('tools.base-converter.inputBaseLabel')" label-placement="left" label-width="110"
+        :show-feedback="false"
+      >
+        <n-input-number
+          v-model:value="inputBase" max="64" min="2"
+          :placeholder="$t('tools.base-converter.inputBasePlaceholder')" w-full
+        />
       </n-form-item>
 
       <n-alert v-if="error" style="margin-top: 25px" type="error">
@@ -49,25 +55,35 @@ const error = computed(() =>
       </n-alert>
       <n-divider />
 
-      <InputCopyable :label="$t('tools.base-converter.binary')" v-bind="inputProps"
+      <InputCopyable
+        :label="$t('tools.base-converter.binary')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 2 })"
-        :placeholder="$t('tools.base-converter.binaryPlaceholder')" />
+        :placeholder="$t('tools.base-converter.binaryPlaceholder')"
+      />
 
-      <InputCopyable :label="$t('tools.base-converter.octal')" v-bind="inputProps"
+      <InputCopyable
+        :label="$t('tools.base-converter.octal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 8 })"
-        :placeholder="$t('tools.base-converter.octalPlaceholder')" />
+        :placeholder="$t('tools.base-converter.octalPlaceholder')"
+      />
 
-      <InputCopyable :label="$t('tools.base-converter.decimal')" v-bind="inputProps"
+      <InputCopyable
+        :label="$t('tools.base-converter.decimal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 10 })"
-        :placeholder="$t('tools.base-converter.decimalPlaceholder')" />
+        :placeholder="$t('tools.base-converter.decimalPlaceholder')"
+      />
 
-      <InputCopyable :label="$t('tools.base-converter.hexadecimal')" v-bind="inputProps"
+      <InputCopyable
+        :label="$t('tools.base-converter.hexadecimal')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 16 })"
-        :placeholder="$t('tools.base-converter.hexadecimalPlaceholder')" />
+        :placeholder="$t('tools.base-converter.hexadecimalPlaceholder')"
+      />
 
-      <InputCopyable :label="$t('tools.base-converter.base64')" v-bind="inputProps"
+      <InputCopyable
+        :label="$t('tools.base-converter.base64')" v-bind="inputProps"
         :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: 64 })"
-        :placeholder="$t('tools.base-converter.base64Placeholder')" />
+        :placeholder="$t('tools.base-converter.base64Placeholder')"
+      />
 
       <div flex items-baseline>
         <n-input-group style="width: 160px; margin-right: 10px">
@@ -75,9 +91,11 @@ const error = computed(() =>
           <n-input-number v-model:value="outputBase" max="64" min="2" />
         </n-input-group>
 
-        <InputCopyable flex-1 v-bind="inputProps"
+        <InputCopyable
+          flex-1 v-bind="inputProps"
           :value="errorlessConvert({ value: input, fromBase: inputBase, toBase: outputBase })"
-          :placeholder="$t('tools.base-converter.customPlaceholder', { base: outputBase })" />
+          :placeholder="$t('tools.base-converter.customPlaceholder', { base: outputBase })"
+        />
       </div>
     </c-card>
   </div>

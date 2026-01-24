@@ -12,8 +12,10 @@ const result = computed(() => withDefaultOnError(() => evaluate(expression.value
 
 <template>
   <div>
-    <c-input-text v-model:value="expression" rows="1" multiline :placeholder="t('tools.math-evaluator.placeholder')"
-      raw-text monospace autofocus autosize />
+    <c-input-text
+      v-model:value="expression" rows="1" multiline :placeholder="t('tools.math-evaluator.placeholder')"
+      raw-text monospace autofocus autosize
+    />
 
     <c-card v-if="result !== ''" :title="t('tools.math-evaluator.result')" mt-5>
       {{ result }}

@@ -87,11 +87,15 @@ const countriesOptions = getCountries().map(code => ({
 
 <template>
   <div>
-    <c-select v-model:value="defaultCountryCode" :label="t('tools.phone-parser.countryLabel')"
-      :options="countriesOptions" searchable mb-5 />
+    <c-select
+      v-model:value="defaultCountryCode" :label="t('tools.phone-parser.countryLabel')"
+      :options="countriesOptions" searchable mb-5
+    />
 
-    <c-input-text v-model:value="rawPhone" :placeholder="t('tools.phone-parser.placeholder')"
-      :label="t('tools.phone-parser.phoneNumberLabel')" :validation="validation" mb-5 />
+    <c-input-text
+      v-model:value="rawPhone" :placeholder="t('tools.phone-parser.placeholder')"
+      :label="t('tools.phone-parser.phoneNumberLabel')" :validation="validation" mb-5
+    />
 
     <n-table v-if="parsedDetails">
       <tbody>

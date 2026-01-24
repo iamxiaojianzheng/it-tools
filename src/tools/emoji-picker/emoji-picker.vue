@@ -43,8 +43,10 @@ const { searchResult } = useFuzzySearch({
 <template>
   <div mx-auto max-w-2400px important:flex-1>
     <div flex items-center gap-3>
-      <c-input-text v-model:value="searchQuery" :placeholder="t('tools.emoji-picker.searchPlaceholder')" mx-auto
-        max-w-600px>
+      <c-input-text
+        v-model:value="searchQuery" :placeholder="t('tools.emoji-picker.searchPlaceholder')" mx-auto
+        max-w-600px
+      >
         <template #prefix>
           <icon-mdi-search mr-6px color-black op-70 dark:color-white />
         </template>

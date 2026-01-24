@@ -49,16 +49,23 @@ const { copy } = useCopy({ source: hmac });
 
 <template>
   <div flex flex-col gap-4>
-    <c-input-text v-model:value="plainText" multiline raw-text :placeholder="t('tools.hmac-generator.inputPlaceholder')"
-      rows="3" autosize autofocus :label="t('tools.hmac-generator.inputLabel')" />
-    <c-input-text v-model:value="secret" raw-text :placeholder="t('tools.hmac-generator.secretPlaceholder')"
-      :label="t('tools.hmac-generator.secretLabel')" clearable />
+    <c-input-text
+      v-model:value="plainText" multiline raw-text :placeholder="t('tools.hmac-generator.inputPlaceholder')"
+      rows="3" autosize autofocus :label="t('tools.hmac-generator.inputLabel')"
+    />
+    <c-input-text
+      v-model:value="secret" raw-text :placeholder="t('tools.hmac-generator.secretPlaceholder')"
+      :label="t('tools.hmac-generator.secretLabel')" clearable
+    />
 
     <div flex gap-2>
-      <c-select v-model:value="hashFunction" :label="t('tools.hmac-generator.algoLabel')" flex-1
+      <c-select
+        v-model:value="hashFunction" :label="t('tools.hmac-generator.algoLabel')" flex-1
         :placeholder="t('tools.hmac-generator.algoPlaceholder')"
-        :options="Object.keys(algos).map((label) => ({ label, value: label }))" />
-      <c-select v-model:value="encoding" :label="t('tools.hmac-generator.encodingLabel')" flex-1
+        :options="Object.keys(algos).map((label) => ({ label, value: label }))"
+      />
+      <c-select
+        v-model:value="encoding" :label="t('tools.hmac-generator.encodingLabel')" flex-1
         :placeholder="t('tools.hmac-generator.encodingPlaceholder')" :options="[
           {
             label: t('tools.hmac-generator.binary'),
@@ -76,10 +83,13 @@ const { copy } = useCopy({ source: hmac });
             label: t('tools.hmac-generator.base64url'),
             value: 'Base64url',
           },
-        ]" />
+        ]"
+      />
     </div>
-    <input-copyable v-model:value="hmac" type="textarea" :placeholder="t('tools.hmac-generator.resultPlaceholder')"
-      :label="t('tools.hmac-generator.resultLabel')" />
+    <input-copyable
+      v-model:value="hmac" type="textarea" :placeholder="t('tools.hmac-generator.resultPlaceholder')"
+      :label="t('tools.hmac-generator.resultLabel')"
+    />
     <div flex justify-center>
       <c-button @click="copy()">
         {{ t('tools.hmac-generator.copy') }}

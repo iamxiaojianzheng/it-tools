@@ -17,7 +17,9 @@ const rules: UseValidationRule<string>[] = [
 </script>
 
 <template>
-  <format-transformer :input-label="t('tools.json-minify.inputLabel')" :input-default="defaultValue"
+  <format-transformer
+    :input-label="t('tools.json-minify.inputLabel')" :input-default="defaultValue"
     :input-placeholder="t('tools.json-minify.inputPlaceholder')" :output-label="t('tools.json-minify.outputLabel')"
-    output-language="json" :input-validation-rules="rules" :transformer="transformer" />
+    output-language="json" :input-validation-rules="rules" :transformer="transformer"
+  />
 </template>

@@ -22,8 +22,10 @@ const rules = computed<UseValidationRule<string>[]>(() => [
 </script>
 
 <template>
-  <format-transformer :input-label="t('tools.xml-to-json.xmlInputLabel')" :input-default="defaultValue"
+  <format-transformer
+    :input-label="t('tools.xml-to-json.xmlInputLabel')" :input-default="defaultValue"
     :input-placeholder="t('tools.xml-to-json.xmlInputPlaceholder')"
     :output-label="t('tools.xml-to-json.jsonOutputLabel')" output-language="json" :transformer="transformer"
-    :input-validation-rules="rules" :copy-label="t('tools.xml-to-json.copyJson')" />
+    :input-validation-rules="rules" :copy-label="t('tools.xml-to-json.copyJson')"
+  />
 </template>

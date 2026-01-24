@@ -54,9 +54,11 @@ const secretValidationRules = computed(() => [
 
 <template>
   <div style="max-width: 350px">
-    <c-input-text v-model:value="secret" :label="t('tools.otp-code-generator-and-validator.secret')"
+    <c-input-text
+      v-model:value="secret" :label="t('tools.otp-code-generator-and-validator.secret')"
       :placeholder="t('tools.otp-code-generator-and-validator.secretPlaceholder')" mb-5
-      :validation-rules="secretValidationRules">
+      :validation-rules="secretValidationRules"
+    >
       <template #suffix>
         <c-tooltip :tooltip="t('tools.otp-code-generator-and-validator.generateNewSecret')">
           <c-button circle variant="text" size="small" @click="refreshSecret">
@@ -72,7 +74,7 @@ const secretValidationRules = computed(() => [
       <n-progress :percentage="(100 * interval) / 30" :color="theme.primaryColor" :show-indicator="false" />
       <div style="text-align: center">
         {{ t('tools.otp-code-generator-and-validator.nextIn', {
-          time: String(Math.floor(30 - interval)).padStart(2, '0')
+          time: String(Math.floor(30 - interval)).padStart(2, '0'),
         })
         }}
       </div>
@@ -85,21 +87,29 @@ const secretValidationRules = computed(() => [
     </div>
   </div>
   <div style="max-width: 350px">
-    <InputCopyable :label="t('tools.otp-code-generator-and-validator.secretHex')" :value="base32toHex(secret)" readonly
-      :placeholder="t('tools.otp-code-generator-and-validator.secretHexPlaceholder')" mb-5 />
+    <InputCopyable
+      :label="t('tools.otp-code-generator-and-validator.secretHex')" :value="base32toHex(secret)" readonly
+      :placeholder="t('tools.otp-code-generator-and-validator.secretHexPlaceholder')" mb-5
+    />
 
-    <InputCopyable :label="t('tools.otp-code-generator-and-validator.epoch')" :value="Math.floor(now / 1000).toString()"
-      readonly mb-5 :placeholder="t('tools.otp-code-generator-and-validator.epochPlaceholder')" />
+    <InputCopyable
+      :label="t('tools.otp-code-generator-and-validator.epoch')" :value="Math.floor(now / 1000).toString()"
+      readonly mb-5 :placeholder="t('tools.otp-code-generator-and-validator.epochPlaceholder')"
+    />
 
     <p>{{ t('tools.otp-code-generator-and-validator.iteration') }}</p>
 
-    <InputCopyable :value="String(getCounterFromTime({ now, timeStep: 30 }))" readonly
+    <InputCopyable
+      :value="String(getCounterFromTime({ now, timeStep: 30 }))" readonly
       :label="t('tools.otp-code-generator-and-validator.count')" label-position="left" label-width="90px"
-      label-align="right" :placeholder="t('tools.otp-code-generator-and-validator.iterationPlaceholder')" />
+      label-align="right" :placeholder="t('tools.otp-code-generator-and-validator.iterationPlaceholder')"
+    />
 
-    <InputCopyable :value="getCounterFromTime({ now, timeStep: 30 }).toString(16).padStart(16, '0')" readonly
+    <InputCopyable
+      :value="getCounterFromTime({ now, timeStep: 30 }).toString(16).padStart(16, '0')" readonly
       :placeholder="t('tools.otp-code-generator-and-validator.iterationHexPlaceholder')" label-position="left"
-      label-width="90px" label-align="right" :label="t('tools.otp-code-generator-and-validator.paddedHex')" />
+      label-width="90px" label-align="right" :label="t('tools.otp-code-generator-and-validator.paddedHex')"
+    />
   </div>
 </template>
 

@@ -39,12 +39,16 @@ const addressValidation = macAddressValidation(macAddress);
       {{ t('tools.ipv6-ula-generator.info') }}
     </n-alert>
 
-    <c-input-text v-model:value="macAddress" :placeholder="t('tools.ipv6-ula-generator.macAddressPlaceholder')"
-      clearable :label="t('tools.ipv6-ula-generator.macAddressLabel')" raw-text my-8 :validation="addressValidation" />
+    <c-input-text
+      v-model:value="macAddress" :placeholder="t('tools.ipv6-ula-generator.macAddressPlaceholder')"
+      clearable :label="t('tools.ipv6-ula-generator.macAddressLabel')" raw-text my-8 :validation="addressValidation"
+    />
 
     <div v-if="addressValidation.isValid">
-      <InputCopyable v-for="{ label, value } in calculatedSections" :key="label" :value="value" :label="label"
-        label-width="160px" label-align="right" label-position="left" readonly mb-2 />
+      <InputCopyable
+        v-for="{ label, value } in calculatedSections" :key="label" :value="value" :label="label"
+        label-width="160px" label-align="right" label-position="left" readonly mb-2
+      />
     </div>
   </div>
 </template>

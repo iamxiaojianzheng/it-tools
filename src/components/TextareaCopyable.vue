@@ -22,9 +22,10 @@ const props = withDefaults(
     followHeightOf: null,
     language: 'txt',
     copyPlacement: 'top-right',
-    copyMessage: 'Copy to clipboard',
   },
 );
+
+const { t } = useI18n();
 hljs.registerLanguage('sql', sqlHljs);
 hljs.registerLanguage('json', jsonHljs);
 hljs.registerLanguage('html', xmlHljs);
@@ -37,17 +38,19 @@ const { value, language, followHeightOf, copyPlacement, copyMessage } = toRefs(p
 const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) };
 
 const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
-const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.value);
+const tooltipText = computed(() => {
+  if (isJustCopied.value) {
+    return t('components.textarea-copyable.copied');
+  }
+  return copyMessage.value ?? t('components.textarea-copyable.copy');
+});
 </script>
 
 <template>
   <div style="overflow-x: hidden; width: 100%">
     <c-card relative>
-      <n-scrollbar
-        x-scrollable
-        trigger="none"
-        :style="height ? `min-height: ${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : ''"
-      >
+      <n-scrollbar x-scrollable trigger="none"
+        :style="height ? `min-height: ${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : ''">
         <n-config-provider :hljs="hljs">
           <n-code :code="value" :language="language" :trim="false" data-test-id="area-content" />
         </n-config-provider>

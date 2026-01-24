@@ -28,17 +28,23 @@ const properties = computed<{ title: string; key: keyof URL }[]>(() => [
 
 <template>
   <c-card>
-    <c-input-text v-model:value="urlToParse" :label="t('tools.url-parser.urlToParseLabel')"
-      :placeholder="t('tools.url-parser.urlToParsePlaceholder')" raw-text :validation-rules="urlValidationRules" />
+    <c-input-text
+      v-model:value="urlToParse" :label="t('tools.url-parser.urlToParseLabel')"
+      :placeholder="t('tools.url-parser.urlToParsePlaceholder')" raw-text :validation-rules="urlValidationRules"
+    />
 
     <n-divider />
 
-    <InputCopyable v-for="{ title, key } in properties" :key="key" :label="title"
+    <InputCopyable
+      v-for="{ title, key } in properties" :key="key" :label="title"
       :value="(urlParsed?.[key] as string) ?? ''" readonly label-position="left" label-width="110px" mb-2
-      placeholder=" " />
+      placeholder=" "
+    />
 
-    <div v-for="[k, v] in Object.entries(Object.fromEntries(urlParsed?.searchParams.entries() ?? []))" :key="k" mb-2
-      w-full flex>
+    <div
+      v-for="[k, v] in Object.entries(Object.fromEntries(urlParsed?.searchParams.entries() ?? []))" :key="k" mb-2
+      w-full flex
+    >
       <div style="flex: 1 0 110px">
         <icon-mdi-arrow-right-bottom />
       </div>

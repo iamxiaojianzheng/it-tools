@@ -22,9 +22,11 @@ function printHtml() {
 
 <template>
   <div>
-    <c-input-text v-model:value="inputMarkdown" multiline raw-text
+    <c-input-text
+      v-model:value="inputMarkdown" multiline raw-text
       :placeholder="t('tools.markdown-to-html.inputPlaceholder')" rows="8" autofocus
-      :label="t('tools.markdown-to-html.inputLabel')" />
+      :label="t('tools.markdown-to-html.inputLabel')"
+    />
 
     <n-divider />
 

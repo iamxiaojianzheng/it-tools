@@ -13,12 +13,18 @@ const text = ref('');
 
     <div mt-5 flex>
       <n-statistic :label="t('tools.text-statistics.characterCount')" :value="text.length" flex-1 />
-      <n-statistic :label="t('tools.text-statistics.wordCount')" :value="text === '' ? 0 : text.split(/\s+/).length"
-        flex-1 />
-      <n-statistic :label="t('tools.text-statistics.lineCount')"
-        :value="text === '' ? 0 : text.split(/\r\n|\r|\n/).length" flex-1 />
-      <n-statistic :label="t('tools.text-statistics.byteSize')" :value="formatBytes(getStringSizeInBytes(text))"
-        flex-1 />
+      <n-statistic
+        :label="t('tools.text-statistics.wordCount')" :value="text === '' ? 0 : text.split(/\s+/).length"
+        flex-1
+      />
+      <n-statistic
+        :label="t('tools.text-statistics.lineCount')"
+        :value="text === '' ? 0 : text.split(/\r\n|\r|\n/).length" flex-1
+      />
+      <n-statistic
+        :label="t('tools.text-statistics.byteSize')" :value="formatBytes(getStringSizeInBytes(text))"
+        flex-1
+      />
     </div>
   </c-card>
 </template>

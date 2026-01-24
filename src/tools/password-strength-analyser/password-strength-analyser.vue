@@ -28,9 +28,11 @@ const details = computed(() => [
 
 <template>
   <div flex flex-col gap-3>
-    <c-input-text v-model:value="password" type="password"
+    <c-input-text
+      v-model:value="password" type="password"
       :placeholder="t('tools.password-strength-analyser.placeholder')" clearable autofocus raw-text
-      test-id="password-input" />
+      test-id="password-input"
+    />
 
     <c-card text-center>
       <div op-60>

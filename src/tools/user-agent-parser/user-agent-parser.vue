@@ -105,8 +105,10 @@ const sections: UserAgentResultSection[] = [
 
 <template>
   <div>
-    <c-input-text v-model:value="ua" :label="t('tools.user-agent-parser.uaLabel')" multiline
-      :placeholder="t('tools.user-agent-parser.uaPlaceholder')" clearable raw-text rows="2" autosize monospace mb-3 />
+    <c-input-text
+      v-model:value="ua" :label="t('tools.user-agent-parser.uaLabel')" multiline
+      :placeholder="t('tools.user-agent-parser.uaPlaceholder')" clearable raw-text rows="2" autosize monospace mb-3
+    />
 
     <UserAgentResultCards :user-agent-info="userAgentInfo" :sections="sections" />
   </div>

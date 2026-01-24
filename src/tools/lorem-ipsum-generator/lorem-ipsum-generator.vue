@@ -27,29 +27,41 @@ const { copy } = useCopy({ source: loremIpsumText, text: t('tools.lorem-ipsum-ge
 
 <template>
   <c-card>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.paragraphs')" :show-feedback="false" label-width="200"
-      label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.paragraphs')" :show-feedback="false" label-width="200"
+      label-placement="left"
+    >
       <n-slider v-model:value="paragraphs" :step="1" :min="1" :max="20" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.sentencesPerParagraph')" :show-feedback="false"
-      label-width="200" label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.sentencesPerParagraph')" :show-feedback="false"
+      label-width="200" label-placement="left"
+    >
       <n-slider v-model:value="sentences" range :step="1" :min="1" :max="50" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.wordsPerSentence')" :show-feedback="false" label-width="200"
-      label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.wordsPerSentence')" :show-feedback="false" label-width="200"
+      label-placement="left"
+    >
       <n-slider v-model:value="words" range :step="1" :min="1" :max="50" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.startWithLoremIpsum')" :show-feedback="false" label-width="200"
-      label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.startWithLoremIpsum')" :show-feedback="false" label-width="200"
+      label-placement="left"
+    >
       <n-switch v-model:value="startWithLoremIpsum" />
     </n-form-item>
-    <n-form-item :label="t('tools.lorem-ipsum-generator.asHtml')" :show-feedback="false" label-width="200"
-      label-placement="left">
+    <n-form-item
+      :label="t('tools.lorem-ipsum-generator.asHtml')" :show-feedback="false" label-width="200"
+      label-placement="left"
+    >
       <n-switch v-model:value="asHTML" />
     </n-form-item>
 
-    <c-input-text :value="loremIpsumText" multiline :placeholder="t('tools.lorem-ipsum-generator.placeholder')" readonly
-      mt-5 rows="5" />
+    <c-input-text
+      :value="loremIpsumText" multiline :placeholder="t('tools.lorem-ipsum-generator.placeholder')" readonly
+      mt-5 rows="5"
+    />
 
     <div mt-5 flex justify-center gap-3>
       <c-button autofocus @click="copy()">

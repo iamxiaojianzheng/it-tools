@@ -1227,3 +1227,7 @@ tools:
     inputLabel: "Date and time:"
     formatLabel: "Format:"
     now: Set to now
+components:
+  textarea-copyable:
+    copy: Copy to clipboard
+    copied: Copied!

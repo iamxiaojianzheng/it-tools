@@ -16,8 +16,10 @@ const outputDecodedUrl = computed(() => {
 
 <template>
   <div>
-    <c-input-text v-model:value="inputSafeLinkUrl" raw-text :placeholder="t('tools.safelink-decoder.inputPlaceholder')"
-      autofocus :label="t('tools.safelink-decoder.inputLabel')" />
+    <c-input-text
+      v-model:value="inputSafeLinkUrl" raw-text :placeholder="t('tools.safelink-decoder.inputPlaceholder')"
+      autofocus :label="t('tools.safelink-decoder.inputLabel')"
+    />
 
     <n-divider />
 

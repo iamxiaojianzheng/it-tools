@@ -13,10 +13,14 @@ const { copy } = useCopy({ source: header, text: t('tools.basic-auth-generator.c
 
 <template>
   <div>
-    <c-input-text v-model:value="username" :label="$t('tools.basic-auth-generator.username')"
-      :placeholder="$t('tools.basic-auth-generator.usernamePlaceholder')" clearable raw-text mb-5 />
-    <c-input-text v-model:value="password" :label="$t('tools.basic-auth-generator.password')"
-      :placeholder="$t('tools.basic-auth-generator.passwordPlaceholder')" clearable raw-text mb-2 type="password" />
+    <c-input-text
+      v-model:value="username" :label="$t('tools.basic-auth-generator.username')"
+      :placeholder="$t('tools.basic-auth-generator.usernamePlaceholder')" clearable raw-text mb-5
+    />
+    <c-input-text
+      v-model:value="password" :label="$t('tools.basic-auth-generator.password')"
+      :placeholder="$t('tools.basic-auth-generator.passwordPlaceholder')" clearable raw-text mb-2 type="password"
+    />
 
     <c-card>
       <n-statistic :label="$t('tools.basic-auth-generator.authHeader')" class="header">

@@ -30,8 +30,10 @@ const { copy } = useCopy({ source: ulids, text: t('tools.ulid-generator.copied')
       <n-input-number v-model:value="amount" :min="1" :max="100" flex-1 />
     </div>
 
-    <c-buttons-select v-model:value="format" :options="formats" :label="t('tools.ulid-generator.format')"
-      label-width="75px" />
+    <c-buttons-select
+      v-model:value="format" :options="formats" :label="t('tools.ulid-generator.format')"
+      label-width="75px"
+    />
 
     <c-card mt-5 flex data-test-id="ulids">
       <pre m-0 m-x-auto>{{ ulids }}</pre>

@@ -81,12 +81,16 @@ const { copy: copyPassphrase } = useCopy({ source: passphrase, text: t('tools.bi
   <div>
     <n-grid cols="3" x-gap="12">
       <n-gi span="1">
-        <c-select v-model:value="language" searchable :label="t('tools.bip39-generator.languageLabel')"
-          :options="Object.keys(languages)" />
+        <c-select
+          v-model:value="language" searchable :label="t('tools.bip39-generator.languageLabel')"
+          :options="Object.keys(languages)"
+        />
       </n-gi>
       <n-gi span="2">
-        <n-form-item :label="t('tools.bip39-generator.entropyLabel')" :feedback="entropyValidation.message"
-          :validation-status="entropyValidation.status">
+        <n-form-item
+          :label="t('tools.bip39-generator.entropyLabel')" :feedback="entropyValidation.message"
+          :validation-status="entropyValidation.status"
+        >
           <n-input-group>
             <c-input-text v-model:value="entropy" :placeholder="t('tools.bip39-generator.entropyPlaceholder')" />
 
@@ -104,11 +108,15 @@ const { copy: copyPassphrase } = useCopy({ source: passphrase, text: t('tools.bi
         </n-form-item>
       </n-gi>
     </n-grid>
-    <n-form-item :label="t('tools.bip39-generator.passphraseLabel')" :feedback="mnemonicValidation.message"
-      :validation-status="mnemonicValidation.status">
+    <n-form-item
+      :label="t('tools.bip39-generator.passphraseLabel')" :feedback="mnemonicValidation.message"
+      :validation-status="mnemonicValidation.status"
+    >
       <n-input-group>
-        <c-input-text v-model:value="passphrase" :placeholder="t('tools.bip39-generator.passphrasePlaceholder')"
-          raw-text />
+        <c-input-text
+          v-model:value="passphrase" :placeholder="t('tools.bip39-generator.passphrasePlaceholder')"
+          raw-text
+        />
 
         <c-button @click="copyPassphrase()">
           <n-icon size="22" :component="Copy" />

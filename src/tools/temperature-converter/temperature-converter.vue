@@ -26,64 +26,64 @@ const units = reactive<
     string | TemperatureScale,
     { title: string; unit: string; ref: number; toKelvin: (v: number) => number; fromKelvin: (v: number) => number }
   >
->({
-  kelvin: {
-    title: t('tools.temperature-converter.kelvin'),
-    unit: 'K',
-    ref: 0,
-    toKelvin: _.identity,
-    fromKelvin: _.identity,
-  },
-  celsius: {
-    title: t('tools.temperature-converter.celsius'),
-    unit: '°C',
-    ref: 0,
-    toKelvin: convertCelsiusToKelvin,
-    fromKelvin: convertKelvinToCelsius,
-  },
-  fahrenheit: {
-    title: t('tools.temperature-converter.fahrenheit'),
-    unit: '°F',
-    ref: 0,
-    toKelvin: convertFahrenheitToKelvin,
-    fromKelvin: convertKelvinToFahrenheit,
-  },
-  rankine: {
-    title: t('tools.temperature-converter.rankine'),
-    unit: '°R',
-    ref: 0,
-    toKelvin: convertRankineToKelvin,
-    fromKelvin: convertKelvinToRankine,
-  },
-  delisle: {
-    title: t('tools.temperature-converter.delisle'),
-    unit: '°De',
-    ref: 0,
-    toKelvin: convertDelisleToKelvin,
-    fromKelvin: convertKelvinToDelisle,
-  },
-  newton: {
-    title: t('tools.temperature-converter.newton'),
-    unit: '°N',
-    ref: 0,
-    toKelvin: convertNewtonToKelvin,
-    fromKelvin: convertKelvinToNewton,
-  },
-  reaumur: {
-    title: t('tools.temperature-converter.reaumur'),
-    unit: '°Ré',
-    ref: 0,
-    toKelvin: convertReaumurToKelvin,
-    fromKelvin: convertKelvinToReaumur,
-  },
-  romer: {
-    title: t('tools.temperature-converter.romer'),
-    unit: '°Rø',
-    ref: 0,
-    toKelvin: convertRomerToKelvin,
-    fromKelvin: convertKelvinToRomer,
-  },
-});
+      >({
+        kelvin: {
+          title: t('tools.temperature-converter.kelvin'),
+          unit: 'K',
+          ref: 0,
+          toKelvin: _.identity,
+          fromKelvin: _.identity,
+        },
+        celsius: {
+          title: t('tools.temperature-converter.celsius'),
+          unit: '°C',
+          ref: 0,
+          toKelvin: convertCelsiusToKelvin,
+          fromKelvin: convertKelvinToCelsius,
+        },
+        fahrenheit: {
+          title: t('tools.temperature-converter.fahrenheit'),
+          unit: '°F',
+          ref: 0,
+          toKelvin: convertFahrenheitToKelvin,
+          fromKelvin: convertKelvinToFahrenheit,
+        },
+        rankine: {
+          title: t('tools.temperature-converter.rankine'),
+          unit: '°R',
+          ref: 0,
+          toKelvin: convertRankineToKelvin,
+          fromKelvin: convertKelvinToRankine,
+        },
+        delisle: {
+          title: t('tools.temperature-converter.delisle'),
+          unit: '°De',
+          ref: 0,
+          toKelvin: convertDelisleToKelvin,
+          fromKelvin: convertKelvinToDelisle,
+        },
+        newton: {
+          title: t('tools.temperature-converter.newton'),
+          unit: '°N',
+          ref: 0,
+          toKelvin: convertNewtonToKelvin,
+          fromKelvin: convertKelvinToNewton,
+        },
+        reaumur: {
+          title: t('tools.temperature-converter.reaumur'),
+          unit: '°Ré',
+          ref: 0,
+          toKelvin: convertReaumurToKelvin,
+          fromKelvin: convertKelvinToReaumur,
+        },
+        romer: {
+          title: t('tools.temperature-converter.romer'),
+          unit: '°Rø',
+          ref: 0,
+          toKelvin: convertRomerToKelvin,
+          fromKelvin: convertKelvinToRomer,
+        },
+      });
 
 function update(key: TemperatureScale) {
   const { ref: value, toKelvin } = units[key];
@@ -108,8 +108,10 @@ update('kelvin');
         {{ title }}
       </n-input-group-label>
 
-      <n-input-number v-model:value="units[key].ref" style="flex: 1"
-        @update:value="() => update(key as TemperatureScale)" />
+      <n-input-number
+        v-model:value="units[key].ref" style="flex: 1"
+        @update:value="() => update(key as TemperatureScale)"
+      />
 
       <n-input-group-label style="width: 50px">
         {{ unit }}

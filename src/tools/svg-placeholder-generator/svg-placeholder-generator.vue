@@ -57,9 +57,11 @@ const { download } = useDownloadFileFromBase64({ source: base64 });
           <n-input-number v-model:value="fontSize" min="1" />
         </n-form-item>
 
-        <c-input-text v-model:value="customText" :label="t('tools.svg-placeholder-generator.customText')"
+        <c-input-text
+          v-model:value="customText" :label="t('tools.svg-placeholder-generator.customText')"
           :placeholder="t('tools.svg-placeholder-generator.customText')" label-position="left" label-width="100px"
-          label-align="right" flex-1 />
+          label-align="right" flex-1
+        />
       </div>
       <n-form-item :label="t('tools.svg-placeholder-generator.useExactSize')" label-placement="left">
         <n-switch v-model:value="useExactSize" />

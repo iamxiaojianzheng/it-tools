@@ -33,17 +33,23 @@ const rawYamlValidation = useValidation({
       <n-form-item :label="t('tools.yaml-viewer.sortKeys')" label-placement="left" label-width="100">
         <n-switch v-model:value="sortKeys" />
       </n-form-item>
-      <n-form-item :label="t('tools.yaml-viewer.indentSize')" label-placement="left" label-width="100"
-        :show-feedback="false">
+      <n-form-item
+        :label="t('tools.yaml-viewer.indentSize')" label-placement="left" label-width="100"
+        :show-feedback="false"
+      >
         <n-input-number v-model:value="indentSize" min="1" max="10" style="width: 100px" />
       </n-form-item>
     </div>
   </div>
 
-  <n-form-item :label="t('tools.yaml-viewer.rawYaml')" :feedback="rawYamlValidation.message"
-    :validation-status="rawYamlValidation.status">
-    <c-input-text ref="inputElement" v-model:value="rawYaml" :placeholder="t('tools.yaml-viewer.rawYamlPlaceholder')"
-      rows="20" multiline autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" monospace />
+  <n-form-item
+    :label="t('tools.yaml-viewer.rawYaml')" :feedback="rawYamlValidation.message"
+    :validation-status="rawYamlValidation.status"
+  >
+    <c-input-text
+      ref="inputElement" v-model:value="rawYaml" :placeholder="t('tools.yaml-viewer.rawYamlPlaceholder')"
+      rows="20" multiline autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" monospace
+    />
   </n-form-item>
   <n-form-item :label="t('tools.yaml-viewer.prettifiedYaml')">
     <TextareaCopyable :value="cleanYaml" language="yaml" :follow-height-of="inputElement" />

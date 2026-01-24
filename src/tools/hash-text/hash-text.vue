@@ -37,29 +37,31 @@ const hashText = (algo: AlgoNames, value: string) => formatWithEncoding(algos[al
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="clearText" multiline raw-text :placeholder="$t('tools.hash-text.inputPlaceholder')"
-        rows="3" autosize autofocus :label="$t('tools.hash-text.inputLabel')" />
+      <c-input-text
+        v-model:value="clearText" multiline raw-text :placeholder="$t('tools.hash-text.inputPlaceholder')"
+        rows="3" autosize autofocus :label="$t('tools.hash-text.inputLabel')"
+      />
 
-      <n-divider />
-
-      <c-select v-model:value="encoding" mb-4 :label="$t('tools.hash-text.encodingLabel')" :options="[
-        {
-          label: $t('tools.hash-text.binary'),
-          value: 'Bin',
-        },
-        {
-          label: $t('tools.hash-text.hexadecimal'),
-          value: 'Hex',
-        },
-        {
-          label: $t('tools.hash-text.base64'),
-          value: 'Base64',
-        },
-        {
-          label: $t('tools.hash-text.base64url'),
-          value: 'Base64url',
-        },
-      ]" />
+      <c-select
+        v-model:value="encoding" mt-4 mb-4 :label="$t('tools.hash-text.encodingLabel')" :options="[
+          {
+            label: $t('tools.hash-text.binary'),
+            value: 'Bin',
+          },
+          {
+            label: $t('tools.hash-text.hexadecimal'),
+            value: 'Hex',
+          },
+          {
+            label: $t('tools.hash-text.base64'),
+            value: 'Base64',
+          },
+          {
+            label: $t('tools.hash-text.base64url'),
+            value: 'Base64url',
+          },
+        ]"
+      />
 
       <div v-for="algo in algoNames" :key="algo" style="margin: 5px 0">
         <n-input-group>

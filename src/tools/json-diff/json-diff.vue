@@ -22,13 +22,17 @@ const jsonValidationRules = [
 </script>
 
 <template>
-  <c-input-text v-model:value="rawLeftJson" :validation-rules="jsonValidationRules"
+  <c-input-text
+    v-model:value="rawLeftJson" :validation-rules="jsonValidationRules"
     :label="t('tools.json-diff.firstJson')" :placeholder="t('tools.json-diff.firstJsonPlaceholder')" rows="20" multiline
-    test-id="leftJson" raw-text monospace />
+    test-id="leftJson" raw-text monospace
+  />
 
-  <c-input-text v-model:value="rawRightJson" :validation-rules="jsonValidationRules"
+  <c-input-text
+    v-model:value="rawRightJson" :validation-rules="jsonValidationRules"
     :label="t('tools.json-diff.secondJson')" :placeholder="t('tools.json-diff.secondJsonPlaceholder')" rows="20"
-    multiline test-id="rightJson" raw-text monospace />
+    multiline test-id="rightJson" raw-text monospace
+  />
 
   <DiffsViewer :left-json="leftJson" :right-json="rightJson" />
 </template>

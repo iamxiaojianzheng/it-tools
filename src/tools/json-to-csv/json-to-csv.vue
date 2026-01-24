@@ -24,7 +24,9 @@ const rules = computed<UseValidationRule<string>[]>(() => [
 </script>
 
 <template>
-  <format-transformer :input-label="t('tools.json-to-csv.inputLabel')"
+  <format-transformer
+    :input-label="t('tools.json-to-csv.inputLabel')"
     :input-placeholder="t('tools.json-to-csv.inputPlaceholder')" :output-label="t('tools.json-to-csv.outputLabel')"
-    :input-validation-rules="rules" :transformer="transformer" :copy-label="t('tools.json-to-csv.copyCsv')" />
+    :input-validation-rules="rules" :transformer="transformer" :copy-label="t('tools.json-to-csv.copyCsv')"
+  />
 </template>

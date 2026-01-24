@@ -154,13 +154,17 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 <template>
   <div>
     <div flex gap-2>
-      <c-input-text v-model:value="inputDate" autofocus :label="t('tools.date-time-converter.inputLabel')"
+      <c-input-text
+        v-model:value="inputDate" autofocus :label="t('tools.date-time-converter.inputLabel')"
         :placeholder="t('tools.date-time-converter.inputPlaceholder')" clearable test-id="date-time-converter-input"
-        :validation="validation" @update:value="onDateInputChanged" />
+        :validation="validation" @update:value="onDateInputChanged"
+      />
 
-      <c-select v-model:value="formatIndex" :label="t('tools.date-time-converter.formatLabel')" style="flex: 0 0 170px"
+      <c-select
+        v-model:value="formatIndex" :label="t('tools.date-time-converter.formatLabel')" style="flex: 0 0 170px"
         :options="formats.map(({ name }, i) => ({ label: name, value: i }))"
-        data-test-id="date-time-converter-format-select" />
+        data-test-id="date-time-converter-format-select"
+      />
     </div>
 
     <div mt-2 flex justify-center>
@@ -171,8 +175,10 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
 
     <n-divider />
 
-    <input-copyable v-for="{ name, fromDate } in formats" :key="name" :label="name" label-width="150px"
+    <input-copyable
+      v-for="{ name, fromDate } in formats" :key="name" :label="name" label-width="150px"
       label-position="left" label-align="right" :value="formatDateUsingFormatter(fromDate, normalizedDate)"
-      :placeholder="t('tools.date-time-converter.invalidDatePlaceholder')" :test-id="name" readonly mt-2 />
+      :placeholder="t('tools.date-time-converter.invalidDatePlaceholder')" :test-id="name" readonly mt-2
+    />
   </div>
 </template>

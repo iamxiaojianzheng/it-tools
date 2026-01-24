@@ -60,8 +60,10 @@ const ibanExamples = [
 
 <template>
   <div>
-    <c-input-text v-model:value="rawIban" :placeholder="t('tools.iban-validator-and-parser.inputPlaceholder')"
-      test-id="iban-input" />
+    <c-input-text
+      v-model:value="rawIban" :placeholder="t('tools.iban-validator-and-parser.inputPlaceholder')"
+      test-id="iban-input"
+    />
 
     <c-card v-if="ibanInfo.length > 0" mt-5>
       <c-key-value-list :items="ibanInfo" data-test-id="iban-info" />

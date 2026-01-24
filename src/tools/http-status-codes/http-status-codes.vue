@@ -13,19 +13,20 @@ const categoryMapping: Record<string, string> = {
   '5xx server error': '5xx',
 };
 
-const getTranslatedCategory = (category: string) => {
+function getTranslatedCategory(category: string) {
   if (category === 'Search results') {
     return t('tools.http-status-codes.searchResults');
   }
 
   const key = categoryMapping[category];
   return key ? t(`tools.http-status-codes.categoryMapping.${key}`) : category;
-};
+}
 
 const localizedCodesByCategories = computed(() => codesByCategories.map(({ category, codes }) => ({
   category,
   codes: codes.map(code => ({
     ...code,
+    code: String(code.code),
     name: t(`tools.http-status-codes.codes.c${code.code}.name`, code.name),
     description: t(`tools.http-status-codes.codes.c${code.code}.description`, code.description),
   })),
@@ -47,6 +48,7 @@ const { searchResult } = useFuzzySearch({
       { name: 'description', weight: 1 },
       { name: 'category', weight: 1 },
     ],
+    threshold: 0.3,
   },
 });
 
@@ -61,8 +63,13 @@ const codesByCategoryFiltered = computed(() => {
 
 <template>
   <div flex flex-col gap-2>
-    <c-input-text v-model:value="search" :placeholder="t('tools.http-status-codes.searchPlaceholder')" autofocus
-      raw-text mb-10 />
+    <c-input-text
+      v-model:value="search"
+      :placeholder="t('tools.http-status-codes.searchPlaceholder')"
+      autofocus
+      raw-text
+      mb-10
+    />
 
     <div v-for="{ codes, category } of codesByCategoryFiltered" :key="category" mb-8>
       <div mb-2 text-xl font-bold>

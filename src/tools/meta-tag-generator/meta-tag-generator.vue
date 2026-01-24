@@ -63,11 +63,15 @@ const metaTags = computed(() => {
         </n-input-group-label>
 
         <c-input-text v-if="type === 'input'" v-model:value="metadata[key]" :placeholder="t(placeholder)" clearable />
-        <n-dynamic-input v-else-if="type === 'input-multiple'" v-model:value="metadata[key]" :min="1"
-          :placeholder="t(placeholder)" :default-value="['']" :show-sort-button="true" />
+        <n-dynamic-input
+          v-else-if="type === 'input-multiple'" v-model:value="metadata[key]" :min="1"
+          :placeholder="t(placeholder)" :default-value="['']" :show-sort-button="true"
+        />
 
-        <c-select v-else-if="type === 'select'" v-model:value="metadata[key]" w-full :placeholder="t(placeholder)"
-          :options="(element as OGSchemaTypeElementSelect).options" />
+        <c-select
+          v-else-if="type === 'select'" v-model:value="metadata[key]" w-full :placeholder="t(placeholder)"
+          :options="(element as OGSchemaTypeElementSelect).options"
+        />
       </n-input-group>
     </div>
   </div>

@@ -18,9 +18,11 @@ const rules = computed<UseValidationRule<string>[]>(() => [
 </script>
 
 <template>
-  <format-transformer :input-label="t('tools.json-to-yaml-converter.jsonInputLabel')"
+  <format-transformer
+    :input-label="t('tools.json-to-yaml-converter.jsonInputLabel')"
     :input-placeholder="t('tools.json-to-yaml-converter.jsonInputPlaceholder')"
     :output-label="t('tools.json-to-yaml-converter.yamlOutputLabel')" output-language="yaml"
     :input-validation-rules="rules" :transformer="transformer"
-    :copy-label="t('tools.json-to-yaml-converter.copyYaml')" />
+    :copy-label="t('tools.json-to-yaml-converter.copyYaml')"
+  />
 </template>

@@ -39,11 +39,15 @@ const { copy: copyDecoded } = useCopy({ source: decodeOutput, text: t('tools.url
 
 <template>
   <c-card :title="t('tools.url-encoder.encode')">
-    <c-input-text v-model:value="encodeInput" :label="t('tools.url-encoder.inputLabel')" :validation="encodedValidation"
-      multiline autosize :placeholder="t('tools.url-encoder.inputPlaceholder')" rows="2" mb-3 />
+    <c-input-text
+      v-model:value="encodeInput" :label="t('tools.url-encoder.inputLabel')" :validation="encodedValidation"
+      multiline autosize :placeholder="t('tools.url-encoder.inputPlaceholder')" rows="2" mb-3
+    />
 
-    <c-input-text :label="t('tools.url-encoder.outputLabel')" :value="encodeOutput" multiline autosize readonly
-      :placeholder="t('tools.url-encoder.outputPlaceholder')" rows="2" mb-3 />
+    <c-input-text
+      :label="t('tools.url-encoder.outputLabel')" :value="encodeOutput" multiline autosize readonly
+      :placeholder="t('tools.url-encoder.outputPlaceholder')" rows="2" mb-3
+    />
 
     <div flex justify-center>
       <c-button @click="copyEncoded()">
@@ -52,12 +56,16 @@ const { copy: copyDecoded } = useCopy({ source: decodeOutput, text: t('tools.url
     </div>
   </c-card>
   <c-card :title="t('tools.url-encoder.decode')">
-    <c-input-text v-model:value="decodeInput" :label="t('tools.url-encoder.decodeInputLabel')"
+    <c-input-text
+      v-model:value="decodeInput" :label="t('tools.url-encoder.decodeInputLabel')"
       :validation="decodeValidation" multiline autosize :placeholder="t('tools.url-encoder.decodeInputPlaceholder')"
-      rows="2" mb-3 />
+      rows="2" mb-3
+    />
 
-    <c-input-text :label="t('tools.url-encoder.decodeOutputLabel')" :value="decodeOutput" multiline autosize readonly
-      :placeholder="t('tools.url-encoder.decodeOutputPlaceholder')" rows="2" mb-3 />
+    <c-input-text
+      :label="t('tools.url-encoder.decodeOutputLabel')" :value="decodeOutput" multiline autosize readonly
+      :placeholder="t('tools.url-encoder.decodeOutputPlaceholder')" rows="2" mb-3
+    />
 
     <div flex justify-center>
       <c-button @click="copyDecoded()">

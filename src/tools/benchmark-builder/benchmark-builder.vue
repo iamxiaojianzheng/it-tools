@@ -85,9 +85,11 @@ function copyAsBulletList() {
     <div mb-5 flex flex-1 flex-nowrap justify-center gap-12px>
       <div v-for="(suite, index) of suites" :key="index">
         <c-card style="width: 294px">
-          <c-input-text v-model:value="suite.title" label-position="left"
+          <c-input-text
+            v-model:value="suite.title" label-position="left"
             :label="t('tools.benchmark-builder.suiteName')" :placeholder="t('tools.benchmark-builder.suitePlaceholder')"
-            clearable />
+            clearable
+          />
 
           <n-divider />
           <n-form-item :label="t('tools.benchmark-builder.suiteValues')" :show-feedback="false">
@@ -95,13 +97,15 @@ function copyAsBulletList() {
           </n-form-item>
         </c-card>
 
-        <div flex justify-center mt-2>
+        <div mt-2 flex justify-center>
           <c-button v-if="suites.length > 1" variant="text" @click="suites.splice(index, 1)">
             <n-icon :component="Trash" depth="3" mr-2 size="18" />
             {{ t('tools.benchmark-builder.deleteSuite') }}
           </c-button>
-          <c-button variant="text"
-            @click="suites.splice(index + 1, 0, { data: [0], title: `Suite ${suites.length + 1}` })">
+          <c-button
+            variant="text"
+            @click="suites.splice(index + 1, 0, { data: [0], title: `Suite ${suites.length + 1}` })"
+          >
             <n-icon :component="Plus" depth="3" mr-2 size="18" />
             {{ t('tools.benchmark-builder.addSuite') }}
           </c-button>
@@ -113,15 +117,19 @@ function copyAsBulletList() {
   <div style="flex: 0 0 100%">
     <div style="max-width: 600px; margin: 0 auto">
       <div mx-auto max-w-sm flex justify-center gap-3>
-        <c-input-text v-model:value="unit" :placeholder="t('tools.benchmark-builder.unitPlaceholder')"
-          :label="t('tools.benchmark-builder.unit')" label-position="left" mb-4 />
+        <c-input-text
+          v-model:value="unit" :placeholder="t('tools.benchmark-builder.unitPlaceholder')"
+          :label="t('tools.benchmark-builder.unit')" label-position="left" mb-4
+        />
 
-        <c-button @click="
-          suites = [
-            { title: 'Suite 1', data: [] },
-            { title: 'Suite 2', data: [] },
-          ]
-          ">
+        <c-button
+          @click="
+            suites = [
+              { title: 'Suite 1', data: [] },
+              { title: 'Suite 2', data: [] },
+            ]
+          "
+        >
           {{ t('tools.benchmark-builder.resetSuites') }}
         </c-button>
       </div>

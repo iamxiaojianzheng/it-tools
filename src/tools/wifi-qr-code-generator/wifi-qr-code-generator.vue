@@ -41,7 +41,8 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
   <c-card>
     <div grid grid-cols-1 gap-12>
       <div>
-        <c-select v-model:value="encryption" mb-4 :label="t('tools.wifi-qr-code-generator.encryptionMethod')"
+        <c-select
+          v-model:value="encryption" mb-4 :label="t('tools.wifi-qr-code-generator.encryptionMethod')"
           default-value="WPA" label-position="left" label-width="130px" label-align="right" :options="[
             {
               label: t('tools.wifi-qr-code-generator.encryption.noPass'),
@@ -59,34 +60,45 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
               label: t('tools.wifi-qr-code-generator.encryption.wpa2Eap'),
               value: 'WPA2-EAP',
             },
-          ]" />
+          ]"
+        />
         <div class="mb-6 flex flex-row items-center gap-2">
-          <c-input-text v-model:value="ssid" label-position="left" label-width="130px" label-align="right"
+          <c-input-text
+            v-model:value="ssid" label-position="left" label-width="130px" label-align="right"
             :label="t('tools.wifi-qr-code-generator.ssid')" rows="1" autosize
-            :placeholder="t('tools.wifi-qr-code-generator.ssidPlaceholder')" mb-6 />
+            :placeholder="t('tools.wifi-qr-code-generator.ssidPlaceholder')" mb-6
+          />
           <n-checkbox v-model:checked="isHiddenSSID">
             {{ t('tools.wifi-qr-code-generator.hiddenSsid') }}
           </n-checkbox>
         </div>
-        <c-input-text v-if="encryption !== 'nopass'" v-model:value="password" label-position="left" label-width="130px"
+        <c-input-text
+          v-if="encryption !== 'nopass'" v-model:value="password" label-position="left" label-width="130px"
           label-align="right" :label="t('tools.wifi-qr-code-generator.password')" rows="1" autosize type="password"
-          :placeholder="t('tools.wifi-qr-code-generator.passwordPlaceholder')" mb-6 />
-        <c-select v-if="encryption === 'WPA2-EAP'" v-model:value="eapMethod"
+          :placeholder="t('tools.wifi-qr-code-generator.passwordPlaceholder')" mb-6
+        />
+        <c-select
+          v-if="encryption === 'WPA2-EAP'" v-model:value="eapMethod"
           :label="t('tools.wifi-qr-code-generator.eapMethod')" label-position="left" label-width="130px"
           label-align="right" :options="EAPMethods.map((method) => ({ label: method, value: method }))" searchable
-          mb-4 />
+          mb-4
+        />
         <div v-if="encryption === 'WPA2-EAP'" class="mb-6 flex flex-row items-center gap-2">
-          <c-input-text v-model:value="eapIdentity" label-position="left" label-width="130px" label-align="right"
+          <c-input-text
+            v-model:value="eapIdentity" label-position="left" label-width="130px" label-align="right"
             :label="t('tools.wifi-qr-code-generator.eapIdentity')" rows="1" autosize
-            :placeholder="t('tools.wifi-qr-code-generator.eapIdentityPlaceholder')" mb-6 />
+            :placeholder="t('tools.wifi-qr-code-generator.eapIdentityPlaceholder')" mb-6
+          />
           <n-checkbox v-model:checked="eapAnonymous">
             {{ t('tools.wifi-qr-code-generator.anonymous') }}
           </n-checkbox>
         </div>
-        <c-select v-if="encryption === 'WPA2-EAP'" v-model:value="eapPhase2Method"
+        <c-select
+          v-if="encryption === 'WPA2-EAP'" v-model:value="eapPhase2Method"
           :label="t('tools.wifi-qr-code-generator.eapPhase2Method')" label-position="left" label-width="130px"
           label-align="right" :options="EAPPhase2Methods.map((method) => ({ label: method, value: method }))" searchable
-          mb-4 />
+          mb-4
+        />
         <n-form label-width="130" label-placement="left">
           <n-form-item :label="t('tools.wifi-qr-code-generator.foregroundColor')">
             <n-color-picker v-model:value="foreground" :modes="['hex']" />

@@ -22,7 +22,8 @@ const isRuckMode = computed(() => !!(window as any).ruck || new URLSearchParams(
 watch(isRuckMode, (val) => {
   if (val) {
     document.body.classList.add('ruck-plugin-mode');
-  } else {
+  }
+  else {
     document.body.classList.remove('ruck-plugin-mode');
   }
 }, { immediate: true });
@@ -32,7 +33,7 @@ if ((window as any).ruck) {
     // Navigate to the tool matching the 'code' from manifest
     if (payload.code) {
       // Find tool where path matches /code (e.g., code "ascii-text-drawer" -> path "/ascii-text-drawer")
-      const tool = tools.find((t) => t.path === `/${payload.code}`);
+      const tool = tools.find(t => t.path === `/${payload.code}`);
       if (tool) {
         router.push(tool.path);
       }

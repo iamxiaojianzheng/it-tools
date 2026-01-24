@@ -15,12 +15,16 @@ const { copy: copyText } = useCopy({ source: textFromUnicode });
 
 <template>
   <c-card :title="t('tools.text-to-unicode.textToUnicodeTitle')">
-    <c-input-text v-model:value="inputText" multiline :placeholder="t('tools.text-to-unicode.textToUnicodePlaceholder')"
+    <c-input-text
+      v-model:value="inputText" multiline :placeholder="t('tools.text-to-unicode.textToUnicodePlaceholder')"
       :label="t('tools.text-to-unicode.textToUnicodeInputLabel')" autosize autofocus raw-text
-      test-id="text-to-unicode-input" />
-    <c-input-text v-model:value="unicodeFromText" :label="t('tools.text-to-unicode.textToUnicodeOutputLabel')" multiline
+      test-id="text-to-unicode-input"
+    />
+    <c-input-text
+      v-model:value="unicodeFromText" :label="t('tools.text-to-unicode.textToUnicodeOutputLabel')" multiline
       raw-text readonly mt-2 :placeholder="t('tools.text-to-unicode.textToUnicodeOutputPlaceholder')"
-      test-id="text-to-unicode-output" />
+      test-id="text-to-unicode-output"
+    />
     <div mt-2 flex justify-center>
       <c-button :disabled="!unicodeFromText" @click="copyUnicode()">
         {{ t('tools.text-to-unicode.copyUnicode') }}
@@ -29,12 +33,16 @@ const { copy: copyText } = useCopy({ source: textFromUnicode });
   </c-card>
 
   <c-card :title="t('tools.text-to-unicode.unicodeToTextTitle')">
-    <c-input-text v-model:value="inputUnicode" multiline
+    <c-input-text
+      v-model:value="inputUnicode" multiline
       :placeholder="t('tools.text-to-unicode.unicodeToTextInputPlaceholder')"
-      :label="t('tools.text-to-unicode.unicodeToTextInputLabel')" autosize raw-text test-id="unicode-to-text-input" />
-    <c-input-text v-model:value="textFromUnicode" :label="t('tools.text-to-unicode.unicodeToTextOutputLabel')" multiline
+      :label="t('tools.text-to-unicode.unicodeToTextInputLabel')" autosize raw-text test-id="unicode-to-text-input"
+    />
+    <c-input-text
+      v-model:value="textFromUnicode" :label="t('tools.text-to-unicode.unicodeToTextOutputLabel')" multiline
       raw-text readonly mt-2 :placeholder="t('tools.text-to-unicode.unicodeToTextOutputPlaceholder')"
-      test-id="unicode-to-text-output" />
+      test-id="unicode-to-text-output"
+    />
     <div mt-2 flex justify-center>
       <c-button :disabled="!textFromUnicode" @click="copyText()">
         {{ t('tools.text-to-unicode.copyText') }}

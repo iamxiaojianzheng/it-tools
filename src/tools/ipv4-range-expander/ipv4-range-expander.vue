@@ -57,11 +57,15 @@ function onSwitchStartEndClicked() {
 <template>
   <div>
     <div mb-4 flex gap-4>
-      <c-input-text v-model:value="rawStartAddress" :label="t('tools.ipv4-range-expander.startAddress')"
-        :placeholder="t('tools.ipv4-range-expander.startPlaceholder')" :validation="startIpValidation" clearable />
+      <c-input-text
+        v-model:value="rawStartAddress" :label="t('tools.ipv4-range-expander.startAddress')"
+        :placeholder="t('tools.ipv4-range-expander.startPlaceholder')" :validation="startIpValidation" clearable
+      />
 
-      <c-input-text v-model:value="rawEndAddress" :label="t('tools.ipv4-range-expander.endAddress')"
-        :placeholder="t('tools.ipv4-range-expander.endPlaceholder')" :validation="endIpValidation" clearable />
+      <c-input-text
+        v-model:value="rawEndAddress" :label="t('tools.ipv4-range-expander.endAddress')"
+        :placeholder="t('tools.ipv4-range-expander.endPlaceholder')" :validation="endIpValidation" clearable
+      />
     </div>
 
     <n-table v-if="showResult" data-test-id="result">
@@ -79,12 +83,16 @@ function onSwitchStartEndClicked() {
         </tr>
       </thead>
       <tbody>
-        <ResultRow v-for="{ label, getOldValue, getNewValue } in calculatedValues" :key="label" :label="label"
-          :old-value="getOldValue(result)" :new-value="getNewValue(result)" />
+        <ResultRow
+          v-for="{ label, getOldValue, getNewValue } in calculatedValues" :key="label" :label="label"
+          :old-value="getOldValue(result)" :new-value="getNewValue(result)"
+        />
       </tbody>
     </n-table>
-    <n-alert v-else-if="startIpValidation.isValid && endIpValidation.isValid"
-      :title="t('tools.ipv4-range-expander.invalidRange')" type="error">
+    <n-alert
+      v-else-if="startIpValidation.isValid && endIpValidation.isValid"
+      :title="t('tools.ipv4-range-expander.invalidRange')" type="error"
+    >
       <div my-3 op-70>
         {{ t('tools.ipv4-range-expander.rangeError') }}
       </div>

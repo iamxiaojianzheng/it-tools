@@ -82,8 +82,10 @@ function switchToBlock({ count = 1 }: { count?: number }) {
 
 <template>
   <div>
-    <c-input-text v-model:value="ip" :label="t('tools.ipv4-subnet-calculator.inputLabel')"
-      :placeholder="t('tools.ipv4-subnet-calculator.inputPlaceholder')" :validation-rules="ipValidationRules" mb-4 />
+    <c-input-text
+      v-model:value="ip" :label="t('tools.ipv4-subnet-calculator.inputLabel')"
+      :placeholder="t('tools.ipv4-subnet-calculator.inputPlaceholder')" :validation-rules="ipValidationRules" mb-4
+    />
 
     <div v-if="networkInfo">
       <n-table>

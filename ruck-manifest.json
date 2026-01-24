@@ -1,7 +1,13 @@
 {
-  "name": "IT Tools",
-  "description": "Useful tools for developers",
-  "author": "CorentinTh",
+  "name": "it-tools-ruck",
+  "version": "1.0.0",
+  "displayName": "IT Tools",
+  "description": "Collection of handy tools for developers",
+  "author": "CorentinTh (adapted for Ruck)",
+  "homepage": "https://it-tools.tech",
+  "logo": "logo.png",
+  "pluginType": "ui",
+  "entry": "index.html",
   "features": [
     {
       "code": "ascii-text-drawer",

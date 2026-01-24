@@ -32,12 +32,16 @@ const b64ValidationWatch = [decodeUrlSafe];
       <n-switch v-model:value="encodeUrlSafe" />
     </n-form-item>
 
-    <c-input-text v-model:value="textInput" multiline
+    <c-input-text
+      v-model:value="textInput" multiline
       :placeholder="t('tools.base64-string-converter.stringPlaceholder')" rows="5"
-      :label="t('tools.base64-string-converter.stringToEncode')" raw-text mb-5 />
+      :label="t('tools.base64-string-converter.stringToEncode')" raw-text mb-5
+    />
 
-    <c-input-text :label="t('tools.base64-string-converter.base64Label')" :value="base64Output" multiline readonly
-      :placeholder="t('tools.base64-string-converter.base64OutputPlaceholder')" rows="5" mb-5 />
+    <c-input-text
+      :label="t('tools.base64-string-converter.base64Label')" :value="base64Output" multiline readonly
+      :placeholder="t('tools.base64-string-converter.base64OutputPlaceholder')" rows="5" mb-5
+    />
 
     <div flex justify-center>
       <c-button @click="copyTextBase64()">
@@ -51,13 +55,17 @@ const b64ValidationWatch = [decodeUrlSafe];
       <n-switch v-model:value="decodeUrlSafe" />
     </n-form-item>
 
-    <c-input-text v-model:value="base64Input" multiline
+    <c-input-text
+      v-model:value="base64Input" multiline
       :placeholder="t('tools.base64-string-converter.base64InputPlaceholder')" rows="5"
       :validation-rules="b64ValidationRules" :validation-watch="b64ValidationWatch"
-      :label="t('tools.base64-string-converter.base64ToDecode')" mb-5 />
+      :label="t('tools.base64-string-converter.base64ToDecode')" mb-5
+    />
 
-    <c-input-text v-model:value="textOutput" :label="t('tools.base64-string-converter.decodedString')"
-      :placeholder="t('tools.base64-string-converter.decodedPlaceholder')" multiline rows="5" readonly mb-5 />
+    <c-input-text
+      v-model:value="textOutput" :label="t('tools.base64-string-converter.decodedString')"
+      :placeholder="t('tools.base64-string-converter.decodedPlaceholder')" multiline rows="5" readonly mb-5
+    />
 
     <div flex justify-center>
       <c-button @click="copyText()">

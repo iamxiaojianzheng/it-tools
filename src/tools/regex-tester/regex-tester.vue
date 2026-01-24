@@ -22,9 +22,17 @@ const regexValidation = useValidation({
   rules: [
     {
       message: t('tools.regex-tester.invalidRegex'),
-      validator: value => new RegExp(value),
+      validator: (value) => {
+        try {
+          return !!new RegExp(value);
+        }
+        catch {
+          return false;
+        }
+      },
       getErrorMessage: (value) => {
         try {
+          // eslint-disable-next-line no-new
           new RegExp(value);
         }
         catch (e: any) {
@@ -110,7 +118,7 @@ watchEffect(
         </n-checkbox>
         <n-checkbox v-model:checked="ignoreCase">
           <span :title="t('tools.regex-tester.caseInsensitiveTitle')">{{ t('tools.regex-tester.caseInsensitive')
-            }}</span>
+          }}</span>
         </n-checkbox>
         <n-checkbox v-model:checked="multiline">
           <span :title="t('tools.regex-tester.multilineTitle')">{{ t('tools.regex-tester.multiline') }}</span>

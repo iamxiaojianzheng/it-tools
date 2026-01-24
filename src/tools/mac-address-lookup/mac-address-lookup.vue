@@ -18,9 +18,11 @@ const { copy } = useCopy({
 
 <template>
   <div>
-    <c-input-text v-model:value="macAddress" :label="t('tools.mac-address-lookup.inputLabel')" size="large"
+    <c-input-text
+      v-model:value="macAddress" :label="t('tools.mac-address-lookup.inputLabel')" size="large"
       :placeholder="t('tools.mac-address-lookup.inputPlaceholder')" clearable autocomplete="off" autocorrect="off"
-      autocapitalize="off" spellcheck="false" :validation-rules="macAddressValidationRules" mb-5 />
+      autocapitalize="off" spellcheck="false" :validation-rules="macAddressValidationRules" mb-5
+    />
 
     <div mb-5px>
       {{ t('tools.mac-address-lookup.vendorInfo') }}

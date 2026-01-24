@@ -28,14 +28,18 @@ const mimeTypeFound = computed(() => (selectedExtension.value ? extensionToMimeT
     <div style="opacity: 0.8">
       {{ t('tools.mime-types.mimeToExtensionDescription') }}
     </div>
-    <c-select v-model:value="selectedMimeType" searchable my-4 :options="mimeToExtensionsOptions"
-      :placeholder="t('tools.mime-types.mimePlaceholder')" />
+    <c-select
+      v-model:value="selectedMimeType" searchable my-4 :options="mimeToExtensionsOptions"
+      :placeholder="t('tools.mime-types.mimePlaceholder')"
+    />
 
     <div v-if="extensionsFound.length > 0">
       {{ t('tools.mime-types.extensionFoundLabel', { mimeType: selectedMimeType }) }}
       <div style="margin-top: 10px">
-        <n-tag v-for="extension of extensionsFound" :key="extension" round :bordered="false" type="primary"
-          style="margin-right: 10px">
+        <n-tag
+          v-for="extension of extensionsFound" :key="extension" round :bordered="false" type="primary"
+          style="margin-right: 10px"
+        >
           .{{ extension }}
         </n-tag>
       </div>
@@ -49,8 +53,10 @@ const mimeTypeFound = computed(() => (selectedExtension.value ? extensionToMimeT
     <div style="opacity: 0.8">
       {{ t('tools.mime-types.extensionToMimeDescription') }}
     </div>
-    <c-select v-model:value="selectedExtension" searchable my-4 :options="extensionToMimeTypeOptions"
-      :placeholder="t('tools.mime-types.extensionPlaceholder')" />
+    <c-select
+      v-model:value="selectedExtension" searchable my-4 :options="extensionToMimeTypeOptions"
+      :placeholder="t('tools.mime-types.extensionPlaceholder')"
+    />
 
     <div v-if="selectedExtension">
       {{ t('tools.mime-types.mimeFoundLabel', { extension: selectedExtension }) }}

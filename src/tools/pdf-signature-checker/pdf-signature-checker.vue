@@ -29,8 +29,10 @@ async function onVerifyClicked(uploadedFile: File) {
 <template>
   <div style="flex: 0 0 100%">
     <div mx-auto max-w-600px>
-      <c-file-upload :title="t('tools.pdf-signature-checker.uploadTitle')" accept=".pdf"
-        @file-upload="onVerifyClicked" />
+      <c-file-upload
+        :title="t('tools.pdf-signature-checker.uploadTitle')" accept=".pdf"
+        @file-upload="onVerifyClicked"
+      />
 
       <c-card v-if="file" mt-4 flex gap-2>
         <div font-bold>

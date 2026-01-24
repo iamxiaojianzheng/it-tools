@@ -84,18 +84,24 @@ async function onUpload(file: File) {
   <c-card :title="t('tools.base64-file-converter.base64ToFile')">
     <n-grid cols="3" x-gap="12">
       <n-gi span="2">
-        <c-input-text v-model:value="fileName" :label="t('tools.base64-file-converter.fileName')"
-          :placeholder="t('tools.base64-file-converter.fileNamePlaceholder')" mb-2 />
+        <c-input-text
+          v-model:value="fileName" :label="t('tools.base64-file-converter.fileName')"
+          :placeholder="t('tools.base64-file-converter.fileNamePlaceholder')" mb-2
+        />
       </n-gi>
       <n-gi>
-        <c-input-text v-model:value="fileExtension" :label="t('tools.base64-file-converter.extension')"
-          :placeholder="t('tools.base64-file-converter.extensionPlaceholder')" mb-2 />
+        <c-input-text
+          v-model:value="fileExtension" :label="t('tools.base64-file-converter.extension')"
+          :placeholder="t('tools.base64-file-converter.extensionPlaceholder')" mb-2
+        />
       </n-gi>
     </n-grid>
 
-    <c-input-text v-model:value="base64Input" multiline
+    <c-input-text
+      v-model:value="base64Input" multiline
       :placeholder="t('tools.base64-file-converter.base64Placeholder')" rows="5" :validation="base64InputValidation"
-      mb-2 />
+      mb-2
+    />
 
     <div flex justify-center py-2>
       <div id="previewContainer" />
@@ -113,8 +119,10 @@ async function onUpload(file: File) {
 
   <c-card :title="t('tools.base64-file-converter.fileToBase64')">
     <c-file-upload :title="t('tools.base64-file-converter.uploadTitle')" @file-upload="onUpload" />
-    <c-input-text :value="fileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.filePlaceholder')"
-      rows="5" my-2 />
+    <c-input-text
+      :value="fileBase64" multiline readonly :placeholder="t('tools.base64-file-converter.filePlaceholder')"
+      rows="5" my-2
+    />
 
     <div flex justify-center>
       <c-button @click="copyFileBase64()">

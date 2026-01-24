@@ -32,9 +32,11 @@ const { download } = useDownloadFileFromBase64({ source: dockerComposeBase64, fi
 
 <template>
   <div>
-    <c-input-text v-model:value="dockerRun" :label="t('tools.docker-run-to-docker-compose-converter.inputLabel')"
+    <c-input-text
+      v-model:value="dockerRun" :label="t('tools.docker-run-to-docker-compose-converter.inputLabel')"
       style="font-family: monospace" multiline raw-text monospace
-      :placeholder="t('tools.docker-run-to-docker-compose-converter.inputPlaceholder')" rows="3" />
+      :placeholder="t('tools.docker-run-to-docker-compose-converter.inputPlaceholder')" rows="3"
+    />
 
     <n-divider />
 

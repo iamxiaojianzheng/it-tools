@@ -23,12 +23,16 @@ const { copy: copyText } = useCopy({ source: textFromBinary });
 
 <template>
   <c-card :title="t('tools.text-to-binary.textToBinaryTitle')">
-    <c-input-text v-model:value="inputText" multiline :placeholder="t('tools.text-to-binary.textToBinaryPlaceholder')"
+    <c-input-text
+      v-model:value="inputText" multiline :placeholder="t('tools.text-to-binary.textToBinaryPlaceholder')"
       :label="t('tools.text-to-binary.textToBinaryInputLabel')" autosize autofocus raw-text
-      test-id="text-to-binary-input" />
-    <c-input-text v-model:value="binaryFromText" :label="t('tools.text-to-binary.textToBinaryOutputLabel')" multiline
+      test-id="text-to-binary-input"
+    />
+    <c-input-text
+      v-model:value="binaryFromText" :label="t('tools.text-to-binary.textToBinaryOutputLabel')" multiline
       raw-text readonly mt-2 :placeholder="t('tools.text-to-binary.textToBinaryOutputPlaceholder')"
-      test-id="text-to-binary-output" />
+      test-id="text-to-binary-output"
+    />
     <div mt-2 flex justify-center>
       <c-button :disabled="!binaryFromText" @click="copyBinary()">
         {{ t('tools.text-to-binary.copyBinary') }}
@@ -37,13 +41,17 @@ const { copy: copyText } = useCopy({ source: textFromBinary });
   </c-card>
 
   <c-card :title="t('tools.text-to-binary.binaryToTextTitle')">
-    <c-input-text v-model:value="inputBinary" multiline
+    <c-input-text
+      v-model:value="inputBinary" multiline
       :placeholder="t('tools.text-to-binary.binaryToTextInputPlaceholder')"
       :label="t('tools.text-to-binary.binaryToTextInputLabel')" autosize raw-text
-      :validation-rules="inputBinaryValidationRules" test-id="binary-to-text-input" />
-    <c-input-text v-model:value="textFromBinary" :label="t('tools.text-to-binary.binaryToTextOutputLabel')" multiline
+      :validation-rules="inputBinaryValidationRules" test-id="binary-to-text-input"
+    />
+    <c-input-text
+      v-model:value="textFromBinary" :label="t('tools.text-to-binary.binaryToTextOutputLabel')" multiline
       raw-text readonly mt-2 :placeholder="t('tools.text-to-binary.binaryToTextOutputPlaceholder')"
-      test-id="binary-to-text-output" />
+      test-id="binary-to-text-output"
+    />
     <div mt-2 flex justify-center>
       <c-button :disabled="!textFromBinary" @click="copyText()">
         {{ t('tools.text-to-binary.copyText') }}

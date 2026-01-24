@@ -32,8 +32,10 @@ const validation = useValidation({
 
 <template>
   <c-card>
-    <c-input-text v-model:value="rawJwt" :label="t('tools.jwt-parser.jwtInputLabel')" :validation="validation"
-      :placeholder="t('tools.jwt-parser.jwtInputPlaceholder')" rows="5" multiline raw-text autofocus mb-3 />
+    <c-input-text
+      v-model:value="rawJwt" :label="t('tools.jwt-parser.jwtInputLabel')" :validation="validation"
+      :placeholder="t('tools.jwt-parser.jwtInputPlaceholder')" rows="5" multiline raw-text autofocus mb-3
+    />
 
     <n-table v-if="validation.isValid">
       <tbody>

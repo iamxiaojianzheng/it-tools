@@ -127,12 +127,16 @@ function downloadMedia({ type, value, createdAt }: Media) {
 
     <c-card v-else>
       <div flex flex-col gap-2>
-        <c-select v-model:value="currentCamera" label-position="left" label-width="60px"
+        <c-select
+          v-model:value="currentCamera" label-position="left" label-width="60px"
           :label="t('tools.camera-recorder.videoLabel')"
-          :options="cameras.map(({ deviceId, label }) => ({ value: deviceId, label }))" />
-        <c-select v-if="currentMicrophone && microphones.length > 0" v-model:value="currentMicrophone"
+          :options="cameras.map(({ deviceId, label }) => ({ value: deviceId, label }))"
+        />
+        <c-select
+          v-if="currentMicrophone && microphones.length > 0" v-model:value="currentMicrophone"
           :label="t('tools.camera-recorder.audioLabel')" label-position="left" label-width="60px"
-          :options="microphones.map(({ deviceId, label }) => ({ value: deviceId, label }))" />
+          :options="microphones.map(({ deviceId, label }) => ({ value: deviceId, label }))"
+        />
       </div>
 
       <div v-if="!isMediaStreamAvailable" mt-3 flex justify-center>
@@ -186,7 +190,7 @@ function downloadMedia({ type, value, createdAt }: Media) {
 
         <video v-else :src="value" controls max-h-full w-full />
 
-        <div flex items-center justify-between mt-2>
+        <div mt-2 flex items-center justify-between>
           <div font-bold>
             {{ type === 'image' ? t('tools.camera-recorder.screenshot') : t('tools.camera-recorder.video') }}
           </div>

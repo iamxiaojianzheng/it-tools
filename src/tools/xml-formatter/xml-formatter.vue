@@ -30,15 +30,19 @@ const rules = computed<UseValidationRule<string>[]>(() => [
       <n-form-item :label="t('tools.xml-formatter.collapseContent')" label-placement="left">
         <n-switch v-model:value="collapseContent" />
       </n-form-item>
-      <n-form-item :label="t('tools.xml-formatter.indentSize')" label-placement="left" label-width="100"
-        :show-feedback="false">
+      <n-form-item
+        :label="t('tools.xml-formatter.indentSize')" label-placement="left" label-width="100"
+        :show-feedback="false"
+      >
         <n-input-number v-model:value="indentSize" min="0" max="10" w-100px />
       </n-form-item>
     </div>
   </div>
 
-  <format-transformer :input-label="t('tools.xml-formatter.inputLabel')"
+  <format-transformer
+    :input-label="t('tools.xml-formatter.inputLabel')"
     :input-placeholder="t('tools.xml-formatter.inputPlaceholder')" :output-label="t('tools.xml-formatter.outputLabel')"
     output-language="xml" :input-validation-rules="rules" :transformer="transformer" :input-default="defaultValue"
-    :copy-label="t('tools.xml-formatter.copyXml')" />
+    :copy-label="t('tools.xml-formatter.copyXml')"
+  />
 </template>

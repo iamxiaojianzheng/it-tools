@@ -42,13 +42,17 @@ const { attrs: validationAttrs } = useValidation({
 
 <template>
   <div>
-    <c-input-text v-model:value="rawIpAddress" :label="t('tools.ipv4-address-converter.inputLabel')"
-      :placeholder="t('tools.ipv4-address-converter.inputPlaceholder')" />
+    <c-input-text
+      v-model:value="rawIpAddress" :label="t('tools.ipv4-address-converter.inputLabel')"
+      :placeholder="t('tools.ipv4-address-converter.inputPlaceholder')"
+    />
 
     <n-divider />
 
-    <input-copyable v-for="{ label, value } of convertedSections" :key="label" :label="label" label-position="left"
+    <input-copyable
+      v-for="{ label, value } of convertedSections" :key="label" :label="label" label-position="left"
       label-width="120px" label-align="right" mb-2 :value="validationAttrs.validationStatus === 'error' ? '' : value"
-      :placeholder="t('tools.ipv4-address-converter.placeholder')" />
+      :placeholder="t('tools.ipv4-address-converter.placeholder')"
+    />
   </div>
 </template>

@@ -117,8 +117,10 @@ const cronValidationRules = [
   <div class="crontab-generator-wrapper">
     <c-card>
       <div mx-auto max-w-sm>
-        <c-input-text v-model:value="cron" size="large" placeholder="* * * * *" :validation-rules="cronValidationRules"
-          mb-3 />
+        <c-input-text
+          v-model:value="cron" size="large" placeholder="* * * * *" :validation-rules="cronValidationRules"
+          mb-3
+        />
       </div>
 
       <div class="cron-string">
@@ -170,12 +172,14 @@ const cronValidationRules = [
         </c-card>
       </div>
 
-      <c-table v-show="!styleStore.isSmallScreen" :data="helpers" :headers="[
-        { label: t('tools.crontab-generator.symbol'), key: 'symbol' },
-        { label: t('tools.crontab-generator.meaning'), key: 'meaning' },
-        { label: t('tools.crontab-generator.example'), key: 'example' },
-        { label: t('tools.crontab-generator.equivalent'), key: 'equivalent' },
-      ]" />
+      <c-table
+        v-show="!styleStore.isSmallScreen" :data="helpers" :headers="[
+          { label: t('tools.crontab-generator.symbol'), key: 'symbol' },
+          { label: t('tools.crontab-generator.meaning'), key: 'meaning' },
+          { label: t('tools.crontab-generator.example'), key: 'example' },
+          { label: t('tools.crontab-generator.equivalent'), key: 'equivalent' },
+        ]"
+      />
     </c-card>
   </div>
 </template>

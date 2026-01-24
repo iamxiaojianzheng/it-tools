@@ -60,21 +60,27 @@ const { copy } = useCopy({ source: macAddresses, text: t('tools.mac-address-gene
       <n-input-number v-model:value="amount" min="1" max="100" flex-1 />
     </div>
 
-    <c-input-text v-model:value="macAddressPrefix" :label="t('tools.mac-address-generator.prefix')"
+    <c-input-text
+      v-model:value="macAddressPrefix" :label="t('tools.mac-address-generator.prefix')"
       :placeholder="t('tools.mac-address-generator.prefixPlaceholder')" clearable label-position="left"
-      spellcheck="false" :validation="prefixValidation" raw-text label-width="150px" label-align="right" />
+      spellcheck="false" :validation="prefixValidation" raw-text label-width="150px" label-align="right"
+    />
 
-    <c-buttons-select v-model:value="caseTransformer" :options="casesTransformers"
-      :label="t('tools.mac-address-generator.case')" label-width="150px" label-align="right" />
+    <c-buttons-select
+      v-model:value="caseTransformer" :options="casesTransformers"
+      :label="t('tools.mac-address-generator.case')" label-width="150px" label-align="right"
+    />
 
-    <c-buttons-select v-model:value="separator" :options="separators"
-      :label="t('tools.mac-address-generator.separator')" label-width="150px" label-align="right" />
+    <c-buttons-select
+      v-model:value="separator" :options="separators"
+      :label="t('tools.mac-address-generator.separator')" label-width="150px" label-align="right"
+    />
 
     <c-card mt-5 flex data-test-id="ulids">
       <pre m-0 m-x-auto>{{ macAddresses }}</pre>
     </c-card>
 
-    <div flex justify-center gap-2 mt-2>
+    <div mt-2 flex justify-center gap-2>
       <c-button data-test-id="refresh" @click="refreshMacAddresses()">
         {{ t('tools.mac-address-generator.refresh') }}
       </c-button>

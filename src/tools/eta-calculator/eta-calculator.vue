@@ -48,13 +48,15 @@ const endAt = computed(() =>
       <div flex items-baseline gap-2>
         <span ml-2>{{ t('tools.eta-calculator.in') }}</span>
         <n-input-number v-model:value="timeSpan" min-w-130px :min="1" />
-        <c-select v-model:value="timeSpanUnitMultiplier" min-w-130px :options="[
-          { label: t('tools.eta-calculator.units.ms'), value: 1 },
-          { label: t('tools.eta-calculator.units.s'), value: 1000 },
-          { label: t('tools.eta-calculator.units.m'), value: 1000 * 60 },
-          { label: t('tools.eta-calculator.units.h'), value: 1000 * 60 * 60 },
-          { label: t('tools.eta-calculator.units.d'), value: 1000 * 60 * 60 * 24 },
-        ]" />
+        <c-select
+          v-model:value="timeSpanUnitMultiplier" min-w-130px :options="[
+            { label: t('tools.eta-calculator.units.ms'), value: 1 },
+            { label: t('tools.eta-calculator.units.s'), value: 1000 },
+            { label: t('tools.eta-calculator.units.m'), value: 1000 * 60 },
+            { label: t('tools.eta-calculator.units.h'), value: 1000 * 60 * 60 },
+            { label: t('tools.eta-calculator.units.d'), value: 1000 * 60 * 60 * 24 },
+          ]"
+        />
       </div>
     </div>
 

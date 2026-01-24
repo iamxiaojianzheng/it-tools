@@ -18,8 +18,10 @@ const rules = computed<UseValidationRule<string>[]>(() => [
 </script>
 
 <template>
-  <format-transformer :input-label="t('tools.toml-to-yaml.tomlInputLabel')"
+  <format-transformer
+    :input-label="t('tools.toml-to-yaml.tomlInputLabel')"
     :input-placeholder="t('tools.toml-to-yaml.tomlInputPlaceholder')"
     :output-label="t('tools.toml-to-yaml.yamlOutputLabel')" output-language="yaml" :input-validation-rules="rules"
-    :transformer="transformer" :copy-label="t('tools.toml-to-yaml.copyYaml')" />
+    :transformer="transformer" :copy-label="t('tools.toml-to-yaml.copyYaml')"
+  />
 </template>

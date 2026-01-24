@@ -1552,3 +1552,7 @@ tools:
       nationalFormat: 国内格式
       e164Format: E.164 格式
       rfc3966Format: RFC3966 格式
+components:
+  textarea-copyable:
+    copy: 复制到剪贴板
+    copied: 已复制！

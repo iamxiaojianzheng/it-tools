@@ -19,11 +19,15 @@ const compareMatch = computed(() => compareSync(compareString.value, compareHash
 
 <template>
   <c-card :title="t('tools.bcrypt.hashTitle')">
-    <c-input-text v-model:value="input" :placeholder="t('tools.bcrypt.inputPlaceholder')" raw-text
-      :label="t('tools.bcrypt.inputLabel')" label-position="left" label-align="right" label-width="120px" mb-2 />
+    <c-input-text
+      v-model:value="input" :placeholder="t('tools.bcrypt.inputPlaceholder')" raw-text
+      :label="t('tools.bcrypt.inputLabel')" label-position="left" label-align="right" label-width="120px" mb-2
+    />
     <n-form-item :label="t('tools.bcrypt.saltCountLabel')" label-placement="left" label-width="120">
-      <n-input-number v-model:value="saltCount" :placeholder="t('tools.bcrypt.saltCountPlaceholder')" :max="100"
-        :min="0" w-full />
+      <n-input-number
+        v-model:value="saltCount" :placeholder="t('tools.bcrypt.saltCountPlaceholder')" :max="100"
+        :min="0" w-full
+      />
     </n-form-item>
 
     <c-input-text :value="hashed" readonly text-center />
@@ -38,8 +42,10 @@ const compareMatch = computed(() => compareSync(compareString.value, compareHash
   <c-card :title="t('tools.bcrypt.compareTitle')">
     <n-form label-width="120">
       <n-form-item :label="t('tools.bcrypt.compareStringLabel')" label-placement="left">
-        <c-input-text v-model:value="compareString" :placeholder="t('tools.bcrypt.compareStringPlaceholder')"
-          raw-text />
+        <c-input-text
+          v-model:value="compareString" :placeholder="t('tools.bcrypt.compareStringPlaceholder')"
+          raw-text
+        />
       </n-form-item>
       <n-form-item :label="t('tools.bcrypt.compareHashLabel')" label-placement="left">
         <c-input-text v-model:value="compareHash" :placeholder="t('tools.bcrypt.compareHashPlaceholder')" raw-text />
