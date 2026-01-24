@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { type FormatOptionsWithLanguage, format as formatSQL } from 'sql-formatter';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
+const route = useRoute();
 const inputComponent = ref<any>(null);
 
 const config = reactive<FormatOptionsWithLanguage>({
@@ -13,8 +15,20 @@ const config = reactive<FormatOptionsWithLanguage>({
   tabulateAlias: true,
 });
 
-const rawSQL = ref('select field1,field2,field3 from my_table where my_condition;');
+const rawSQL = ref((route.query.input as string) || (route.query.filePath as string) || 'select field1,field2,field3 from my_table where my_condition;');
 const prettySQL = computed(() => formatSQL(rawSQL.value, config));
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    rawSQL.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    rawSQL.value = val as string;
+  }
+});
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import {
   MAX_ARABIC_TO_ROMAN,
   MIN_ARABIC_TO_ROMAN,
@@ -9,10 +10,11 @@ import {
 import { useCopy } from '@/composable/copy';
 import { useValidation } from '@/composable/validation';
 
-const inputNumeral = ref(42);
-const outputRoman = computed(() => arabicToRoman(inputNumeral.value));
-
 const { t } = useI18n();
+const route = useRoute();
+
+const inputNumeral = ref(Number.parseInt(route.query.input as string || '') || 42);
+const outputRoman = computed(() => arabicToRoman(inputNumeral.value));
 
 const { attrs: validationNumeral } = useValidation({
   source: inputNumeral,
@@ -27,8 +29,19 @@ const { attrs: validationNumeral } = useValidation({
   ],
 });
 
-const inputRoman = ref('XLII');
+const inputRoman = ref((route.query.input as string) || 'XLII');
 const outputNumeral = computed(() => romanToArabic(inputRoman.value));
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    const num = Number.parseInt(inputStr);
+    if (!Number.isNaN(num)) {
+      inputNumeral.value = num;
+    }
+    inputRoman.value = inputStr;
+  }
+});
 
 const validationRoman = useValidation({
   source: inputRoman,

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { generateMeta } from '@it-tools/oggen';
 import _ from 'lodash';
 import { image, ogSchemas, twitter, website } from './og-schemas';
@@ -6,10 +7,47 @@ import type { OGSchemaType, OGSchemaTypeElementSelect } from './OGSchemaType.typ
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const metadata = ref<{ type: string;[k: string]: any }>({
-  'type': 'website',
-  'twitter:card': 'summary_large_image',
+function getInitialMetadata() {
+  const input = (route.query.input as string) || (route.query.filePath as string) || '';
+  const initial = {
+    'type': 'website',
+    'twitter:card': 'summary_large_image',
+    'title': '',
+    'description': '',
+    'url': '',
+  };
+
+  if (input) {
+    if (input.startsWith('http')) {
+      initial.url = input;
+    }
+    else if (input.length < 60) {
+      initial.title = input;
+    }
+    else {
+      initial.description = input;
+    }
+  }
+  return initial;
+}
+
+const metadata = ref<{ type: string;[k: string]: any }>(getInitialMetadata());
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    if (inputStr.startsWith('http')) {
+      metadata.value.url = inputStr;
+    }
+    else if (inputStr.length < 60) {
+      metadata.value.title = inputStr;
+    }
+    else {
+      metadata.value.description = inputStr;
+    }
+  }
 });
 
 watch(

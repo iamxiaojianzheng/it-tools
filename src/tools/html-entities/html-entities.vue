@@ -1,17 +1,27 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { escape, unescape } from 'lodash';
 
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const escapeInput = ref('<title>IT Tool</title>');
+const escapeInput = ref((route.query.input as string) || '<title>IT Tool</title>');
 const escapeOutput = computed(() => escape(escapeInput.value));
 const { copy: copyEscaped } = useCopy({ source: escapeOutput });
 
-const unescapeInput = ref('&lt;title&gt;IT Tool&lt;/title&gt;');
+const unescapeInput = ref((route.query.input as string) || '&lt;title&gt;IT Tool&lt;/title&gt;');
 const unescapeOutput = computed(() => unescape(unescapeInput.value));
 const { copy: copyUnescaped } = useCopy({ source: unescapeOutput });
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    escapeInput.value = inputStr;
+    unescapeInput.value = inputStr;
+  }
+});
 </script>
 
 <template>

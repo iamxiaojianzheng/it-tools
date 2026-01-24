@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import type { QRCodeErrorCorrectionLevel } from 'qrcode';
 import { useQRCode } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
@@ -8,10 +9,23 @@ const background = ref('#ffffffff');
 const errorCorrectionLevel = ref<QRCodeErrorCorrectionLevel>('medium');
 
 const { t } = useI18n();
+const route = useRoute();
 
 const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
 
-const text = ref('https://it-tools.tech');
+const text = ref((route.query.input as string) || (route.query.filePath as string) || 'https://it-tools.tech');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    text.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    text.value = val as string;
+  }
+});
 const { qrcode } = useQRCode({
   text,
   color: {

@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { useCopy } from '@/composable/copy';
 import { useValidation } from '@/composable/validation';
 import { isNotThrowing } from '@/utils/boolean';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const encodeInput = ref('Hello world :)');
+const encodeInput = ref((route.query.input as string) || 'Hello world :)');
 const encodeOutput = computed(() => withDefaultOnError(() => encodeURIComponent(encodeInput.value), ''));
 
 const encodedValidation = useValidation({
@@ -21,7 +23,15 @@ const encodedValidation = useValidation({
 
 const { copy: copyEncoded } = useCopy({ source: encodeOutput, text: t('tools.url-encoder.copiedEncoded') });
 
-const decodeInput = ref('Hello%20world%20%3A)');
+const decodeInput = ref((route.query.input as string) || 'Hello%20world%20%3A)');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    encodeInput.value = inputStr;
+    decodeInput.value = inputStr;
+  }
+});
 const decodeOutput = computed(() => withDefaultOnError(() => decodeURIComponent(decodeInput.value), ''));
 
 const decodeValidation = useValidation({

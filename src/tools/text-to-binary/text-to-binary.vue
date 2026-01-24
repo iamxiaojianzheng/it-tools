@@ -1,16 +1,18 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { convertAsciiBinaryToText, convertTextToAsciiBinary } from './text-to-binary.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useCopy } from '@/composable/copy';
 import { isNotThrowing } from '@/utils/boolean';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const inputText = ref('');
+const inputText = ref((route.query.input as string) || '');
 const binaryFromText = computed(() => convertTextToAsciiBinary(inputText.value));
 const { copy: copyBinary } = useCopy({ source: binaryFromText });
 
-const inputBinary = ref('');
+const inputBinary = ref((route.query.input as string) || '');
 const textFromBinary = computed(() => withDefaultOnError(() => convertAsciiBinaryToText(inputBinary.value), ''));
 const inputBinaryValidationRules = computed(() => [
   {
@@ -19,6 +21,14 @@ const inputBinaryValidationRules = computed(() => [
   },
 ]);
 const { copy: copyText } = useCopy({ source: textFromBinary });
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    inputText.value = inputStr;
+    inputBinary.value = inputStr;
+  }
+});
 </script>
 
 <template>

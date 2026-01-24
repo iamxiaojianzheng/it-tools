@@ -1,16 +1,26 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { convertTextToUnicode, convertUnicodeToText } from './text-to-unicode.service';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const inputText = ref('');
+const inputText = ref((route.query.input as string) || '');
 const unicodeFromText = computed(() => inputText.value.trim() === '' ? '' : convertTextToUnicode(inputText.value));
 const { copy: copyUnicode } = useCopy({ source: unicodeFromText });
 
-const inputUnicode = ref('');
+const inputUnicode = ref((route.query.input as string) || '');
 const textFromUnicode = computed(() => inputUnicode.value.trim() === '' ? '' : convertUnicodeToText(inputUnicode.value));
 const { copy: copyText } = useCopy({ source: textFromUnicode });
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    inputText.value = inputStr;
+    inputUnicode.value = inputStr;
+  }
+});
 </script>
 
 <template>

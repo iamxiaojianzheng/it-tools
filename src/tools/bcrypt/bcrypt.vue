@@ -1,18 +1,28 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { compareSync, hashSync } from 'bcryptjs';
 import { useThemeVars } from 'naive-ui';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
+const route = useRoute();
 
 const themeVars = useThemeVars();
 
-const input = ref('');
+const input = ref((route.query.input as string) || '');
 const saltCount = ref(10);
 const hashed = computed(() => hashSync(input.value, saltCount.value));
 const { copy } = useCopy({ source: hashed, text: t('tools.bcrypt.copied') });
 
-const compareString = ref('');
+const compareString = ref((route.query.input as string) || '');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    input.value = inputStr;
+    compareString.value = inputStr;
+  }
+});
 const compareHash = ref('');
 const compareMatch = computed(() => compareSync(compareString.value, compareHash.value));
 </script>

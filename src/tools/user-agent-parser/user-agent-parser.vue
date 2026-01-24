@@ -1,11 +1,27 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { UAParser } from 'ua-parser-js';
 import { Adjustments, Browser, Cpu, Devices, Engine } from '@vicons/tabler';
 import UserAgentResultCards from './user-agent-result-cards.vue';
 import type { UserAgentResultSection } from './user-agent-parser.types';
 import { withDefaultOnError } from '@/utils/defaults';
 
-const ua = ref(navigator.userAgent as string);
+const { t } = useI18n();
+const route = useRoute();
+
+const ua = ref((route.query.input as string) || (route.query.filePath as string) || navigator.userAgent as string);
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    ua.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    ua.value = val as string;
+  }
+});
 
 // If not input in the ua field is present return an empty object of type UAParser.IResult because otherwise
 // UAParser returns the values for the current Browser. This is confusing because results are shown for an empty
@@ -16,8 +32,6 @@ function getUserAgentInfo(userAgent: string) {
     : ({ ua: '', browser: {}, cpu: {}, device: {}, engine: {}, os: {} } as UAParser.IResult);
 }
 const userAgentInfo = computed(() => withDefaultOnError(() => getUserAgentInfo(ua.value), undefined));
-
-const { t } = useI18n();
 
 const sections: UserAgentResultSection[] = [
   {

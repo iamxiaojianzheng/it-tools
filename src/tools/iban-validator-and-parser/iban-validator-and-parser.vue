@@ -1,11 +1,25 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { extractIBAN, friendlyFormatIBAN, isQRIBAN, validateIBAN } from 'ibantools';
 import { getFriendlyErrors } from './iban-validator-and-parser.service';
 import type { CKeyValueListItems } from '@/ui/c-key-value-list/c-key-value-list.types';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const rawIban = ref('');
+const rawIban = ref((route.query.input as string) || (route.query.filePath as string) || '');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    rawIban.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    rawIban.value = val as string;
+  }
+});
 
 const ibanInfo = computed<CKeyValueListItems>(() => {
   const iban = rawIban.value.toUpperCase().replace(/\s/g, '').replace(/-/g, '');

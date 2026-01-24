@@ -1,10 +1,24 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import markdownit from 'markdown-it';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const inputMarkdown = ref('');
+const inputMarkdown = ref((route.query.input as string) || (route.query.filePath as string) || '');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    inputMarkdown.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    inputMarkdown.value = val as string;
+  }
+});
 const outputHtml = computed(() => {
   const md = markdownit();
   return md.render(inputMarkdown.value);

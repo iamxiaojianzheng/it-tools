@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { useThemeVars } from 'naive-ui';
 
 import InputCopyable from '../../components/InputCopyable.vue';
-import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation } from './chmod-calculator.service';
+import { computeChmodOctalRepresentation, computeChmodSymbolicRepresentation, parseChmod } from './chmod-calculator.service';
 
 import type { Group, Scope } from './chmod-calculator.types';
 
 const themeVars = useThemeVars();
 
 const { t } = useI18n();
+const route = useRoute();
 
 const scopes: { scope: Scope; title: string }[] = [
   { scope: 'read', title: t('tools.chmod-calculator.read') },
@@ -17,10 +19,21 @@ const scopes: { scope: Scope; title: string }[] = [
 ];
 const groups: Group[] = ['owner', 'group', 'public'];
 
-const permissions = ref({
+const initialPermissions = (route.query.input as string) ? parseChmod(route.query.input as string) : undefined;
+
+const permissions = ref(initialPermissions || {
   owner: { read: false, write: false, execute: false },
   group: { read: false, write: false, execute: false },
   public: { read: false, write: false, execute: false },
+});
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const parsed = parseChmod(val as string);
+    if (parsed) {
+      permissions.value = parsed;
+    }
+  }
 });
 
 const octal = computed(() => computeChmodOctalRepresentation({ permissions: permissions.value }));

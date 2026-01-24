@@ -1,22 +1,32 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { AES, RC4, Rabbit, TripleDES, enc } from 'crypto-js';
 import { computedCatch } from '@/composable/computed/catchedComputed';
 
 const { t } = useI18n();
+const route = useRoute();
 
 const algos = { AES, TripleDES, Rabbit, RC4 };
 
-const cypherInput = ref('Lorem ipsum dolor sit amet');
+const cypherInput = ref((route.query.input as string) || 'Lorem ipsum dolor sit amet');
 const cypherAlgo = ref<keyof typeof algos>('AES');
 const cypherSecret = ref('my secret key');
 const cypherOutput = computed(() => algos[cypherAlgo.value].encrypt(cypherInput.value, cypherSecret.value).toString());
 
-const decryptInput = ref('U2FsdGVkX1/EC3+6P5dbbkZ3e1kQ5o2yzuU0NHTjmrKnLBEwreV489Kr0DIB+uBs');
+const decryptInput = ref((route.query.input as string) || 'U2FsdGVkX1/EC3+6P5dbbkZ3e1kQ5o2yzuU0NHTjmrKnLBEwreV489Kr0DIB+uBs');
 const decryptAlgo = ref<keyof typeof algos>('AES');
 const decryptSecret = ref('my secret key');
 const [decryptOutput, decryptError] = computedCatch(() => algos[decryptAlgo.value].decrypt(decryptInput.value, decryptSecret.value).toString(enc.Utf8), {
   defaultValue: '',
   defaultErrorMessage: t('tools.encryption.errorMessage'),
+});
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    cypherInput.value = inputStr;
+    decryptInput.value = inputStr;
+  }
 });
 </script>
 

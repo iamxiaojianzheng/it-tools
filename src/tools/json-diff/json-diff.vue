@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import JSON5 from 'json5';
 
 import DiffsViewer from './diff-viewer/diff-viewer.vue';
 import { withDefaultOnError } from '@/utils/defaults';
 import { isNotThrowing } from '@/utils/boolean';
 
-const rawLeftJson = ref('');
-const rawRightJson = ref('');
+const route = useRoute();
+const rawLeftJson = ref((route.query.input as string) || (route.query.filePath as string) || '');
+const rawRightJson = ref((route.query.filePath2 as string) || '');
 
 const leftJson = computed(() => withDefaultOnError(() => JSON5.parse(rawLeftJson.value), undefined));
 const rightJson = computed(() => withDefaultOnError(() => JSON5.parse(rawRightJson.value), undefined));

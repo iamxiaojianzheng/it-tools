@@ -1,16 +1,34 @@
 <script setup lang="ts">
-import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, NIL as nilUuid } from 'uuid';
+import { useRoute } from 'vue-router';
+import { v1 as generateUuidV1, v2 as generateUuidV2, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, NIL as nilUuid } from 'uuid';
 import { useCopy } from '@/composable/copy';
 import { computedRefreshable } from '@/composable/computedRefreshable';
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
+const route = useRoute();
 
 const versions = ['NIL', 'v1', 'v3', 'v4', 'v5'] as const;
 
-const version = useStorage<typeof versions[number]>('uuid-generator:version', 'v4');
+const initialInput = (route.query.input as string) || (route.query.filePath as string) || '';
+
+const version = useStorage<typeof versions[number]>('uuid-generator:version', initialInput ? 'v5' : 'v4');
 const count = useStorage('uuid-generator:quantity', 1);
-const v35Args = ref({ namespace: '6ba7b811-9dad-11d1-80b4-00c04fd430c8', name: '' });
+const v35Args = ref({ namespace: '6ba7b811-9dad-11d1-80b4-00c04fd430c8', name: initialInput });
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    version.value = 'v5';
+    v35Args.value.name = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    version.value = 'v5';
+    v35Args.value.name = val as string;
+  }
+});
 
 const validUuidRules = [
   {

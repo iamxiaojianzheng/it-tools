@@ -29,21 +29,44 @@ watch(isRuckMode, (val) => {
 }, { immediate: true });
 
 if ((window as any).ruck) {
-  (window as any).ruck.onPluginEnter((payload: any) => {
+  (window as any).ruck.onPluginEnter(async (payload: any) => {
     // Navigate to the tool matching the 'code' from manifest
     if (payload.code) {
       // Find tool where path matches /code (e.g., code "ascii-text-drawer" -> path "/ascii-text-drawer")
       const tool = tools.find(t => t.path === `/${payload.code}`);
       if (tool) {
-        router.push(tool.path);
+        const query: Record<string, any> = {};
+
+        // Handle text payload
+        if (payload.type === 'text' && payload.payload) {
+          query.input = payload.payload;
+        }
+
+        // Handle files payload
+        else if (payload.type === 'files' && Array.isArray(payload.payload)) {
+          payload.payload.forEach((file: any, index: number) => {
+            const key = index === 0 ? 'filePath' : `filePath${index + 1}`;
+            query[key] = file.path;
+          });
+        }
+
+        if (router.currentRoute.value.path !== tool.path) {
+          await router.push({ path: tool.path, query });
+        } else {
+           await router.push({ path: tool.path, query });
+        }
       }
     }
+  });
+  (window as any).ruck.onPluginOut(async () => {
+    router.push('/blank');
   });
 }
 
 syncRef(
-  locale,
+  locale as any,
   useStorage('locale', locale),
+  {},
 );
 </script>
 
@@ -139,8 +162,18 @@ body.ruck-plugin-mode .n-breadcrumb {
   display: none !important;
 }
 
-body.ruck-plugin-mode .c-card {
-  /* min-width: 100vw;
-  min-height: 100vh; */
+
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--n-color);
+  z-index: 9999;
 }
 </style>

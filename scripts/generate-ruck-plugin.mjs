@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 
@@ -22,10 +23,12 @@ const ruckManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 function extractKeywords(content) {
   const match = content.match(/keywords:\s*\[([\s\S]*?)\]/);
   if (match && match[1]) {
-    return match[1]
-      .split(',')
-      .map(s => s.trim().replace(/['"`]/g, ''))
-      .filter(s => s);
+    const arrayContent = match[1];
+    // 匹配所有带单引号、双引号或反引号的字符串
+    const stringMatches = arrayContent.match(/(['"`])(.*?)\1/g);
+    if (stringMatches) {
+      return stringMatches.map(s => s.slice(1, -1)).filter(s => s);
+    }
   }
   return [];
 }
@@ -65,56 +68,36 @@ for (const toolDirName of categories) {
     const code = toolDirName;
 
     // Get title and description from locales
-    // Key format: tools.<code-without-slash>.title
-    const titleKey = `tools.${code}.title`;
-    const descKey = `tools.${code}.description`;
+    // Fallback to directory name based key, but try to extract from code
+    const i18nMatch = content.match(/translate\(['"]tools\.(.*?)\.(title|description)['"]\)/);
+    const i18nKeyBase = i18nMatch ? i18nMatch[1] : code;
+
+    const titleKey = `tools.${i18nKeyBase}.title`;
+    const descKey = `tools.${i18nKeyBase}.description`;
 
     const name = getTranslation(titleKey);
     const description = getTranslation(descKey);
 
     if (!name) {
-      console.warn(`[WARN] Missing translation title for ${code}`);
+      console.warn(`[WARN] Missing translation title for ${code} (key: ${titleKey})`);
       continue;
     }
 
     const keywords = extractKeywords(content);
 
-    // Construct basic commands
-    // [Title, Code, ...keywords]
-    // Filter duplicates and empty
-    const basicCmds = Array.from(new Set([name, code, ...keywords])).filter(Boolean);
-
-    // Check if regex/advanced commands exist in ruck-manifest
-    let validCmds = basicCmds;
+    // 获取现有配置（如果有）
     const existingFeature = existingFeaturesMap.get(code);
 
-    if (existingFeature && existingFeature.cmds) {
-      // Merge strategy:
-      // Use existing feature's "complex" commands (objects)
-      // And merge keywords?
-      // Or just prefer existing if available?
-      // User said "automatic... especially feature/cmd".
-      // If we strictly use existing, it's not "automatic" for new keywords.
-      // So let's keep complex objects from existing, and regenerate string commands.
+    // 构造基础命令：[名称, 路径代码, ...关键词]
+    const basicCmds = Array.from(new Set([name, code, ...keywords])).filter(Boolean);
 
-      const complexCmds = existingFeature.cmds.filter(c => typeof c === 'object');
-      // For string commands, we use our generated list to ensure it's up to date with code/locales
-
-      // Wait, ruck-manifest might have manually tuned keywords that are better.
-      // But preserving them is hard if we want "automatic" updates from code.
-      // Let's append complex cmds to our basic cmds.
-      validCmds = [...basicCmds, ...complexCmds];
-    } else {
-      // If usage of existing feature is preferred entirely:
-      // validCmds = existingFeature.cmds
-      // But assuming we want to update it: 
-      // We keep it as basicCmds
-    }
+    // 提取清单中的复杂命令（对象类型）
+    const complexCmds = (existingFeature?.cmds || []).filter(c => typeof c === 'object');
 
     const feature = {
       code,
       explain: description || name,
-      cmds: validCmds,
+      cmds: [...basicCmds, ...complexCmds],
     };
 
     tools.push(feature);

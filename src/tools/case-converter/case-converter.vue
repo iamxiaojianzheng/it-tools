@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import {
   camelCase,
   capitalCase,
@@ -19,8 +20,21 @@ const baseConfig = {
 };
 
 const { t } = useI18n();
+const route = useRoute();
 
-const input = ref('lorem ipsum dolor sit amet');
+const input = ref((route.query.input as string) || (route.query.filePath as string) || 'lorem ipsum dolor sit amet');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    input.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    input.value = val as string;
+  }
+});
 
 const formats = computed(() => [
   {

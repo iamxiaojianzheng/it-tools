@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { Netmask } from 'netmask';
 import { useStorage } from '@vueuse/core';
 import { ArrowLeft, ArrowRight } from '@vicons/tabler';
@@ -8,8 +9,25 @@ import { isNotThrowing } from '@/utils/boolean';
 import SpanCopyable from '@/components/SpanCopyable.vue';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const ip = useStorage('ipv4-subnet-calculator:ip', '192.168.0.1/24');
+const ip = useStorage('ipv4-subnet-calculator:ip', (route.query.input as string) || (route.query.filePath as string) || '192.168.0.1/24');
+
+if (route.query.input || route.query.filePath) {
+  ip.value = (route.query.input as string) || (route.query.filePath as string);
+}
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    ip.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    ip.value = val as string;
+  }
+});
 
 const getNetworkInfo = (address: string) => new Netmask(address.trim());
 

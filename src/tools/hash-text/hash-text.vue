@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import type { lib } from 'crypto-js';
 import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
 
@@ -20,8 +21,15 @@ const algos = {
 type AlgoNames = keyof typeof algos;
 type Encoding = keyof typeof enc | 'Bin';
 const algoNames = Object.keys(algos) as AlgoNames[];
+const route = useRoute();
 const encoding = useQueryParam<Encoding>({ defaultValue: 'Hex', name: 'encoding' });
-const clearText = ref('');
+const clearText = ref((route.query.input as string) || '');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    clearText.value = val as string;
+  }
+});
 
 function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
   if (encoding === 'Bin') {

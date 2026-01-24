@@ -1,13 +1,25 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import db from 'oui-data';
 import { macAddressValidationRules } from '@/utils/macAddress';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
+const route = useRoute();
 
 const getVendorValue = (address: string) => address.trim().replace(/[.:-]/g, '').toUpperCase().substring(0, 6);
 
-const macAddress = ref('20:37:06:12:34:56');
+const macAddress = ref((route.query.input as string) || (route.query.filePath as string) || '20:37:06:12:34:56');
+watch(() => route.query.input, (val) => {
+  if (val) {
+    macAddress.value = val as string;
+  }
+});
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    macAddress.value = val as string;
+  }
+});
 const details = computed<string | undefined>(() => (db as Record<string, string>)[getVendorValue(macAddress.value)]);
 
 const { copy } = useCopy({

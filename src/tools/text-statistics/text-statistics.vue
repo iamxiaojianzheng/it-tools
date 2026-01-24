@@ -1,10 +1,24 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { getStringSizeInBytes } from './text-statistics.service';
 import { formatBytes } from '@/utils/convert';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const text = ref('');
+const text = ref((route.query.input as string) || (route.query.filePath as string) || '');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    text.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    text.value = val as string;
+  }
+});
 </script>
 
 <template>

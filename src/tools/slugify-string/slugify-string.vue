@@ -1,12 +1,27 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import slugify from '@sindresorhus/slugify';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
-const input = ref('');
+const route = useRoute();
+
+const input = ref((route.query.input as string) || (route.query.filePath as string) || '');
 const slug = computed(() => withDefaultOnError(() => slugify(input.value), ''));
 const { copy } = useCopy({ source: slug, text: t('tools.slugify-string.copied') });
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    input.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    input.value = val as string;
+  }
+});
 </script>
 
 <template>

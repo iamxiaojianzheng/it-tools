@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { evaluate } from 'mathjs';
 
 import { withDefaultOnError } from '@/utils/defaults';
 
 const { t } = useI18n();
+const route = useRoute();
 
-const expression = ref('');
+const expression = ref((route.query.input as string) ?? '');
 
 const result = computed(() => withDefaultOnError(() => evaluate(expression.value) ?? '', ''));
 </script>

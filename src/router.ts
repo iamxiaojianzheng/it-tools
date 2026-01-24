@@ -34,6 +34,12 @@ const router = createRouter({
     ...toolsRoutes,
     ...toolsRedirectRoutes,
     ...(config.app.env === 'development' ? demoRoutes : []),
+    {
+      path: '/blank',
+      name: 'blank',
+      component: () => import('./pages/Blank.vue'),
+      meta: { layout: layouts.empty },
+    },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
 });

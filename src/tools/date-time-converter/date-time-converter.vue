@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import {
   formatISO,
   formatISO9075,
@@ -29,9 +30,30 @@ import {
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
 
-const inputDate = ref('');
-
 const { t } = useI18n();
+const route = useRoute();
+
+const inputDate = ref((route.query.input as string) || (route.query.filePath as string) || '');
+
+if (inputDate.value) {
+  onDateInputChanged(inputDate.value);
+}
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    inputDate.value = inputStr;
+    onDateInputChanged(inputStr);
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    const inputStr = val as string;
+    inputDate.value = inputStr;
+    onDateInputChanged(inputStr);
+  }
+});
 
 const toDate: ToDateMapper = date => new Date(date);
 
@@ -172,8 +194,6 @@ function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date
         {{ t('tools.date-time-converter.now') }}
       </c-button>
     </div>
-
-    <n-divider />
 
     <input-copyable
       v-for="{ name, fromDate } in formats" :key="name" :label="name" label-width="150px"

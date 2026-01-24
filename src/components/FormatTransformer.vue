@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import _ from 'lodash';
 import type { UseValidationRule } from '@/composable/validation';
 import CInputText from '@/ui/c-input-text/c-input-text.vue';
@@ -27,10 +28,17 @@ const props = withDefaults(
 const { transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage, inputPlaceholder, inputDefault }
   = toRefs(props);
 
+const route = useRoute();
 const inputElement = ref<typeof CInputText>();
 
-const input = ref(inputDefault.value);
+const input = ref((route.query.input as string) || inputDefault.value);
 const output = computed(() => transformer.value(input.value));
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    input.value = val as string;
+  }
+});
 </script>
 
 <template>

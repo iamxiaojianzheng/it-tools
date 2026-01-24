@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import cronstrue from 'cronstrue';
 import 'cronstrue/locales/zh_CN';
 import { isValidCron } from 'cron-validator';
@@ -11,8 +12,22 @@ function isCronValid(v: string) {
 const styleStore = useStyleStore();
 
 const { t, locale } = useI18n();
+const route = useRoute();
 
-const cron = ref('40 * * * *');
+const cron = ref((route.query.input as string) || (route.query.filePath as string) || '40 * * * *');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    cron.value = val as string;
+  }
+});
+
+watch(() => route.query.filePath, (val) => {
+  if (val) {
+    cron.value = val as string;
+  }
+});
+
 const cronstrueConfig = reactive({
   verbose: true,
   dayOfWeekStartIndexZero: true,

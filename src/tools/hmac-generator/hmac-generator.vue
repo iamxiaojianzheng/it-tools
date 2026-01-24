@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import type { lib } from 'crypto-js';
 import {
   HmacMD5,
@@ -16,6 +17,7 @@ import { convertHexToBin } from '../hash-text/hash-text.service';
 import { useCopy } from '@/composable/copy';
 
 const { t } = useI18n();
+const route = useRoute();
 
 const algos = {
   MD5: HmacMD5,
@@ -37,8 +39,14 @@ function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
   return words.toString(enc[encoding]);
 }
 
-const plainText = ref('');
+const plainText = ref((route.query.input as string) || '');
 const secret = ref('');
+
+watch(() => route.query.input, (val) => {
+  if (val) {
+    plainText.value = val as string;
+  }
+});
 const hashFunction = ref<keyof typeof algos>('SHA256');
 const encoding = ref<Encoding>('Hex');
 const hmac = computed(() =>
