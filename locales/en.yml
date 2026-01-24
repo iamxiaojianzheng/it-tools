@@ -151,6 +151,13 @@ tools:
     title: Percentage calculator
     description: Easily calculate percentages from a value to another value, or from
       a percentage to a value.
+    whatIs: What is
+    percentOf: "% of"
+    isWhatPercentOf: is what percent of
+    increaseDecrease: What is the percentage increase/decrease
+    from: From
+    to: To
+    result: Result
 
   svg-placeholder-generator:
     title: SVG placeholder generator
@@ -278,6 +285,21 @@ tools:
       redirection: 3xx redirection
       clientError: 4xx client error
       serverError: 5xx server error
+    codes:
+      c100:
+        name: Continue
+        description: Waiting for the client to emit the body of the request.
+      c200:
+        name: OK
+        description: Standard response for successful HTTP requests.
+      c404:
+        name: Not Found
+        description: The requested resource could not be found but may be available in
+          the future.
+      c500:
+        name: Internal Server Error
+        description: A generic error message, given when an unexpected condition was
+          encountered and no more specific message is suitable.
 
   sql-prettify:
     title: SQL prettify
@@ -369,6 +391,20 @@ tools:
     description: An ETA (Estimated Time of Arrival) calculator to determine the
       approximate end time of a task, for example, the end time and duration of
       a file download.
+    example: With a concrete example, if you wash 5 plates in 3 minutes and you have
+      500 plates to wash, it will take you 5 hours to wash them all.
+    amountLabel: Amount of element to consume
+    startedAtLabel: The consumption started at
+    rateLabel: Amount of unit consumed by time span
+    in: in
+    units:
+      ms: milliseconds
+      s: seconds
+      m: minutes
+      h: hours
+      d: days
+    totalDuration: Total duration
+    endTime: "It will end "
 
   roman-numeral-converter:
     title: Roman numeral converter
@@ -658,6 +694,24 @@ tools:
     title: HTML WYSIWYG editor
     description: A powerful HTML WYSIWYG editor with many features, get the rendered
       source code immediately.
+    defaultValue: <h1>Hey!</h1><p>Welcome to this html wysiwyg editor</p>
+    toolbar:
+      bold: Bold
+      italic: Italic
+      strike: Strike
+      inlineCode: Inline code
+      h1: Heading 1
+      h2: Heading 2
+      h3: Heading 3
+      h4: Heading 4
+      bulletList: Bullet list
+      orderedList: Ordered list
+      codeBlock: Code block
+      blockquote: Blockquote
+      hardBreak: Hard break
+      clearFormat: Clear format
+      undo: Undo
+      redo: Redo
 
   yaml-to-toml:
     title: YAML to TOML converter
@@ -672,6 +726,17 @@ tools:
     title: MAC address generator
     description: Enter the quantity and prefix. MAC addresses will be generated in
       your chosen case (uppercase or lowercase)
+    quantity: "Quantity:"
+    prefix: "MAC address prefix:"
+    prefixPlaceholder: Set a prefix, e.g. 64:16:7F
+    case: "Case:"
+    uppercase: Uppercase
+    lowercase: Lowercase
+    separator: "Separator:"
+    none: None
+    refresh: Refresh
+    copy: Copy
+    copied: MAC addresses copied to the clipboard
 
   json-diff:
     title: JSON diff
@@ -731,6 +796,15 @@ tools:
     title: IPv6 ULA generator
     description: Generate your own local, non-routable IP addresses for your network
       according to RFC4193.
+    infoTitle: Info
+    info: This tool uses the first method suggested by IETF using the current
+      timestamp plus the mac address, sha1 hashed, and the lower 40 bits to
+      generate your random ULA.
+    macAddressLabel: "MAC address:"
+    macAddressPlaceholder: Type a MAC address
+    ulaLabel: "IPv6 ULA:"
+    firstBlock: "First routable block:"
+    lastBlock: "Last routable block:"
 
   hash-text:
     title: Hash text

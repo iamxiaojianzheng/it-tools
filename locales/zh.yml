@@ -138,6 +138,13 @@ tools:
   percentage-calculator:
     title: 百分比计算器
     description: 轻松计算从一个值到另一个值的百分比，或从百分比到值的百分比。
+    whatIs: 计算
+    percentOf: "% 的"
+    isWhatPercentOf: 是其百分之几的
+    increaseDecrease: 计算百分比增加/减少
+    from: 起始值
+    to: 终点值
+    result: 结果
 
   svg-placeholder-generator:
     title: SVG 占位符生成器
@@ -294,6 +301,202 @@ tools:
       redirection: 3xx 重定向
       clientError: 4xx 客户端错误
       serverError: 5xx 服务端错误
+    codes:
+      c100:
+        name: 继续
+        description: 等待客户端发送请求体。
+      c200:
+        name: 成功
+        description: 标准响应，表示 HTTP 请求成功。
+      c404:
+        name: 未找到
+        description: 请求的资源未找到，但将来可能可用。
+      c500:
+        name: 服务器内部错误
+        description: 通用错误消息，在遇到意外情况且没有更具体的详细消息时给出。
+      c101:
+        name: 切换协议
+        description: 服务器已同意切换协议。
+      c102:
+        name: 处理中
+        description: 服务器正在处理请求，但尚未有响应可用。
+      c103:
+        name: 早期提示
+        description: 服务器在发送最终 HTTP 消息之前返回一些响应头。
+      c201:
+        name: 已创建
+        description: 请求已成功，并因此创建了一个新的资源。
+      c202:
+        name: 已接受
+        description: 已接受请求以进行处理，但处理尚未完成。
+      c203:
+        name: 非权威信息
+        description: 请求成功，但原始请求的内容已被转换代理修改。
+      c204:
+        name: 无内容
+        description: 服务器成功处理了请求，但没有返回任何内容。
+      c205:
+        name: 重置内容
+        description: 服务器指示重置发送此请求的文档视图。
+      c206:
+        name: 部分内容
+        description: 服务器仅交付资源的一部分，因为客户端发送了范围头。
+      c207:
+        name: 多状态
+        description: 随后的消息体是一个 XML 消息，可以包含若干个独立的响应代码。
+      c208:
+        name: 已报告
+        description: DAV 绑定的成员已在（多状态）响应的先前部分中被枚举。
+      c226:
+        name: IM Used
+        description: 服务器已履行对资源的请求，响应是结果的表示。
+      c300:
+        name: 多种选择
+        description: 指示客户端可以遵循的资源有多种选择。
+      c301:
+        name: 永久移动
+        description: 此请求及所有未来的请求应定向到给定的 URI。
+      c302:
+        name: 发现
+        description: 重定向到另一个 URL。这是行业实践违背标准的例子。
+      c303:
+        name: 查看其他
+        description: 请求的响应可以使用 GET 方法在另一个 URI 下找到。
+      c304:
+        name: 未修改
+        description: 指示资源自请求头指定的版本以来未被修改。
+      c305:
+        name: 使用代理
+        description: 请求的资源仅能通过响应中提供的代理地址访问。
+      c307:
+        name: 临时重定向
+        description: 在这种情况下，应使用另一个 URI 重复请求；但是，未来的请求仍应使用原始 URI。
+      c308:
+        name: 永久重定向
+        description: 请求和所有未来的请求应使用另一个 URI 重复。
+      c400:
+        name: 错误请求
+        description: 由于明显的客户端错误，服务器无法或不会处理请求。
+      c401:
+        name: 未授权
+        description: 需要身份验证，且已失败或尚未提供。
+      c402:
+        name: 需要付款
+        description: 保留供以后使用。
+      c403:
+        name: 禁止访问
+        description: 服务器拒绝执行操作。用户可能没有资源的权限。
+      c405:
+        name: 方法不允许
+        description: 请求方法不支持请求的资源。
+      c406:
+        name: 不可接受
+        description: 请求的资源仅能生成 Accept 头不接受的内容。
+      c407:
+        name: 需要代理身份验证
+        description: 客户端必须首先通过代理进行身份验证。
+      c408:
+        name: 请求超时
+        description: 服务器在等待请求时超时。
+      c409:
+        name: 冲突
+        description: 指示由于请求中的冲突（如编辑冲突）而无法处理请求。
+      c410:
+        name: 已消失
+        description: 指示请求的资源不再可用，且不会再次可用。
+      c411:
+        name: 需要长度
+        description: 请求未指定其内容的长度，这是请求的资源所必需的。
+      c412:
+        name: 先决条件失败
+        description: 服务器未满足请求者在请求中设置的先决条件之一。
+      c413:
+        name: 有效载荷过大
+        description: 请求大于服务器愿意或能够处理的大小。
+      c414:
+        name: URI 过长
+        description: 提供的 URI 对于服务器处理来说太长。
+      c415:
+        name: 不支持的媒体类型
+        description: 请求实体的媒体类型是服务器或资源所不支持的。
+      c418:
+        name: 我是茶壶
+        description: 服务器拒绝使用茶壶煮咖啡的尝试。
+      c429:
+        name: 请求过多
+        description: 用户在给定时间内发送了太多请求。
+      c501:
+        name: 尚未实现
+        description: 服务器不认识请求方法，或者它缺乏履行请求的能力。
+      c502:
+        name: 错误网关
+        description: 服务器作为网关或代理，并从上游服务器收到了无效响应。
+      c503:
+        name: 服务不可用
+        description: 服务器当前不可用（因为它超载或停机维护）。
+      c504:
+        name: 网关超时
+        description: 服务器作为网关或代理，未及时从上游服务器收到响应。
+      c505:
+        name: HTTP 版本不受支持
+        description: 服务器不支持请求中使用的 HTTP 协议版本。
+      c511:
+        name: 需要网络身份验证
+        description: 客户端需要进行身份验证以获得网络访问权限。
+      c416:
+        name: 范围不满足
+        description: 客户端请求的部分文件，服务器无法提供该部分。
+      c417:
+        name: 预期失败
+        description: 服务器无法满足 Expect 请求头字段的要求。
+      c421:
+        name: 误导请求
+        description: 请求定向到了无法产生响应的服务器。
+      c422:
+        name: 无法处理的实体
+        description: 请求格式良好，但由于语义错误而无法遵循。
+      c423:
+        name: 已锁定
+        description: 正在访问的资源已锁定。
+      c424:
+        name: 依赖失败
+        description: 请求由于先前的请求失败而失败。
+      c425:
+        name: 过早
+        description: 指示服务器不愿承担处理可能被重放的请求的风险。
+      c426:
+        name: 需要升级
+        description: 客户端应切换到不同的协议。
+      c428:
+        name: 需要前提条件
+        description: 源服务器要求请求是有条件的。
+      c431:
+        name: 请求头字段太大
+        description: 服务器不愿处理请求，因为头字段太大。
+      c451:
+        name: 法律原因不可用
+        description: 由于法律要求，服务器运营商拒绝访问资源。
+      c506:
+        name: 变体商定
+        description: 请求的透明内容协商导致循环引用。
+      c507:
+        name: 存储空间不足
+        description: 服务器无法存储完成请求所需的表示。
+      c508:
+        name: 检测到循环
+        description: 服务器在处理请求时检测到无限循环。
+      c510:
+        name: 未扩展
+        description: 需要对请求进行进一步扩展才能履行。
+      c306:
+        name: 切换代理
+        description: 不再使用。最初表示后续请求应使用指定的代理。
+    categoryMapping:
+      1xx: 1xx 信息响应
+      2xx: 2xx 成功
+      3xx: 3xx 重定向
+      4xx: 4xx 客户端错误
+      5xx: 5xx 服务器错误
 
   sql-prettify:
     title: SQL 格式化
@@ -379,6 +582,19 @@ tools:
   eta-calculator:
     title: ETA 计算器
     description: ETA（估计到达时间）计算器，用于知道任务的近似结束时间，例如下载的结束时刻。
+    example: 举个具体的例子：如果你 3 分钟洗 5 个盘子，而你有 500 个盘子要洗，那么洗完所有的盘子将花费你 5 个小时。
+    amountLabel: 待消耗元素总量
+    startedAtLabel: 消耗开始于
+    rateLabel: 每时间段消耗的单位量
+    in: 在
+    units:
+      ms: 毫秒
+      s: 秒
+      m: 分钟
+      h: 小时
+      d: 天
+    totalDuration: 总时长
+    endTime: 预计结束时间
 
   roman-numeral-converter:
     title: 罗马数字转换器
@@ -687,6 +903,24 @@ tools:
   html-wysiwyg-editor:
     title: HTML 可视化编辑器
     description: 功能强大的 HTML 可视化编辑器，具备许多功能，可立即获得渲染后的源代码。
+    defaultValue: <h1>嘿！</h1><p>欢迎使用这个 HTML 可视化编辑器</p>
+    toolbar:
+      bold: 加粗
+      italic: 斜体
+      strike: 中划线
+      inlineCode: 行内代码
+      h1: 标题 1
+      h2: 标题 2
+      h3: 标题 3
+      h4: 标题 4
+      bulletList: 无序列表
+      orderedList: 有序列表
+      codeBlock: 代码块
+      blockquote: 引用
+      hardBreak: 强制换行
+      clearFormat: 清除格式
+      undo: 撤销
+      redo: 重做
 
   yaml-to-toml:
     title: YAML 到 TOML 转换器
@@ -700,6 +934,17 @@ tools:
   mac-address-generator:
     title: MAC 地址生成器
     description: 输入数量和前缀。MAC地址将以您选择的大小写（大写或小写）生成
+    quantity: "数量:"
+    prefix: "MAC 地址前缀:"
+    prefixPlaceholder: 设置前缀，例如 64:16:7F
+    case: "字母大小写:"
+    uppercase: 大写
+    lowercase: 小写
+    separator: "分隔符:"
+    none: 无
+    refresh: 刷新
+    copy: 复制
+    copied: MAC 地址已复制到剪贴板
 
   json-diff:
     title: JSON 差异比较
@@ -755,6 +1000,13 @@ tools:
   ipv6-ula-generator:
     title: IPv6 ULA生成器
     description: 根据RFC4193在网络上生成您自己的本地不可路由IP地址。
+    infoTitle: 提示
+    info: 此工具使用 IETF 建议的第一种方法，使用当前时间戳加上 MAC 地址，进行 SHA1 哈希处理，并使用低 40 位生成您的随机 ULA。
+    macAddressLabel: "MAC 地址:"
+    macAddressPlaceholder: 键入 MAC 地址
+    ulaLabel: "IPv6 ULA:"
+    firstBlock: "首个可路由块:"
+    lastBlock: "末个可路由块:"
 
   hash-text:
     title: Hash 文本
