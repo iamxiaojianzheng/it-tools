@@ -1,7 +1,7 @@
 {
-  "name": "it-tools",
+  "name": "@ruck-plugins/it-tools",
   "type": "module",
-  "version": "2024.10.22-7ca5933",
+  "version": "1.0.0",
   "packageManager": "pnpm@9.11.0",
   "description": "Collection of handy online tools for developers, with great UX. ",
   "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
@@ -21,6 +21,9 @@
     "developer-tools",
     "developer-productivity"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && cross-env NODE_OPTIONS=--max_old_space_size=4096 vite build && node scripts/generate-ruck-plugin.mjs",

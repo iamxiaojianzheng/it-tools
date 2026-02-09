@@ -1,0 +1,23 @@
+{
+  "name": "@ruck-plugins/it-tools",
+  "version": "1.0.0",
+  "description": "Collection of handy online tools for developers, with great UX. ",
+  "author": "JIAHE <xjz.jiahe@gmail.com> (https://github.com/iamxiaojianzheng)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamxiaojianzheng/it-tools"
+  },
+  "keywords": [
+    "productivity",
+    "converter",
+    "website",
+    "vuejs",
+    "tools",
+    "frontend",
+    "tool",
+    "developer-tools",
+    "developer-productivity"
+  ]
+}
+
