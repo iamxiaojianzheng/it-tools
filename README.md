@@ -1,150 +1,74 @@
-<picture>
-    <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
-    <source srcset="./.github/logo-white.png" media="(prefers-color-scheme: dark)">
-    <img src="./.github/logo-dark.png" alt="logo">
-</picture>
+# IT Tools for Ruck
 
-<p align="center">
-Useful tools for developer and people working in IT. <a href="https://it-tools.tech">Try it!</a>
-</p>
+`it-tools` 是一款致力于为开发人员和 IT 从业者提供各种实用工具的开源集合。作为 Ruck 插件，它将这些功能直接集成到你的工作流中，支持通过搜索框快速打开、输入内容正则表达式自动识别匹配。
 
+![image](https://img.cdn1.vip/i/698970d0c1acf_1770614992.png)
 
-## Sponsors
+## 核心功能与可用工具
 
-<div align="center" markdown="1">
-<p align="center">
-  IT-Tools is proudly sponsored by:
-</p>
+以下是内置的 60 多种可用工具，按功能领域分类整理：
 
-<a href="https://go.warp.dev/it-tools">
-  <img alt="Warp sponsorship" width="400" src="https://raw.githubusercontent.com/warpdotdev/brand-assets/refs/heads/main/Github/Sponsor/Warp-Github-LG-01.png">
-</a>
+### 1. 密码学与安全 (Crypto)
+- **Token Generator**: 生成各种长度和样式的安全令牌。
+- **Hash Text**: 计算文本的 MD5, SHA-1, SHA-256, SHA-512 等哈希值。
+- **Bcrypt**: 生成并验证 Bcrypt 密码哈希。
+- **UUID/ULID Generator**: 生成唯一标识符。
+- **Encryption/Decryption**: AES, DES, TripleDES 等常用算法加解密。
+- **BIP39 Mnemonic**: 生成助记词。
+- **HMAC Generator**: 计算消息认证码。
+- **RSA Key Pair Generator**: 生成 RSA 公私钥对。
+- **Password Strength Analyser**: 分析密码强度。
 
-### [Warp, built for coding with multiple AI agents.](https://go.warp.dev/it-tools)
-[Available for MacOS, Linux, & Windows](https://go.warp.dev/it-tools)<br>
+### 2. 格式转换 (Converter)
+- **Date Time Converter**: 时间戳与日期格式互转。
+- **Integer Base Converter**: 二进制、八进制、十进制、十六进制等基数互转。
+- **Base64 String/File Converter**: 字符串或文件的 Base64 编码与解码。
+- **Color Converter**: HEX, RGB, HSL 等颜色格式互转。
+- **Case Converter**: 驼峰、下划线、中划线等命名风格转换。
+- **JSON/YAML/XML/TOML 互转**: 支持常见配置格式的相互转换。
+- **Markdown to HTML**: 将 Markdown 语法转换为 HTML。
 
-</div>
+### 3. Web 开发工具 (Web)
+- **URL Encoder/Decoder**: 转义 URL 中的特殊字符。
+- **HTML Entities**: HTML 实体编码与还原。
+- **JWT Parser**: 解析并预览 JWT（JSON Web Token）的内容（Header, Payload）。
+- **User-Agent Parser**: 解析浏览器 UA 字符串。
+- **HTTP Status Codes**: 快速查阅 HTTP 状态码及其含义。
+- **JSON Diff**: 对比两个 JSON 对象之间的差异。
+- **Slugify String**: 将字符串转换为 URL Slug 格式。
 
-## Functionalities and roadmap
+### 4. 开发与调试 (Development)
+- **JSON Viewer/Minify**: JSON 的实时预览、格式化、压缩。
+- **SQL Prettify**: 格式化 SQL 语句。
+- **Chmod Calculator**: 计算 Linux 文件系统权限代码。
+- **Docker Run to Compose**: 将 `docker run` 命令转换为 docker-compose 格式。
+- **Git Memo**: Git 常用命令参考速查。
+- **Crontab Generator**: 生成 Cron 表达式。
+- **Regex Tester**: 测试正则表达式。
 
-Please check the [issues](https://github.com/CorentinTh/it-tools/issues) to see if some feature listed to be implemented.
+### 5. 网络工具 (Network)
+- **IPv4 Subnet Calculator**: 子网掩码计算与划分。
+- **IPv4 Range Expander**: 批量展开 IP 范围。
+- **MAC Address Lookup/Generator**: MAC 地址生成及归属查询。
+- **IPv6 ULA Generator**: 生成 IPv6 唯一本地地址。
 
-You have an idea of a tool? Submit a [feature request](https://github.com/CorentinTh/it-tools/issues/new/choose)!
+### 6. 文本处理 (Text)
+- **Text Statistics**: 统计字数、行数、字符密度等。
+- **Text Diff**: 对比两段大文本的差异。
+- **Lorem Ipsum Generator**: 生成占位文本。
+- **Emoji Picker**: 查找并复制表情符号。
 
-## Self host
+### 7. 数学与测量 (Math & Measurement)
+- **Math Evaluator**: 进行复杂的数学算术计算。
+- **Chronometer**: 秒表及计时工具。
+- **Temperature Converter**: 温度单位转换。
+- **Percentage Calculator**: 百分比计算。
 
-Self host solutions for your homelab
+### 8. 媒体工具 (Images and videos)
+- **QR Code Generator**: 生成普通或 WiFi 二维码。
+- **SVG Placeholder Generator**: 生成 SVG 占位图。
+- **Camera Recorder**: 摄像头录制。
 
-**From docker hub:**
+## 致谢
 
-```sh
-docker run -d --name it-tools --restart unless-stopped -p 8080:80 corentinth/it-tools:latest
-```
-
-**From github packages:**
-
-```sh
-docker run -d --name it-tools --restart unless-stopped -p 8080:80 ghcr.io/corentinth/it-tools:latest
-```
-
-**Other solutions:**
-
-- [Cloudron](https://www.cloudron.io/store/tech.ittools.cloudron.html)
-- [Tipi](https://www.runtipi.io/docs/apps-available)
-- [Unraid](https://unraid.net/community/apps?q=it-tools)
-
-## Contribute
-
-### Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) with the following extensions:
-
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
-- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally)
-
-with the following settings:
-
-```json
-{
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "i18n-ally.localesPaths": ["locales", "src/tools/*/locales"],
-  "i18n-ally.keystyle": "nested"
-}
-```
-
-### Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-### Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
-
-### Create a new tool
-
-To create a new tool, there is a script that generate the boilerplate of the new tool, simply run:
-
-```sh
-pnpm run script:create:tool my-tool-name
-```
-
-It will create a directory in `src/tools` with the correct files, and a the import in `src/tools/index.ts`. You will just need to add the imported tool in the proper category and develop the tool.
-
-## Contributors
-
-Big thanks to all the people who have already contributed!
-
-[![contributors](https://contrib.rocks/image?repo=corentinth/it-tools&refresh=1)](https://github.com/corentinth/it-tools/graphs/contributors)
-
-## Credits
-
-Coded with ❤️ by [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=readme).
-
-This project is continuously deployed using [vercel.com](https://vercel.com).
-
-Contributor graph is generated using [contrib.rocks](https://contrib.rocks/preview?repo=corentinth/it-tools).
-
-<a href="https://www.producthunt.com/posts/it-tools?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-it&#0045;tools" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=345793&theme=light" alt="IT&#0032;Tools - Collection&#0032;of&#0032;handy&#0032;online&#0032;tools&#0032;for&#0032;devs&#0044;&#0032;with&#0032;great&#0032;UX | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-<a href="https://www.producthunt.com/posts/it-tools?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-it&#0045;tools" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=345793&theme=light&period=daily" alt="IT&#0032;Tools - Collection&#0032;of&#0032;handy&#0032;online&#0032;tools&#0032;for&#0032;devs&#0044;&#0032;with&#0032;great&#0032;UX | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-## License
-
-This project is under the [GNU GPLv3](LICENSE).
+本项目基于开源项目 [it-tools](https://github.com/CorentinTh/it-tools) 进行 Ruck 插件适配。
